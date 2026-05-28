@@ -8,16 +8,20 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="Delta Battle"
+config/name="Dream Warden"
 config/description="A recreation of Deltarune's combat system in Godot (https://github.com/DevPoodle/delta-battle)"
 config/tags=PackedStringArray("top_down_2d")
-run/main_scene="uid://dyiveyiwynurb"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+run/main_scene="uid://b53ljrv0fb6u4"
+config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=30
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/fullsize=false
+boot_splash/stretch_mode=0
 boot_splash/use_filter=false
 boot_splash/image="uid://bu4shuado4hld"
 config/icon="uid://boqqgdwprwmta"
@@ -48,6 +52,12 @@ window/stretch/scale_mode="integer"
 [dotnet]
 
 project/assembly_name="Delta Battle"
+
+[file_customization]
+
+folder_colors={
+"res://fighters/characters/_/": "gray"
+}
 
 [gui]
 

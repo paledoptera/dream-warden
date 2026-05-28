@@ -2,7 +2,7 @@ extends Node2D
 
 var dark_candy := preload("res://holdables/items/dark_candy.tres")
 
-@export var characters: Array[PackedScene] = [preload("res://fighters/characters/blue/blue.tscn")]
+@export var characters: Array[PackedScene] = []
 @export var enemies: Array[PackedScene] = [preload("res://fighters/monsters/slime/slime.tscn")]
 @export var weapons: Array[Equippable] = []
 @export var armors: Array[Equippable] = []

@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cte7khih2kb45"]
+[gd_scene format=3 uid="uid://cte7khih2kb45"]
 
 [ext_resource type="Script" uid="uid://c647nxwp6djnn" path="res://ui/battle/monster_select/monster_panel/monster_panel.gd" id="1_fyfih"]
 [ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_layat"]
+[ext_resource type="Texture2D" uid="uid://b61in3gfg66uu" path="res://fighters/characters/susie/res/nomercy.png" id="3_7eb5v"]
+[ext_resource type="Texture2D" uid="uid://dufngnrs83map" path="res://Sprite-0003.png" id="4_g7idw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_layat"]
 bg_color = Color(0.501961, 0, 0, 1)
@@ -17,7 +19,7 @@ bg_color = Color(1, 0.313726, 0.12549, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7idw"]
 bg_color = Color(1, 1, 0, 1)
 
-[node name="MonsterPanel" type="Control"]
+[node name="MonsterPanel" type="Control" unique_id=870500172]
 custom_minimum_size = Vector2(640, 30)
 layout_mode = 3
 anchors_preset = 0
@@ -28,7 +30,7 @@ heart_path = NodePath("Heart")
 title_path = NodePath("Title")
 metadata/_custom_type_script = "uid://c647nxwp6djnn"
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="." unique_id=763316830]
 layout_mode = 0
 offset_left = 80.0
 offset_top = -1.0
@@ -38,12 +40,12 @@ text = "Enemy Name"
 vertical_alignment = 1
 clip_text = true
 
-[node name="Heart" type="Sprite2D" parent="."]
+[node name="Heart" type="Sprite2D" parent="." unique_id=2006183509]
 visible = false
 position = Vector2(63, 17)
 texture = ExtResource("1_layat")
 
-[node name="HPBar" type="ProgressBar" parent="."]
+[node name="HPBar" type="ProgressBar" parent="." unique_id=550332195]
 custom_minimum_size = Vector2(81, 16)
 layout_mode = 0
 offset_left = 420.0
@@ -57,7 +59,7 @@ rounded = true
 allow_greater = true
 show_percentage = false
 
-[node name="HPText" type="Label" parent="."]
+[node name="HPText" type="Label" parent="." unique_id=1731093552]
 layout_mode = 0
 offset_left = 424.0
 offset_top = 4.0
@@ -67,7 +69,7 @@ scale = Vector2(1, 0.5)
 theme_override_fonts/font = SubResource("FontVariation_layat")
 text = "100%"
 
-[node name="MercyBar" type="ProgressBar" parent="."]
+[node name="MercyBar" type="ProgressBar" parent="." unique_id=906041852]
 custom_minimum_size = Vector2(81, 16)
 layout_mode = 0
 offset_left = 520.0
@@ -80,7 +82,8 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="MercyText" type="Label" parent="."]
+[node name="MercyText" type="Label" parent="." unique_id=1273368405]
+visible = false
 layout_mode = 0
 offset_left = 524.0
 offset_top = 4.0
@@ -90,3 +93,22 @@ scale = Vector2(1, 0.5)
 theme_override_colors/font_color = Color(0.501961, 0, 0, 1)
 theme_override_fonts/font = SubResource("FontVariation_layat")
 text = "0%"
+
+[node name="NoMercy" type="TextureRect" parent="." unique_id=1848574744]
+visible = false
+layout_mode = 0
+offset_left = 520.0
+offset_top = 4.0
+offset_right = 601.0
+offset_bottom = 20.0
+texture = ExtResource("3_7eb5v")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=520197485]
+modulate = Color(0.5372549, 0, 0, 1)
+layout_mode = 0
+offset_left = 520.0
+offset_top = 4.0
+offset_right = 601.0
+offset_bottom = 20.0
+texture = ExtResource("4_g7idw")
+expand_mode = 1

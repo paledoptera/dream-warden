@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://q3t3r8c6t065"]
+
+[ext_resource type="Script" uid="uid://dt2o1qvip4ohj" path="res://fighters/monsters/dream_warden/attacks/beam/beam_attack.gd" id="1_8kte4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8kte4"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.752941, 0, 1)
+
+[node name="BeamAttack" type="Node2D" unique_id=2044970711 node_paths=PackedStringArray("start_pos", "end_pos")]
+script = ExtResource("1_8kte4")
+start_pos = [NodePath("LeftBottom"), NodePath("LeftTop")]
+end_pos = [NodePath("RightTop"), NodePath("RightBottom")]
+
+[node name="LeftTop" type="Marker2D" parent="." unique_id=2127717172]
+position = Vector2(-95, -40)
+
+[node name="RightTop" type="Marker2D" parent="." unique_id=980994182]
+position = Vector2(95, -40)
+
+[node name="LeftBottom" type="Marker2D" parent="." unique_id=1647296537]
+position = Vector2(-95, 40)
+
+[node name="RightBottom" type="Marker2D" parent="." unique_id=601086492]
+position = Vector2(95, 40)
+
+[node name="Timer" type="Timer" parent="." unique_id=514418978]
+wait_time = 1.5
+autostart = true
+
+[node name="Cage" type="Panel" parent="." unique_id=1599269135]
+top_level = true
+clip_children = 1
+clip_contents = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -315.0
+offset_right = -245.0
+offset_bottom = -165.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(75, 75)
+theme_override_styles/panel = SubResource("StyleBoxFlat_8kte4")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -12,9 +12,18 @@ signal justice_shotted(shot_direction : float)
 @export var shield_repelled : bool = false
 ##Whether the pellet is destroyed by yellow soul bullets.
 @export var anti_justice : bool = false
-
+##Whether the pellet gets destroyed if it collides
+@export var destructible: bool = false
 var grazed := false
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Soul:
 		body.hurt(damage)
+		if destructible:
+			destroy()
+
+func destroy() -> void:
+	queue_free()

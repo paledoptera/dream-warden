@@ -21,7 +21,7 @@ var dying := false
 var mercy_percent := 0.0
 var shake := 0.0
 
-var attacks: Array[Node2D] = []
+var attacks: Array[Node] = []
 
 signal mercy_changed(p_new_mercy: float)
 signal exit_finished
@@ -98,16 +98,24 @@ func start_attack() -> float:
 	return 0.1
 
 func end_attack() -> void:
-	for attack: Node2D in attacks:
+	for attack: Node in attacks:
 		if attack != null:
 			attack.queue_free()
+		if attack is Node3D:
+			owner.animations.play("slide_up")
 	attacks.clear()
 
 func instantiate_attack(scene: PackedScene) -> void:
 	var attack := scene.instantiate()
+	
 	get_parent().add_child(attack)
 	attack.position = Global.CENTER
+	
 	attacks.append(attack)
+
+
+	
+
 
 func get_acts() -> Array[Act]:
 	return acts

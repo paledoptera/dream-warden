@@ -1,0 +1,630 @@
+[gd_scene format=3 uid="uid://dbi6lj71m2qh8"]
+
+[ext_resource type="Texture2D" uid="uid://chmiryi84x8l3" path="res://scenes/battle/cloudland2.png" id="1_h8jhr"]
+[ext_resource type="Script" uid="uid://cmsn5e7jc21u8" path="res://specialattacks/player.gd" id="1_mw6fy"]
+[ext_resource type="Script" uid="uid://csgvuo8wv34sh" path="res://specialattacks/boss.gd" id="2_mw6fy"]
+[ext_resource type="Texture2D" uid="uid://37mbafkr1iha" path="res://fighters/characters/susie/res/susie_organized_sheet.png" id="3_h8jhr"]
+[ext_resource type="AudioStream" uid="uid://b2q6ligynxj0x" path="res://globals/sounds/sound_effects/snd_laz_c.wav" id="4_b7wbq"]
+[ext_resource type="Texture2D" uid="uid://cu3fthva6hiiv" path="res://specialattacks/slash.png" id="4_o0dci"]
+[ext_resource type="PackedScene" uid="uid://bochrdxnrsb3k" path="res://fighters/monsters/dream_warden/_res/warden.tscn" id="7_uwsif"]
+[ext_resource type="Script" uid="uid://r0mflit5bp4c" path="res://specialattacks/face.gd" id="7_wtg4j"]
+[ext_resource type="AudioStream" uid="uid://blgycniv76tk8" path="res://globals/sounds/sound_effects/snd_ward_charge.wav" id="8_rgjhh"]
+[ext_resource type="AudioStream" uid="uid://cr54v0qolt555" path="res://globals/sounds/sound_effects/snd_ward_whisp1.wav" id="9_h8jhr"]
+[ext_resource type="AudioStream" uid="uid://dxnnang4d7yqo" path="res://globals/sounds/sound_effects/snd_ward_hit.wav" id="11_sa2hs"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mxk0a"]
+top_radius = 0.943
+height = 0.001
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxk0a"]
+render_priority = -128
+shading_mode = 0
+albedo_color = Color(0.427493, 0.42749307, 0.42749307, 1)
+albedo_texture = ExtResource("1_h8jhr")
+texture_filter = 0
+
+[sub_resource type="Animation" id="Animation_o0dci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Slash:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Slash:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/Slash:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.08596972, 0.54046965)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Pivot/SusieSprite:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s74s4"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4240088),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 0.99275273, 1), Vector3(1.075, 0.67, 1), Vector3(1.075, 0.9, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.4240088),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.135), Vector3(0, 0, 0.135)]
+}
+
+[sub_resource type="Animation" id="Animation_c2nda"]
+resource_name = "dash"
+
+[sub_resource type="Animation" id="Animation_mw6fy"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/SusieSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_cqm2y"]
+resource_name = "jump"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/SusieSprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 0.27739242, 1),
+"update": 0,
+"values": [Vector3(1.27, 0.77, 1), Vector3(0.775, 1.205, 1), Vector3(0.99999994, 1.0000036, 0.99999994)]
+}
+
+[sub_resource type="Animation" id="Animation_ciuf0"]
+resource_name = "running"
+length = 0.3333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.16666667, 0.23333333, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.02, 0), Vector3(0, 0, 0), Vector3(0, 0.02, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xpa20"]
+resource_name = "slash"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Slash:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.1717504, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1, 1), Vector3(1.464, 1, 1), Vector3(0.46, 1, 1), Vector3(0, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/SusieSprite:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.99999994, 1.0000036, 0.99999994), Vector3(1.332, 0.858, 1), Vector3(0.992, 1.1, 1), Vector3(0.99999994, 1.0000036, 0.99999994)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Slash:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.315, 0.086, 0.54), Vector3(0, 0.08596972, 0.54046965), Vector3(0.285, 0.086, 0.54)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Slash:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 1.5882496, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.5707964, -0.70685834, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/SusieSprite:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.685), Vector3(0, 0, 0.555), Vector3(0, 0, 0.685)]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_b7wbq")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o0dci"]
+_data = {
+&"RESET": SubResource("Animation_o0dci"),
+&"crouch": SubResource("Animation_s74s4"),
+&"dash": SubResource("Animation_c2nda"),
+&"idle": SubResource("Animation_mw6fy"),
+&"jump": SubResource("Animation_cqm2y"),
+&"running": SubResource("Animation_ciuf0"),
+&"slash": SubResource("Animation_xpa20")
+}
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_s74s4"]
+radius = 0.045410156
+height = 0.1965332
+
+[sub_resource type="Animation" id="Animation_yptke"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_8yviw"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Model:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.14367068, -0.035), Vector3(0, 0.204, -0.035), Vector3(0, 0.14367068, -0.035)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xpa20"]
+_data = {
+&"RESET": SubResource("Animation_yptke"),
+&"hover": SubResource("Animation_8yviw")
+}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_s74s4"]
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s74s4"]
+depth_draw_mode = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.3254902, 1, 1)
+
+[sub_resource type="Animation" id="Animation_85sci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D/MeshInstance3D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker3D/Sprite3D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Boss:rot_speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [7.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker3D/MeshInstance3D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.862, -0.164)]
+}
+
+[sub_resource type="Animation" id="Animation_qfi1l"]
+resource_name = "laser"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker3D/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.12),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.862, -0.164)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker3D/MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.0333333, 2.2, 2.854386),
+"transitions": PackedFloat32Array(2.3784142, 0.34151012, 1),
+"update": 0,
+"values": [Vector3(0, 1, 0), Vector3(1, 1, 1), Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker3D/Sprite3D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1333333, 1.4179027, 1.8517545),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.1333333, 1.1577847, 1.1944616, 1.2413267, 1.2841165, 1.3248688, 1.3619219, 1.4145236, 1.4613887, 1.5143666, 1.5531899, 1.5877206, 1.6447737),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}, {
+"args": [],
+"method": &"set_rot"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Boss:rot_speed")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.1333333, 1.6333333, 1.8666667, 3.1333334),
+"transitions": PackedFloat32Array(1, 0.24999996, 6.964404, 1),
+"update": 0,
+"values": [7.0, 7.0, 0.0, 7.0]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_rgjhh")
+}],
+"times": PackedFloat32Array(0.03333336)
+}
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("9_h8jhr")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_sa2hs")
+}],
+"times": PackedFloat32Array(0, 2.0666666)
+}
+tracks/6/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_85sci"]
+_data = {
+&"RESET": SubResource("Animation_85sci"),
+&"laser": SubResource("Animation_qfi1l")
+}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_85sci"]
+top_radius = 1.225
+bottom_radius = 1.345
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtg4j"]
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_h8jhr")
+texture_filter = 0
+
+[node name="3DAttack" type="Node3D" unique_id=52954856]
+
+[node name="Floor" type="MeshInstance3D" parent="." unique_id=1549241374]
+mesh = SubResource("CylinderMesh_mxk0a")
+surface_material_override/0 = SubResource("StandardMaterial3D_mxk0a")
+
+[node name="Stage" type="Node3D" parent="." unique_id=1341929695]
+
+[node name="Camera3D" type="Camera3D" parent="Stage" unique_id=1288977249]
+transform = Transform3D(0.7071068, -0.24184474, 0.66446304, 0, 0.9396926, 0.34202012, -0.7071068, -0.24184474, 0.66446304, 1.8, 1.25, 2)
+projection = 1
+
+[node name="Player" type="Area3D" parent="Stage" unique_id=356763888 node_paths=PackedStringArray("stage", "anim", "action_anim")]
+script = ExtResource("1_mw6fy")
+stage = NodePath("..")
+anim = NodePath("AnimationPlayer")
+action_anim = NodePath("Actions")
+
+[node name="Pivot" type="Node3D" parent="Stage/Player" unique_id=1227527102]
+
+[node name="Slash" type="Sprite3D" parent="Stage/Player/Pivot" unique_id=1645905273]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.08596972, 0.54046965)
+pixel_size = 0.0191
+texture_filter = 0
+render_priority = -127
+texture = ExtResource("4_o0dci")
+
+[node name="SusieSprite" type="Hybrid2D3DSprite" parent="Stage/Player/Pivot" unique_id=1842899945]
+sprite_height_px = 100.0
+target_3d_height = 0.45
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000036, 0, 0, 0, 0.99999994, 0, 0, 0.685)
+offset = Vector2(0, 50)
+pixel_size = 0.0045
+texture = ExtResource("3_h8jhr")
+hframes = 5
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Stage/Player" unique_id=629259773]
+libraries/ = SubResource("AnimationLibrary_o0dci")
+autoplay = &"idle"
+
+[node name="Actions" type="AnimationPlayer" parent="Stage/Player" unique_id=2002591393]
+libraries/ = SubResource("AnimationLibrary_o0dci")
+autoplay = &"idle"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Player" unique_id=323613458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.038, 0.967)
+shape = SubResource("CapsuleShape3D_s74s4")
+debug_color = Color(0.4848572, 0.9642151, 0.27854174, 0.41960785)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Stage/Player" unique_id=1701691380]
+volume_db = -6.0
+
+[node name="Boss" type="Node3D" parent="." unique_id=758955739 node_paths=PackedStringArray("player_sprite", "model")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16403198, 0)
+script = ExtResource("2_mw6fy")
+player_sprite = NodePath("../Stage/Player/Pivot/SusieSprite")
+model = NodePath("Model")
+
+[node name="LookatBase" type="Node3D" parent="Boss" unique_id=582374401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11935425, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Boss" unique_id=160214300]
+libraries/ = SubResource("AnimationLibrary_xpa20")
+autoplay = &"hover"
+
+[node name="Model" type="Node3D" parent="Boss" unique_id=1967402170]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14367068, -0.035)
+
+[node name="warden" parent="Boss/Model" unique_id=1415119822 instance=ExtResource("7_uwsif")]
+transform = Transform3D(-0.137, 0, 1.197692e-08, 0, 0.137, 0, -1.197692e-08, 0, -0.137, 0, 0.22293699, 0.035)
+
+[node name="Attack" type="Node3D" parent="." unique_id=1449890568 node_paths=PackedStringArray("player_sprite")]
+script = ExtResource("7_wtg4j")
+player_sprite = NodePath("../Stage/Player/Pivot/SusieSprite")
+
+[node name="Marker3D" type="Marker3D" parent="Attack" unique_id=1189439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.565)
+
+[node name="Sprite3D" type="Sprite3D" parent="Attack/Marker3D" unique_id=100651632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.122, -0.164)
+modulate = Color(1, 1, 1, 0)
+axis = 1
+no_depth_test = true
+texture_filter = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Attack/Marker3D" unique_id=363474000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.862, -0.164)
+mesh = SubResource("CylinderMesh_s74s4")
+surface_material_override/0 = SubResource("StandardMaterial3D_s74s4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Attack" unique_id=2123561458]
+libraries/ = SubResource("AnimationLibrary_85sci")
+autoplay = &"laser"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Attack" unique_id=80067718]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Attack" unique_id=1796566026]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=103762387]
+mesh = SubResource("CylinderMesh_85sci")
+surface_material_override/0 = SubResource("StandardMaterial3D_wtg4j")
+
+[connection signal="animation_finished" from="Stage/Player/AnimationPlayer" to="Stage/Player" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="Stage/Player/Actions" to="Stage/Player" method="_on_animation_player_animation_finished"]

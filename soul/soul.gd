@@ -40,7 +40,7 @@ func hurt(p_damage: int) -> void:
 func invulnerable_state()-> void:
 	invulnerable = true
 	var tween = get_tree().create_tween()
-	tween.set_loops(5)
+	tween.set_loops(3)
 	tween.tween_property(heart, "modulate", current_soul_type.get_secondary_color(), 0.0)
 	tween.tween_interval(0.1)
 	tween.tween_property(heart, "modulate", current_soul_type.color, 0.0)

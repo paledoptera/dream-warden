@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://cuwui318cvb75"]
+
+[ext_resource type="Script" uid="uid://xps5yka4dnhp" path="res://fighters/monsters/dream_warden/attacks/wings/wings_attack.gd" id="1_el6or"]
+
+[node name="WingsAttack" type="Node2D" unique_id=1614279879 node_paths=PackedStringArray("spawnpoints")]
+script = ExtResource("1_el6or")
+spawnpoints = [NodePath("Center"), NodePath("SideSwapper/Side")]
+
+[node name="Center" type="Marker2D" parent="." unique_id=1571653594]
+position = Vector2(0, -100)
+
+[node name="SideSwapper" type="Node2D" parent="." unique_id=186205003]
+
+[node name="Side" type="Marker2D" parent="SideSwapper" unique_id=1041481482]
+position = Vector2(32, -100)
+
+[node name="Timer" type="Timer" parent="." unique_id=1746701825]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

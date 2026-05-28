@@ -18,20 +18,17 @@ class_name GenericPellet
 			$Sprite.region_rect.position.x = 16 * shape
 
 var time := 0.0
-var velocity := Vector2.ZERO
+@export var velocity := Vector2.ZERO
 
-func _ready() -> void:
-	if $Sprite:
-		$Sprite.region_rect.position.x = 16 * shape
 
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
 	time += delta
-	velocity += velocity.normalized() * linear_acceleration * delta
+	velocity += velocity * linear_acceleration * delta
 	velocity = velocity.rotated(deg_to_rad(angular_velocity) * delta)
 	if time >= life_time:
 		queue_free()
 	if rotate_sprite:
 		$Sprite.rotation = velocity.angle()
-	position += velocity * delta
+	global_position += velocity * delta

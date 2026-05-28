@@ -1,0 +1,11 @@
+BLEND MODES
+
+layer 1 - normal
+
+layer 2 - normal
+
+layer 3 - exclusion 
+
+layer 4 - normal
+
+layer 5 - addition

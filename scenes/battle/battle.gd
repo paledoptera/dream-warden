@@ -1,20 +1,28 @@
 extends Node2D
+class_name Battle
 
 @onready var soul_cage: StaticBody2D = $SoulCage
+@export var animations: AnimationPlayer
 
 var in_attack := false
 var turn_timer := 0.0
+
 
 var total_money := 0
 var total_xp := 0
 var money_multiplier := 0.0
 
+func _enter_tree() -> void:
+	Global.battle = self
+	Global.characters.append($Characters/Susie)
+	Global.monsters.append($Monsters/DreamWarden)
+
 func _ready() -> void:
 	for item in Global.items:
 		if item.usePredicate.item == null:
 			item.usePredicate.item = item
-	set_positions($Characters, Global.characters, Vector2(108.0, 0.0))
-	set_positions($Monsters, Global.monsters, Vector2(640.0 - 108.0, 0.0))
+	#set_positions($Characters, Global.characters, Vector2(108.0, 0.0))
+	#set_positions($Monsters, Global.monsters, Vector2(640.0 - 108.0, 0.0))
 	Global.display_text.emit(Global.get_opening_line(), false)
 	Global.monster_killed.connect(monster_killed)
 	
@@ -30,7 +38,7 @@ func _ready() -> void:
 	
 	Sounds.play("snd_impact", 0.7)
 	Sounds.play("snd_weaponpull_fast", 0.8)
-	Sounds.set_music("battle", 0.7)
+	Sounds.set_music("mus_warden_ex", 0.4)
 
 func _process(p_delta: float) -> void:
 	if in_attack:

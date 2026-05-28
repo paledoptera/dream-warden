@@ -27,6 +27,7 @@ var characters: Array[Character] = []
 var monsters: Array[Monster] = []
 var items: Array[Item] = []
 var heartColor : Color = SoulType.RED.color
+var battle: Battle
 
 # The current chapter number affects how much money is earned from a battle.
 var chapter := 2

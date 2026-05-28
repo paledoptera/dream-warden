@@ -1,0 +1,240 @@
+[gd_scene format=3 uid="uid://b56rv68xwgvla"]
+
+[ext_resource type="Script" uid="uid://dq7x4mfkkd803" path="res://fighters/characters/susie/susie.gd" id="1_p2yf0"]
+[ext_resource type="Texture2D" uid="uid://ciarkrykbtcws" path="res://fighters/characters/susie/res/icon.png" id="2_2bari"]
+[ext_resource type="Texture2D" uid="uid://37mbafkr1iha" path="res://fighters/characters/susie/res/susie_organized_sheet.png" id="2_p2yf0"]
+[ext_resource type="Script" uid="uid://ncp0eorg046u" path="res://fighters/characters/spells/spell.gd" id="3_38nha"]
+[ext_resource type="Script" uid="uid://c74hytev4kjc7" path="res://fighters/characters/spells/generic/basic_attack.gd" id="4_d0k2r"]
+
+[sub_resource type="Resource" id="Resource_n1vev"]
+script = ExtResource("4_d0k2r")
+animation_code = 5
+title = "Red Buster"
+text = "  * %s used magic to attack %s."
+description = "Red Buster"
+target = 1
+metadata/_custom_type_script = "uid://c74hytev4kjc7"
+
+[sub_resource type="Animation" id="Animation_shquf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_yif2i"]
+resource_name = "act"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_uympt"]
+resource_name = "attack"
+length = 0.6
+step = 0.075
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07692308, 0.15384616, 0.23076923, 0.30769232),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.07692308),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [1.0],
+"method": &"shake_sprite"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ubgkb"]
+resource_name = "defend"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_ogmq3"]
+resource_name = "faint"
+step = 0.005
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099, 0.1, 0.175, 0.2, 0.225, 0.29, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -25), Vector2(0, -38), Vector2(0, -40), Vector2(0, -38), Vector2(0, -25), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [3.0],
+"method": &"shake_sprite"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hgvxa"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_2f3wf"]
+resource_name = "prep_act"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 9]
+}
+
+[sub_resource type="Animation" id="Animation_j2q4k"]
+resource_name = "prep_attack"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 3, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hgvxa"]
+_data = {
+&"RESET": SubResource("Animation_shquf"),
+&"act": SubResource("Animation_yif2i"),
+&"attack": SubResource("Animation_uympt"),
+&"defend": SubResource("Animation_ubgkb"),
+&"faint": SubResource("Animation_ogmq3"),
+&"idle": SubResource("Animation_hgvxa"),
+&"prep_act": SubResource("Animation_2f3wf"),
+&"prep_attack": SubResource("Animation_j2q4k")
+}
+
+[node name="Susie" type="Node2D" unique_id=1652858960]
+script = ExtResource("1_p2yf0")
+uses_magic = true
+main_color = Color(0.9843137, 0.003921569, 0.9882353, 1)
+icon_color = Color(0.90588236, 0.4745098, 0.77254903, 1)
+icon = ExtResource("2_2bari")
+spells = Array[ExtResource("3_38nha")]([SubResource("Resource_n1vev")])
+title = "Susie"
+base_fighter_stats = Dictionary[int, int]({
+0: 460,
+1: 10,
+2: 50
+})
+main_sprite = NodePath("Sprite2D")
+metadata/_custom_type_script = "uid://d1ho1nqa4x7fm"
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1724150961]
+scale = Vector2(2, 2)
+texture = ExtResource("2_p2yf0")
+hframes = 5
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2083014366]
+libraries/ = SubResource("AnimationLibrary_hgvxa")
+autoplay = &"idle"

@@ -1,27 +1,467 @@
-[gd_scene load_steps=6 format=3 uid="uid://b53ljrv0fb6u4"]
+[gd_scene format=3 uid="uid://b53ljrv0fb6u4"]
 
 [ext_resource type="Script" uid="uid://cosoh16n65vwr" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dh7u53yj0xavd" path="res://ui/battle/bottom_panel/bottom_panel.tscn" id="1_7gynk"]
+[ext_resource type="Texture2D" uid="uid://chmiryi84x8l3" path="res://scenes/battle/cloudland2.png" id="2_agsc7"]
+[ext_resource type="Texture2D" uid="uid://d23p55cgpqhxi" path="res://scenes/battle/Sprite-backgroind_055301.png" id="2_fisqk"]
+[ext_resource type="PackedScene" uid="uid://nq51imabpl3n" path="res://scenes/battle/background.tscn" id="2_oiw7q"]
 [ext_resource type="PackedScene" uid="uid://b3uxp6uapsy5m" path="res://ui/battle/soul_cage/soul_cage.tscn" id="2_xd4uy"]
-[ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/Soul.tscn" id="3_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/soul.tscn" id="3_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://b56rv68xwgvla" path="res://fighters/characters/susie/susie.tscn" id="3_fh7rg"]
 [ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
+[ext_resource type="PackedScene" uid="uid://bt53ruak41iac" path="res://fighters/monsters/dream_warden/dream_warden.tscn" id="6_agsc7"]
 
-[node name="Battle" type="Node2D"]
+[sub_resource type="Shader" id="Shader_agsc7"]
+code = "shader_type canvas_item;
+
+// переменные анимаций
+uniform float time_factor : hint_range(0.0, 5.0) = 1.0;
+uniform float wave_strength : hint_range(0.0, 0.5) = 0.05;
+uniform float ripple_speed : hint_range(0.0, 5.0) = 1.0;
+
+// переменные визуала
+uniform sampler2D tex_screen : hint_screen_texture;
+uniform vec4 base_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 edge_color : source_color = vec4(1.0, 0.5, 0.7, 1.0);
+uniform float glow_intensity : hint_range(0.0, 5.0) = 1.5;
+uniform float edge_pulse : hint_range(0.0, 2.0) = 1.0;
+
+// переменные искажения
+uniform sampler2D noise_tex : repeat_enable; 
+uniform float noise_scale : hint_range(0.0, 5.0) = 1.0;
+uniform float swirl_strength : hint_range(-2.0, 2.0) = 0.5;
+uniform float hue_shift_speed : hint_range(0.0, 5.0) = 1.0;
+
+// перегоняю в хсв для радуги
+vec3 rgb2hsv(vec3 c) {
+	vec4 K = vec4(0.0, -1.0/3.0, 2.0/3.0, -1.0);
+	vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+	vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+	float d = q.x - min(q.w, q.y);
+	return vec3(abs((q.w - q.y)/(6.0*d + 1e-10) + q.z), d/(q.x + 1e-10), q.x);
+}
+
+// возвращаю в ргб
+vec3 hsv2rgb(vec3 c) {
+	vec3 p = abs(fract(c.xxx + vec3(0.0, 1.0/3.0, 2.0/3.0))*6.0 - 3.0);
+	return c.z * mix(vec3(1.0), clamp(p - 1.0, 0.0, 1.0), c.y);
+}
+
+// тот самый вихрь из первого варианта
+vec2 get_swirl_uv(vec2 uv, float strength) {
+	vec2 center = vec2(0.5);
+	vec2 diff = uv - center;
+	float dist = length(diff);
+	float angle = atan(diff.y, diff.x) + strength * (0.5 - dist) * sin(TIME * 0.5);
+	return center + vec2(cos(angle), sin(angle)) * dist;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	float t = TIME * time_factor;
+	
+	// тянучка значение шума
+	float noise_val = texture(noise_tex, uv * noise_scale + t * 0.05).r;
+	
+	// искажение сетки волнами
+	uv.y += sin(uv.x * 10.0 + t) * wave_strength * noise_val;
+	uv.x += cos(uv.y * 10.0 + t * 0.5) * wave_strength * noise_val;
+	
+	// рябь как круги на воде
+	float dist_center = distance(uv, vec2(0.5));
+	uv += sin(dist_center * 20.0 - t * ripple_speed) * (wave_strength * 0.5 * noise_val);
+	
+	// закручивание спиралью
+	uv = get_swirl_uv(uv, swirl_strength);
+	
+	// основной цвет по искаженным координатам
+	vec4 tex = texture(TEXTURE, uv);
+	
+	// светящийся контур
+	float edge_mask = smoothstep(0.35, 0.5, dist_center);
+	//final_rgb += edge_mask * edge_pulse * edge_color.rgb;
+	
+	// общее свечение и пульсация всей мембраны
+	float pulse = 0.8 + 0.2 * sin(t);
+	//final_rgb *= (glow_intensity * pulse);
+	
+	// чутка рандома
+	//final_rgb += 0.03 * vec3(sin(t * 3.0), cos(t * 2.0), noise_val * 0.1);
+	
+	COLOR = vec4(tex.rgb, tex.a) * base_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oiw7q"]
+shader = SubResource("Shader_agsc7")
+shader_parameter/time_factor = 5.0
+shader_parameter/wave_strength = 0.0010000000475
+shader_parameter/ripple_speed = 0.6210000294975
+shader_parameter/base_color = Color(1, 1, 1, 0.52156866)
+shader_parameter/edge_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/glow_intensity = 0.330000015675
+shader_parameter/edge_pulse = 0.318000015105
+shader_parameter/noise_scale = 1.0
+shader_parameter/swirl_strength = 0.1000000997499999
+shader_parameter/hue_shift_speed = 0.658000031255
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_agsc7"]
+blend_mode = 2
+
+[sub_resource type="Shader" id="Shader_oiw7q"]
+code = "shader_type canvas_item;
+
+// =============================
+// original:https://www.shadertoy.com/view/MsXGRf
+//adaptation: GerardoLCDF
+// =============================
+uniform sampler2D channel0 : filter_nearest; 
+
+float noise( in vec3 x )
+{
+    vec3 p = floor(x);
+    vec3 f = fract(x);
+    f = f * f * (3.0 - 2.0 * f);
+    
+    vec2 size = vec2(256.0); 
+    
+    vec2 uv = (p.xy + vec2(37.0, 17.0) * p.z) + f.xy;
+    vec2 rg = texture( channel0, (uv + 0.5) / size ).yx;
+    
+    return mix( rg.x, rg.y, f.z );
+}
+
+vec4 map( in vec3 p )
+{
+    vec3 r = p; p.y += 0.6;
+    
+    p = -4.0 * p / dot(p, p);
+    
+
+    float an = -1.0 * sin(0.1 * TIME + length(p.xz) + p.y);
+    float co = cos(an);
+    float si = sin(an);
+    p.xz = mat2(vec2(co, si), vec2(-si, co)) * p.xz;
+    
+    p.xz += -1.0 + 2.0 * noise( p * 1.1 );
+
+    float f;
+    vec3 q = p * 0.85 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
+    
+    f  = 0.50000 * noise( q ); q = q * 2.02 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
+    f += 0.25000 * noise( q ); q = q * 2.03 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
+    f += 0.12500 * noise( q ); q = q * 2.01 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
+    f += 0.06250 * noise( q ); q = q * 2.02 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
+    f += 0.04000 * noise( q ); q = q * 2.00 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
+    
+    float den = clamp( (-r.y - 0.6 + 4.0 * f) * 1.2, 0.0, 1.0 );
+
+    vec3 col = 1.2 * mix( vec3(1.0, 0.8, 0.6), 0.9 * vec3(0.3, 0.2, 0.35), den ) ;
+    col += 0.05 * sin(0.05 * q);
+    col *= 1.0 - 0.8 * smoothstep(0.6, 1.0, sin(0.7 * q.x) * sin(0.7 * q.y) * sin(0.7 * q.z)) * vec3(0.6, 1.0, 0.8);
+    col *= 1.0 + 1.0 * smoothstep(0.5, 1.0, 1.0 - length( (fract(q.xz * 0.12) - 0.5) / 0.5 )) * vec3(1.0, 0.9, 0.8);
+    col = mix( vec3(0.8, 0.32, 0.2), col, clamp( (r.y + 0.1) / 1.5, 0.0, 1.0 ) );
+    
+    return vec4( col, den );
+}
+
+void fragment()
+{
+    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
+    vec2 q = FRAGCOORD.xy / screen_size; 
+
+    vec2 p = (-1.0 + 2.0 * q) * vec2( screen_size.x / screen_size.y, 1.0 );
+
+    vec2 mo = SCREEN_UV;
+
+    float an = -0.07 * TIME + 3.0 * mo.x;
+    vec3 ro = 4.5 * normalize(vec3(cos(an), 0.5, sin(an)));
+    ro.y += 1.0;
+    vec3 ta = vec3(0.0, 0.5, 0.0);
+    float cr = -0.4 * cos(0.02 * TIME);
+    
+    vec3 ww = normalize( ta - ro );
+    vec3 uu = normalize( cross( vec3(sin(cr), cos(cr), 0.0), ww ) );
+    vec3 vv = normalize( cross(ww, uu) );
+    vec3 rd = normalize( p.x * uu + p.y * vv + 2.5 * ww );
+
+    vec4 sum = vec4( 0.0 );
+    vec3 bg = vec3(0.4, 0.5, 0.5) * 1.3;
+    float t = 0.05 * fract( 10.5421 * dot(vec2(0.0149451, 0.038921), FRAGCOORD.xy) );
+    const int MAX_STEPS = 128; 
+    for( int i = 0; i < MAX_STEPS; i++ )
+    {
+        if( sum.a > 0.99 ) break;
+        
+        vec3 pos = ro + t * rd;
+        vec4 col = map( pos );
+        
+        col.a *= 0.5;
+        col.rgb = mix( bg, col.rgb, exp(-0.002 * t * t * t) ) * col.a;
+        
+        sum = sum + col * (1.0 - sum.a);
+        
+        t += 0.05;
+    }
+    
+    vec3 final_col = clamp( mix( bg, sum.xyz / (0.001 + sum.w), sum.w ), 0.0, 1.0 );
+    final_col = final_col * final_col * (3.0 - 2.0 * final_col) * 1.4 - 0.4;
+    final_col *= 0.25 + 0.75 * pow( 16.0 * q.x * q.y * (1.0 - q.x) * (1.0 - q.y), 0.1 );
+    
+    COLOR = vec4( final_col, 1.0 );
+}"
+
+[sub_resource type="Gradient" id="Gradient_agsc7"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.38644066, 0.45084745, 0.46101695, 0.5559322, 0.71525425)
+colors = PackedColorArray(0, 0, 0, 1, 0.728822, 0.728822, 0.728822, 1, 0.28851813, 0.28851798, 0.28851783, 1, 0.5409909, 0.5409905, 0.5409902, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_agsc7"]
+noise_type = 0
+seed = 1
+frequency = 0.07
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oiw7q"]
+noise = SubResource("FastNoiseLite_agsc7")
+color_ramp = SubResource("Gradient_agsc7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fisqk"]
+shader = SubResource("Shader_oiw7q")
+shader_parameter/channel0 = SubResource("NoiseTexture2D_oiw7q")
+
+[sub_resource type="Shader" id="Shader_fisqk"]
+code = "shader_type canvas_item;
+
+uniform sampler2D flowMap; //Displacement map
+uniform float strength;    //Force of the effect
+uniform float speed;       //Speed of the effect
+uniform int frames : hint_range(1, 10); //Frames of the effect
+
+//Returns a value between 0 and 1 depending of the frames -> exemple: frames = 4, frame 1 = 0.25
+float clock(float time){
+	float fframes = float(frames);
+	return floor(mod(time * speed, fframes)) / fframes;
+}
+
+void fragment(){
+	float c = clock(TIME); //Get clock frame
+	vec4 offset = texture(flowMap, vec2(UV.x + c, UV.y + c)) * strength; //Get offset 
+	//COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + normal.xy); //Apply offset
+	COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + offset.xy - vec2(0.5,0.5)*strength); //We need to remove the displacement 
+}
+
+
+// TEST CLOCK
+/*
+void fragment(){
+	float c = clock(TIME);
+	COLOR = vec4( c, c, c, 1);
+}
+*/"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_oiw7q"]
+noise_type = 2
+seed = 1
+frequency = 0.146
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fisqk"]
+noise = SubResource("FastNoiseLite_oiw7q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxe8n"]
+shader = SubResource("Shader_fisqk")
+shader_parameter/flowMap = SubResource("NoiseTexture2D_fisqk")
+shader_parameter/strength = 0.003
+shader_parameter/speed = 10.0
+shader_parameter/frames = 4
+
+[sub_resource type="Animation" id="Animation_agsc7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 365)]
+}
+
+[sub_resource type="Animation" id="Animation_oiw7q"]
+resource_name = "slide_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 365), Vector2(0, 480)]
+}
+
+[sub_resource type="Animation" id="Animation_fisqk"]
+resource_name = "slide_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BottomPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 480), Vector2(0, 365)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fisqk"]
+_data = {
+&"RESET": SubResource("Animation_agsc7"),
+&"slide_down": SubResource("Animation_oiw7q"),
+&"slide_up": SubResource("Animation_fisqk")
+}
+
+[node name="Battle" type="Node2D" unique_id=1451098202 node_paths=PackedStringArray("animations")]
 script = ExtResource("1_0yh6x")
+animations = NodePath("AnimationPlayer")
 
-[node name="SoulCage" parent="." instance=ExtResource("2_xd4uy")]
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="." unique_id=166667966]
+offset_right = 640.0
+offset_bottom = 480.0
+stretch = true
+stretch_shrink = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer3" unique_id=1096449070]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer3/SubViewport" unique_id=1408916529]
+material = SubResource("ShaderMaterial_oiw7q")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fisqk")
+expand_mode = 1
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=1873449428]
+modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.05490196)
+material = SubResource("CanvasItemMaterial_agsc7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" unique_id=1414449098]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer2/SubViewport" unique_id=466602126]
+material = SubResource("ShaderMaterial_fisqk")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_agsc7")
+expand_mode = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2341872]
+visible = false
+modulate = Color(0.9999941, 0.32595962, 0.6215381, 1)
+self_modulate = Color(1, 1, 1, 0.13725491)
+z_index = 20
+offset_right = 640.0
+offset_bottom = 480.0
+stretch = true
+stretch_shrink = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2115799560]
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 0
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=1468344007]
+material = SubResource("ShaderMaterial_mxe8n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_agsc7")
+expand_mode = 1
+
+[node name="Background2" parent="." unique_id=1337807087 instance=ExtResource("2_oiw7q")]
+visible = false
+modulate = Color(0.8039216, 0, 0.5176471, 0.4509804)
+z_index = 1
+position = Vector2(323, 171)
+scale = Vector2(1.005, 1.005)
+
+[node name="SoulCage" parent="." unique_id=599519693 instance=ExtResource("2_xd4uy")]
 position = Vector2(308, 171)
 
-[node name="Characters" type="Node2D" parent="."]
+[node name="Characters" type="Node2D" parent="." unique_id=905090157]
 
-[node name="Monsters" type="Node2D" parent="."]
+[node name="Susie" parent="Characters" unique_id=1652858960 instance=ExtResource("3_fh7rg")]
+z_index = 426
+position = Vector2(176, 152)
 
-[node name="BottomPanel" parent="." instance=ExtResource("1_7gynk")]
+[node name="Monsters" type="Node2D" parent="." unique_id=1395229772]
+
+[node name="DreamWarden" parent="Monsters" unique_id=312367948 node_paths=PackedStringArray("ultra_3d_world") instance=ExtResource("6_agsc7")]
+position = Vector2(442, 177)
+ultra_3d_world = NodePath("../../3DWorld/SubViewport")
+
+[node name="BottomPanel" parent="." unique_id=2001215419 instance=ExtResource("1_7gynk")]
+z_index = 5
 position = Vector2(0, 365)
 
-[node name="Soul" parent="." instance=ExtResource("3_0yh6x")]
+[node name="Soul" parent="." unique_id=272991104 instance=ExtResource("3_0yh6x")]
 visible = false
 position = Vector2(308, 171)
 
-[node name="TPBar" parent="." instance=ExtResource("5_h0kxc")]
+[node name="TPBar" parent="." unique_id=1477987401 instance=ExtResource("5_h0kxc")]
+z_index = 6
 position = Vector2(51, 139)
+
+[node name="3DWorld" type="SubViewportContainer" parent="." unique_id=343720224]
+z_index = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="3DWorld" unique_id=1103103086]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1954956949]
+libraries/ = SubResource("AnimationLibrary_fisqk")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=833185454]
+position = Vector2(320, 240)
