@@ -241,7 +241,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.06666667, 0.23333333, 0.33333334),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -8.882), Vector2(0, 8.998), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 8.998), Vector2(0, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -253,7 +253,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.16666667, 0.36666667, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.04, 1.04), Vector2(1.04, 1.04)]
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.04, 1.04), Vector2(1.131, 1.131)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -262,8 +262,8 @@ tracks/6/path = NodePath("AfterimagesPivot:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.36666667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
@@ -275,9 +275,69 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.40392157)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.5254902)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("3DSprite:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.935, 0.935)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AfterimagesPivot/Afterimage1:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("AfterimagesPivot/Afterimage2:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_jh36n"]

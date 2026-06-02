@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3uxp6uapsy5m" path="res://ui/battle/soul_cage/soul_cage.tscn" id="2_xd4uy"]
 [ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/soul.tscn" id="3_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://b56rv68xwgvla" path="res://fighters/characters/susie/susie.tscn" id="3_fh7rg"]
+[ext_resource type="Texture2D" uid="uid://c7l1212n1ta4y" path="res://scenes/battle/layers/layers/layer5.png" id="3_fisqk"]
 [ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
 [ext_resource type="PackedScene" uid="uid://bt53ruak41iac" path="res://fighters/monsters/dream_warden/dream_warden.tscn" id="6_agsc7"]
 
@@ -333,6 +334,7 @@ script = ExtResource("1_0yh6x")
 animations = NodePath("AnimationPlayer")
 
 [node name="SubViewportContainer3" type="SubViewportContainer" parent="." unique_id=166667966]
+modulate = Color(2.0696762, 2.0696762, 2.0696762, 1)
 offset_right = 640.0
 offset_bottom = 480.0
 stretch = true
@@ -355,7 +357,7 @@ texture = ExtResource("2_fisqk")
 expand_mode = 1
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=1873449428]
-modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.05490196)
+modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.24313726)
 material = SubResource("CanvasItemMaterial_agsc7")
 anchors_preset = 15
 anchor_right = 1.0
@@ -379,7 +381,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_agsc7")
+texture = ExtResource("3_fisqk")
 expand_mode = 1
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2341872]

@@ -20,6 +20,9 @@ var active := false:
 var grazed_pellets: Array[Pellet] = []
 var invulnerable := false
 
+func _enter_tree() -> void:
+	Global.soul = self
+
 func _ready() -> void:
 	assign_heart_properties(SoulType.RED)
 
