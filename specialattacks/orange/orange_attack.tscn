@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://ymvde2d86kvp"]
+
+[ext_resource type="Script" uid="uid://c5p1kn3db4kly" path="res://specialattacks/orange/orange_attack.gd" id="1_t5guj"]
+[ext_resource type="Texture2D" uid="uid://dy0kvp08lktbp" path="res://soul/behaviors/behavior_assets/orange/bkg.png" id="2_jfix0"]
+[ext_resource type="PackedScene" uid="uid://ds0sxy4h87mn1" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/stationary_diamond_bullet.tscn" id="3_w2ys1"]
+[ext_resource type="PackedScene" uid="uid://bob4ssdghdx1i" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/orangeatt_stalk.tscn" id="4_g1xya"]
+[ext_resource type="PackedScene" uid="uid://c0u10gkhphtvt" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/orange_window_bullet.tscn" id="5_nafte"]
+
+[node name="OrangeAttack" type="Node2D" unique_id=1160995327]
+script = ExtResource("1_t5guj")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1543657544]
+repeat_size = Vector2(0, 140)
+repeat_times = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=1997626329]
+scale = Vector2(2, 2)
+texture = ExtResource("2_jfix0")
+
+[node name="Track" type="Node2D" parent="." unique_id=1777001450]
+
+[node name="Diamond" parent="Track" unique_id=1274552507 instance=ExtResource("3_w2ys1")]
+position = Vector2(0, -600)
+
+[node name="Diamond2" parent="Track" unique_id=687969861 instance=ExtResource("3_w2ys1")]
+position = Vector2(-64, -893)
+
+[node name="Diamond3" parent="Track" unique_id=1762141186 instance=ExtResource("3_w2ys1")]
+position = Vector2(-34, -954)
+
+[node name="Diamond4" parent="Track" unique_id=175419349 instance=ExtResource("3_w2ys1")]
+position = Vector2(-84, -1002)
+
+[node name="Diamond5" parent="Track" unique_id=1062793129 instance=ExtResource("3_w2ys1")]
+position = Vector2(-51, -1079)
+
+[node name="Diamond6" parent="Track" unique_id=851517802 instance=ExtResource("3_w2ys1")]
+position = Vector2(-53, -1220)
+
+[node name="Diamond7" parent="Track" unique_id=1537556030 instance=ExtResource("4_g1xya")]
+position = Vector2(-107, -856)
+rotation = 1.5707964
+
+[node name="Diamond8" parent="Track" unique_id=952710078 instance=ExtResource("4_g1xya")]
+position = Vector2(-44, -856)
+rotation = 1.5707964
+
+[node name="OrangeWindow" parent="Track" unique_id=1378233934 instance=ExtResource("5_nafte")]
+position = Vector2(26, -1109)
+
+[node name="OrangeWindow2" parent="Track" unique_id=653651819 instance=ExtResource("5_nafte")]
+position = Vector2(2, -1214)
+
+[node name="OrangeWindow3" parent="Track" unique_id=916276222 instance=ExtResource("5_nafte")]
+position = Vector2(2, -1317)
+
+[node name="OrangeWindow4" parent="Track" unique_id=220287848 instance=ExtResource("5_nafte")]
+position = Vector2(15, -1424)
+
+[node name="OrangeWindow5" parent="Track" unique_id=1759747849 instance=ExtResource("5_nafte")]
+position = Vector2(37, -1546)
+
+[node name="OrangeWindow6" parent="Track" unique_id=1832507033 instance=ExtResource("5_nafte")]
+position = Vector2(11, -1643)
+
+[node name="OrangeWindow7" parent="Track" unique_id=548784149 instance=ExtResource("5_nafte")]
+position = Vector2(15, -1851)

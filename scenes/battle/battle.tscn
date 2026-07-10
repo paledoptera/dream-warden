@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cosoh16n65vwr" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dh7u53yj0xavd" path="res://ui/battle/bottom_panel/bottom_panel.tscn" id="1_7gynk"]
 [ext_resource type="Texture2D" uid="uid://chmiryi84x8l3" path="res://scenes/battle/cloudland2.png" id="2_agsc7"]
-[ext_resource type="Texture2D" uid="uid://d23p55cgpqhxi" path="res://scenes/battle/Sprite-backgroind_055301.png" id="2_fisqk"]
+[ext_resource type="Texture2D" uid="uid://bhns1nxcuvral" path="res://Screenshot 2026-07-07 010339.png" id="2_mxe8n"]
 [ext_resource type="PackedScene" uid="uid://nq51imabpl3n" path="res://scenes/battle/background.tscn" id="2_oiw7q"]
 [ext_resource type="PackedScene" uid="uid://b3uxp6uapsy5m" path="res://ui/battle/soul_cage/soul_cage.tscn" id="2_xd4uy"]
 [ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/soul.tscn" id="3_0yh6x"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c7l1212n1ta4y" path="res://scenes/battle/layers/layers/layer5.png" id="3_fisqk"]
 [ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
 [ext_resource type="PackedScene" uid="uid://bt53ruak41iac" path="res://fighters/monsters/dream_warden/dream_warden.tscn" id="6_agsc7"]
+[ext_resource type="PackedScene" uid="uid://ch6nqfnn4lcxk" path="res://scenes/battle/clock.tscn" id="12_mxe8n"]
 
 [sub_resource type="Shader" id="Shader_agsc7"]
 code = "shader_type canvas_item;
@@ -275,6 +276,12 @@ shader_parameter/strength = 0.003
 shader_parameter/speed = 10.0
 shader_parameter/frames = 4
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_mxe8n"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_icoan"]
+viewport_path = NodePath("SubViewport2")
+
 [sub_resource type="Animation" id="Animation_agsc7"]
 length = 0.001
 tracks/0/type = "value"
@@ -351,13 +358,15 @@ material = SubResource("ShaderMaterial_oiw7q")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -59.5
+offset_bottom = -59.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fisqk")
+texture = ExtResource("2_mxe8n")
 expand_mode = 1
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=1873449428]
-modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.24313726)
+modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.13725491)
 material = SubResource("CanvasItemMaterial_agsc7")
 anchors_preset = 15
 anchor_right = 1.0
@@ -409,6 +418,29 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_agsc7")
 expand_mode = 1
+
+[node name="Clock" parent="." unique_id=913049443 instance=ExtResource("12_mxe8n")]
+
+[node name="MainClock" parent="Clock/SubViewport2" parent_id_path=PackedInt32Array(913049443, 698166261) index="1" unique_id=1788779321]
+texture = SubResource("ViewportTexture_mxe8n")
+
+[node name="Afterimage1" parent="Clock/SubViewport2/MainClock" index="0" unique_id=394784902]
+texture = SubResource("ViewportTexture_mxe8n")
+
+[node name="Afterimage2" parent="Clock/SubViewport2/MainClock" index="1" unique_id=729563524]
+texture = SubResource("ViewportTexture_mxe8n")
+
+[node name="Afterimage3" parent="Clock/SubViewport2/MainClock" index="2" unique_id=1218521683]
+texture = SubResource("ViewportTexture_mxe8n")
+
+[node name="Afterimage4" parent="Clock/SubViewport2/MainClock" index="3" unique_id=579023528]
+texture = SubResource("ViewportTexture_mxe8n")
+
+[node name="Afterimage5" parent="Clock/SubViewport2/MainClock" index="4" unique_id=322422116]
+texture = SubResource("ViewportTexture_mxe8n")
+
+[node name="TextureRect" parent="Clock" index="3" unique_id=399944368]
+texture = SubResource("ViewportTexture_icoan")
 
 [node name="Background2" parent="." unique_id=1337807087 instance=ExtResource("2_oiw7q")]
 visible = false
@@ -467,3 +499,5 @@ libraries/ = SubResource("AnimationLibrary_fisqk")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=833185454]
 position = Vector2(320, 240)
+
+[editable path="Clock"]

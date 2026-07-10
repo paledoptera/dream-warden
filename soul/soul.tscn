@@ -1,14 +1,328 @@
 [gd_scene format=3 uid="uid://daa26yfs5qdsb"]
 
 [ext_resource type="Script" uid="uid://jryx47ruwybg" path="res://soul/soul.gd" id="1_6lv18"]
-[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="2_jwetc"]
+[ext_resource type="Texture2D" uid="uid://btwsgbuxeysas" path="res://soul/res/soul.png" id="2_sbg2m"]
 [ext_resource type="Script" uid="uid://c8dla6jeu6ypl" path="res://soul/grazer.gd" id="3_f3j2c"]
 [ext_resource type="Texture2D" uid="uid://ccoy4jphjku5n" path="res://soul/res/tp_indicator.png" id="4_fadpj"]
+[ext_resource type="Texture2D" uid="uid://c58vs0tlkyt57" path="res://soul/res/soul_withoutline.png" id="5_p0r6y"]
+[ext_resource type="Texture2D" uid="uid://cvs6tc4cfgu7y" path="res://soul/res/soul_onlyoutline.png" id="5_vqolc"]
+[ext_resource type="Texture2D" uid="uid://ch63rueu4g6p1" path="res://soul/behaviors/behavior_assets/orange/orange_dots.png" id="5_wv4ap"]
+[ext_resource type="AudioStream" uid="uid://donl1yvfytcte" path="res://globals/sounds/sound_effects/snd_chargeshot_charge.wav" id="6_t3har"]
+[ext_resource type="Texture2D" uid="uid://b37q111og5gcv" path="res://soul/behaviors/behavior_assets/orange/orange_charge.png" id="7_o537i"]
+[ext_resource type="Texture2D" uid="uid://c3jnt5dckm1a5" path="res://soul/res/soul_nooutline.png" id="8_72iol"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rujom"]
 radius = 32.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0r6y"]
+atlas = ExtResource("7_o537i")
+region = Rect2(0, 0, 65, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv4ap"]
+atlas = ExtResource("7_o537i")
+region = Rect2(65, 0, 65, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72iol"]
+atlas = ExtResource("7_o537i")
+region = Rect2(130, 0, 65, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si3d5"]
+atlas = ExtResource("7_o537i")
+region = Rect2(195, 0, 65, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0r6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv4ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72iol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si3d5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_o537i"]
+resource_name = "FlameEffect"
+script/source = "extends AnimatedSprite2D
+
+@export var anim: AnimationPlayer
+var prev_state
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		
+				
+		if soulmode.dashstate != prev_state and soulmode.dashstate == soulmode.DashState.DASHING:
+			anim.play(\"dash\")
+		
+		
+		
+		if soulmode.dashstate == soulmode.DashState.DASHING:
+			visible = true
+		else:
+			visible = false
+
+		prev_state = soulmode.dashstate
+"
+
+[sub_resource type="GDScript" id="GDScript_wv4ap"]
+resource_name = "OrangeDots"
+script/source = "extends Node2D
+
+var base_offset: float = 35.0
+var offset: float = 0.0
+
+func _process(delta: float) -> void:
+	if not Global.soul.current_soul_type == SoulType.ORANGE:
+		return
+	
+	rotate(5.0 * delta)
+	
+	
+	var soulmode = Global.soul.behaviors[0]
+	
+	modulate = lerp(Color(\"ffffff00\"),Color(\"ffffff\"),max(soulmode.charge_timer-2.0,0.0)/16.0)
+	
+	match soulmode.dashstate:
+
+		soulmode.DashState.CHARGING:
+			visible = true
+			offset = lerp(base_offset,0.0,soulmode.charge_timer/16.0)
+		_:
+			visible = false
+			
+	
+	var rot = 0.0
+	
+	
+	
+	for i in get_children():
+		
+		rot += 90.0
+		print(\"ROT = \", rot)
+		i.position = Vector2(0.0,offset).rotated(deg_to_rad(rot))
+		i.scale = (Vector2.ONE - (Vector2.ONE * soulmode.charge_timer)/32) * 4.0
+		
+		i.global_rotation = 0.0
+"
+
+[sub_resource type="GDScript" id="GDScript_vqolc"]
+resource_name = "HeartOutline"
+script/source = "extends TextureProgressBar
+
+func _process(delta: float) -> void:
+	if not Global.soul.current_soul_type == SoulType.ORANGE:
+		return
+		
+	var soulmode = Global.soul.behaviors[0]
+	
+	match soulmode.dashstate:
+		soulmode.DashState.CHARGING:
+			visible = true
+			value = (soulmode.charge_timer)
+			max_value = soulmode.charge_max
+		soulmode.DashState.DASHING:
+			visible = true
+			value = (soulmode.dash_flash)
+			max_value = (soulmode.charge_max)
+		_:
+			visible = false
+"
+
+[sub_resource type="GDScript" id="GDScript_p0r6y"]
+resource_name = "SuperHeart"
+script/source = "extends Sprite2D
+
+var siner = 0.0
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		
+
+		
+		match soulmode.dashstate:
+
+			
+			soulmode.DashState.CHARGING:
+				if soulmode.charge_timer == 16.0:
+					visible = true
+					siner += delta
+					var alpha = 0.75 + Siner.get_sine(siner,0.5,20.0)
+					print(\"ALPHA \", alpha)
+					modulate.a = alpha
+			
+			_:
+				visible = false
+				siner = 0.0
+		
+"
+
+[sub_resource type="GDScript" id="GDScript_72iol"]
+resource_name = "SuperHeartSmall"
+script/source = "extends Sprite2D
+
+var siner = 0.0
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		
+		
+		match soulmode.dashstate:
+
+			
+			soulmode.DashState.DASHING:
+				visible = true
+				siner += delta
+				var alpha = 0.5 + Siner.get_sine(siner,0.5,40.0)
+				modulate.a = alpha
+			
+			_:
+				visible = false
+				siner = 0.0
+		
+"
+
+[sub_resource type="GDScript" id="GDScript_t3har"]
+resource_name = "Charge"
+script/source = "extends AudioStreamPlayer
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		if soulmode.dashstate == soulmode.DashState.CHARGING:
+			if not playing:
+				playing = true
+			pitch_scale = min(0.25 + (soulmode.charge_timer * 0.05),1)
+			print(\"TEST\", linear_to_db(0.5))
+						#snd_pitch(loop_sound, min(0.5 + (chargetimer * 0.05), 1));
+		else:
+			playing = false
+"
+
+[sub_resource type="Animation" id="Animation_si3d5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/FlameEffectSubtle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/FlameEffect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/FlameEffect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/FlameEffectSubtle:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_72iol"]
+resource_name = "shoot"
+length = 0.3
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/FlameEffectSubtle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/FlameEffect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 1), Vector2(1.1, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/FlameEffect:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 5), Vector2(0, 2)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/FlameEffectSubtle:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.84, 0.84)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_si3d5"]
+_data = {
+&"RESET": SubResource("Animation_si3d5"),
+&"dash": SubResource("Animation_72iol")
+}
+
 [node name="Soul" type="CharacterBody2D" unique_id=1454885809 node_paths=PackedStringArray("heart")]
+z_index = 10
 motion_mode = 1
 script = ExtResource("1_6lv18")
 heart = NodePath("Heart")
@@ -17,7 +331,7 @@ heart = NodePath("Heart")
 polygon = PackedVector2Array(-6, -8, -6, -7, -7, -7, -7, -6, -8, -6, -8, 1, -7, 1, -7, 2, -6, 2, -6, 3, -5, 3, -5, 4, -4, 4, -4, 5, -3, 5, -3, 6, -2, 6, -2, 7, -1, 7, -1, 8, 1, 8, 1, 7, 2, 7, 2, 6, 3, 6, 3, 5, 4, 5, 4, 4, 5, 4, 5, 3, 6, 3, 6, 2, 7, 2, 7, 1, 8, 1, 8, -6, 7, -6, 7, -7, 6, -7, 6, -8, 2, -8, 2, -7, 1, -7, 1, -6, -1, -6, -1, -7, -2, -7, -2, -8)
 
 [node name="Heart" type="Sprite2D" parent="." unique_id=764906022]
-texture = ExtResource("2_jwetc")
+texture = ExtResource("2_sbg2m")
 
 [node name="Grazer" type="Area2D" parent="." unique_id=215224295 node_paths=PackedStringArray("soul")]
 collision_layer = 0
@@ -32,3 +346,84 @@ shape = SubResource("CircleShape2D_rujom")
 [node name="TPIndicator" type="Sprite2D" parent="Grazer" unique_id=18503849]
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("4_fadpj")
+
+[node name="OrangeEffects" type="Node2D" parent="." unique_id=725061260]
+
+[node name="CanvasGroup" type="CanvasGroup" parent="OrangeEffects" unique_id=595439398]
+self_modulate = Color(1, 1, 1, 0.67058825)
+z_index = -1
+
+[node name="FlameEffect" type="AnimatedSprite2D" parent="OrangeEffects/CanvasGroup" unique_id=1111323041 node_paths=PackedStringArray("anim")]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(0, 5)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.3297362
+offset = Vector2(-26, 0)
+script = SubResource("GDScript_o537i")
+anim = NodePath("../../AnimationPlayer")
+
+[node name="FlameEffectSubtle" type="AnimatedSprite2D" parent="OrangeEffects/CanvasGroup" unique_id=1596404308 node_paths=PackedStringArray("anim")]
+modulate = Color(1, 1, 0, 0.39215687)
+position = Vector2(0, -2)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.75764906
+offset = Vector2(-26, 0)
+script = SubResource("GDScript_o537i")
+anim = NodePath("../../AnimationPlayer")
+
+[node name="OrangeDots" type="Node2D" parent="OrangeEffects" unique_id=228035407]
+z_index = -1
+script = SubResource("GDScript_wv4ap")
+
+[node name="Sprite2D" type="Sprite2D" parent="OrangeEffects/OrangeDots" unique_id=1727721496]
+modulate = Color(0.9843137, 1, 0.21568628, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("5_wv4ap")
+
+[node name="Sprite2D2" type="Sprite2D" parent="OrangeEffects/OrangeDots" unique_id=1153797284]
+modulate = Color(0.9843137, 1, 0.21568628, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("5_wv4ap")
+
+[node name="Sprite2D3" type="Sprite2D" parent="OrangeEffects/OrangeDots" unique_id=2030990020]
+modulate = Color(0.9843137, 1, 0.21568628, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("5_wv4ap")
+
+[node name="Sprite2D4" type="Sprite2D" parent="OrangeEffects/OrangeDots" unique_id=1315010264]
+modulate = Color(0.9843137, 1, 0.21568628, 1)
+scale = Vector2(3, 3)
+texture = ExtResource("5_wv4ap")
+
+[node name="HeartOutline" type="TextureProgressBar" parent="OrangeEffects" unique_id=43252963]
+modulate = Color(0.9843137, 0.7882353, 0.21568628, 1)
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, -10)
+fill_mode = 2
+texture_progress = ExtResource("5_vqolc")
+script = SubResource("GDScript_vqolc")
+
+[node name="SuperHeart" type="Sprite2D" parent="OrangeEffects" unique_id=1291852417]
+visible = false
+texture = ExtResource("5_p0r6y")
+script = SubResource("GDScript_p0r6y")
+
+[node name="SuperHeartSmall" type="Sprite2D" parent="OrangeEffects" unique_id=638533570]
+self_modulate = Color(0.9843137, 0.7882353, 0.21568628, 1)
+texture = ExtResource("8_72iol")
+script = SubResource("GDScript_72iol")
+
+[node name="Charge" type="AudioStreamPlayer" parent="OrangeEffects" unique_id=321094951]
+stream = ExtResource("6_t3har")
+volume_db = -6.0
+script = SubResource("GDScript_t3har")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OrangeEffects" unique_id=45307525]
+libraries/ = SubResource("AnimationLibrary_si3d5")

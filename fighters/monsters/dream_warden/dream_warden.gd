@@ -36,13 +36,18 @@ func instantiate_3d_attack(scene: PackedScene) -> void:
 func start_attack() -> float:
 	
 	turn += 1
-	turn = wrapi(turn,0,3)
+	turn = wrapi(turn,0,5)
+	
 	
 	match turn:
+		
+		
 		0:
 			goto_center_screen()
 			$AnimationPlayer.play("attack_start")
-			instantiate_attack(preload("uid://cuwui318cvb75")) # wings
+			instantiate_attack(preload("uid://biy34d1rdl0yb")) # orange_prophecies_attack
+			#instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
+			#instantiate_attack(preload("uid://cuwui318cvb75")) # wings
 			return 8.0
 		1:
 			goto_center_screen()
@@ -53,6 +58,17 @@ func start_attack() -> float:
 			$AnimationPlayer.play("attack_start")
 			instantiate_attack(preload("uid://bqj31vq3siu3")) # laser
 			return 8.0
+		3:
+			goto_center_screen()
+			$AnimationPlayer.play("attack_start")
+			instantiate_attack(preload("uid://cp8jvyn2dnnpv")) # revolve
+			return 10.0
+		4:
+			goto_center_screen()
+			$AnimationPlayer.play("attack_start")
+			instantiate_attack(preload("uid://biy34d1rdl0yb")) # orange_prophecies_attack
+			#instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
+			#instantiate_attack(preload("uid://cuwui318cvb75")) # wings
 		7:
 			pass
 			#instantiate_3d_attack(SPECIAL_ATTACK)

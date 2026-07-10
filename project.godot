@@ -18,7 +18,7 @@ config/name="Dream Warden"
 config/description="A recreation of Deltarune's combat system in Godot (https://github.com/DevPoodle/delta-battle)"
 config/tags=PackedStringArray("top_down_2d")
 run/main_scene="uid://b53ljrv0fb6u4"
-config/features=PackedStringArray("4.6", "GL Compatibility")
+config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=30
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/stretch_mode=0
@@ -48,6 +48,7 @@ window/size/viewport_width=640
 window/size/viewport_height=480
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -190,4 +191,3 @@ renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
-2d/snap/snap_2d_transforms_to_pixel=true

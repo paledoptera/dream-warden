@@ -1,0 +1,176 @@
+[gd_scene format=3 uid="uid://daa26yfs5qdsb"]
+
+[ext_resource type="Script" uid="uid://jryx47ruwybg" path="res://soul/soul.gd" id="1_6lv18"]
+[ext_resource type="Texture2D" uid="uid://btwsgbuxeysas" path="res://soul/res/soul.png" id="2_sbg2m"]
+[ext_resource type="Script" uid="uid://c8dla6jeu6ypl" path="res://soul/grazer.gd" id="3_f3j2c"]
+[ext_resource type="Texture2D" uid="uid://ccoy4jphjku5n" path="res://soul/res/tp_indicator.png" id="4_fadpj"]
+[ext_resource type="Texture2D" uid="uid://c58vs0tlkyt57" path="res://soul/res/soul_withoutline.png" id="5_p0r6y"]
+[ext_resource type="Texture2D" uid="uid://cvs6tc4cfgu7y" path="res://soul/res/soul_onlyoutline.png" id="5_vqolc"]
+[ext_resource type="AudioStream" uid="uid://donl1yvfytcte" path="res://globals/sounds/sound_effects/snd_chargeshot_charge.wav" id="6_t3har"]
+[ext_resource type="Texture2D" uid="uid://b37q111og5gcv" path="res://soul/behaviors/behavior_assets/orange/orange_charge.png" id="7_o537i"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rujom"]
+radius = 32.0
+
+[sub_resource type="GDScript" id="GDScript_p0r6y"]
+resource_name = "SuperHeart"
+script/source = "extends Sprite2D
+
+var siner = 0.0
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		var siner = 0.0
+		
+		match soulmode.dashstate:
+			soulmode.DashState.IDLE:
+				visible = false
+			
+			soulmode.DashState.CHARGING:
+				if soulmode.charge_timer == 16.0:
+					visible = true
+					siner += delta
+					var alpha = 0.5 + Siner.get_sine(siner,0.5,2.0)
+					print(\"ALPHA \", alpha)
+					modulate.a = alpha
+					
+			
+		
+"
+
+[sub_resource type="GDScript" id="GDScript_vqolc"]
+resource_name = "HeartOutline"
+script/source = "extends TextureProgressBar
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		value = (soulmode.charge_timer)
+		max_value = soulmode.charge_max
+		print (\"VALUE \", value)
+"
+
+[sub_resource type="GDScript" id="GDScript_t3har"]
+resource_name = "Charge"
+script/source = "extends AudioStreamPlayer
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		if soulmode.dashstate == soulmode.DashState.CHARGING:
+			if not playing:
+				playing = true
+			pitch_scale = min(0.25 + (soulmode.charge_timer * 0.05),1)
+			print(\"TEST\", linear_to_db(0.5))
+						#snd_pitch(loop_sound, min(0.5 + (chargetimer * 0.05), 1));
+		else:
+			playing = false
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0r6y"]
+atlas = ExtResource("7_o537i")
+region = Rect2(0, 0, 65, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv4ap"]
+atlas = ExtResource("7_o537i")
+region = Rect2(65, 0, 65, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72iol"]
+atlas = ExtResource("7_o537i")
+region = Rect2(130, 0, 65, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si3d5"]
+atlas = ExtResource("7_o537i")
+region = Rect2(195, 0, 65, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0r6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv4ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72iol")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si3d5")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_o537i"]
+resource_name = "FlameEffect"
+script/source = "extends AnimatedSprite2D
+
+func _process(delta: float) -> void:
+	if Global.soul.current_soul_type == SoulType.ORANGE:
+		var soulmode = Global.soul.behaviors[0]
+		if soulmode.dashstate == soulmode.DashState.DASHING:
+			visible = true
+		else:
+			visible = false
+"
+
+[node name="Soul" type="CharacterBody2D" unique_id=1454885809 node_paths=PackedStringArray("heart")]
+z_index = 10
+motion_mode = 1
+script = ExtResource("1_6lv18")
+heart = NodePath("Heart")
+
+[node name="Collision" type="CollisionPolygon2D" parent="." unique_id=747100872]
+polygon = PackedVector2Array(-6, -8, -6, -7, -7, -7, -7, -6, -8, -6, -8, 1, -7, 1, -7, 2, -6, 2, -6, 3, -5, 3, -5, 4, -4, 4, -4, 5, -3, 5, -3, 6, -2, 6, -2, 7, -1, 7, -1, 8, 1, 8, 1, 7, 2, 7, 2, 6, 3, 6, 3, 5, 4, 5, 4, 4, 5, 4, 5, 3, 6, 3, 6, 2, 7, 2, 7, 1, 8, 1, 8, -6, 7, -6, 7, -7, 6, -7, 6, -8, 2, -8, 2, -7, 1, -7, 1, -6, -1, -6, -1, -7, -2, -7, -2, -8)
+
+[node name="Heart" type="Sprite2D" parent="." unique_id=764906022]
+texture = ExtResource("2_sbg2m")
+
+[node name="Grazer" type="Area2D" parent="." unique_id=215224295 node_paths=PackedStringArray("soul")]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("3_f3j2c")
+soul = NodePath("..")
+
+[node name="Collision" type="CollisionShape2D" parent="Grazer" unique_id=1110007361]
+shape = SubResource("CircleShape2D_rujom")
+
+[node name="TPIndicator" type="Sprite2D" parent="Grazer" unique_id=18503849]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("4_fadpj")
+
+[node name="OrangeEffects" type="Node2D" parent="." unique_id=725061260]
+
+[node name="SuperHeart" type="Sprite2D" parent="OrangeEffects" unique_id=1291852417]
+texture = ExtResource("5_p0r6y")
+script = SubResource("GDScript_p0r6y")
+
+[node name="HeartOutline" type="TextureProgressBar" parent="OrangeEffects" unique_id=43252963]
+modulate = Color(0.9843137, 0.7882353, 0.21568628, 1)
+custom_minimum_size = Vector2(20, 20)
+offset_right = 20.0
+offset_bottom = 20.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(-10, -10)
+fill_mode = 2
+texture_progress = ExtResource("5_vqolc")
+script = SubResource("GDScript_vqolc")
+
+[node name="Charge" type="AudioStreamPlayer" parent="OrangeEffects" unique_id=321094951]
+stream = ExtResource("6_t3har")
+volume_db = -6.0
+script = SubResource("GDScript_t3har")
+
+[node name="FlameEffect" type="AnimatedSprite2D" parent="OrangeEffects" unique_id=1111323041]
+modulate = Color(1, 1, 1, 0.49803922)
+position = Vector2(0, -3)
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.45188162
+offset = Vector2(-17.566, 0)
+script = SubResource("GDScript_o537i")

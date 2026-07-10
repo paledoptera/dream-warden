@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://cf2x3572j3dfv"]
+
+[ext_resource type="Script" uid="uid://decchq2bkqc26" path="res://pellets/generic_pellet/generic_pellet.gd" id="1_ass8r"]
+[ext_resource type="Texture2D" uid="uid://dajgul8huq55p" path="res://fighters/monsters/dream_warden/attacks/rush/rush_wing.png" id="2_2v5td"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2v5td"]
+size = Vector2(64, 185)
+
+[sub_resource type="Animation" id="Animation_totoe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GenericPellet/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GenericPellet/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.1764706)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GenericPellet:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6toh1"]
+resource_name = "new_animation"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GenericPellet/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.33333334),
+"transitions": PackedFloat32Array(0.5, 2, 0.36602128),
+"update": 0,
+"values": [Vector2(1, 0.31), Vector2(1, 3), Vector2(1, 0.31)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GenericPellet/Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.1764706), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GenericPellet:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.13397177, 1),
+"update": 0,
+"values": [Vector2(64, -300), Vector2(64, 400)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d7gc2"]
+_data = {
+&"RESET": SubResource("Animation_totoe"),
+&"spawn": SubResource("Animation_6toh1")
+}
+
+[node name="WingsBullet" type="Node2D" unique_id=64823786]
+
+[node name="GenericPellet" type="Area2D" parent="." unique_id=1350055120]
+position = Vector2(64, 0)
+collision_layer = 2
+script = ExtResource("1_ass8r")
+life_time = 3.0
+linear_acceleration = 20.0
+damage = 20
+destructible = true
+metadata/_custom_type_script = "uid://l1dijweo3y2y"
+
+[node name="Sprite" type="Node2D" parent="GenericPellet" unique_id=554455508]
+modulate = Color(1, 1, 1, 0.1764706)
+position = Vector2(0, -50)
+
+[node name="Sprite2D" type="Sprite2D" parent="GenericPellet/Sprite" unique_id=207529109]
+texture = ExtResource("2_2v5td")
+offset = Vector2(0, -100)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="GenericPellet" unique_id=817256706]
+position = Vector2(0, -141.92198)
+shape = SubResource("RectangleShape2D_2v5td")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=860548971]
+libraries/ = SubResource("AnimationLibrary_d7gc2")
+autoplay = &"spawn"

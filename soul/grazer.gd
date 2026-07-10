@@ -23,6 +23,11 @@ func _physics_process(delta: float) -> void:
 func graze(p_pellet: Pellet, p_delta: float) -> void:
 	if soul.invulnerable:
 		return
+	
+	if p_pellet.graze_points == 0:
+		return
+	
+	
 	if p_pellet.grazed:
 		Global.tp += 30.0 * p_delta * p_pellet.graze_points * Global.tp_coefficient / 20.0
 		if get_parent().get_parent().turn_timer >= 1.0 / 3.0:

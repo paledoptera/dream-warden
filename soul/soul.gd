@@ -6,6 +6,7 @@ class_name Soul
 @export var heart: Sprite2D
 @export var behaviors: Array[SoulBehavior]
 
+@onready var orange_effects: Node2D = $OrangeEffects
 var current_soul_type: SoulType
 
 var active := false:
@@ -24,6 +25,7 @@ func _enter_tree() -> void:
 	Global.soul = self
 
 func _ready() -> void:
+	print("Set red soul")
 	assign_heart_properties(SoulType.RED)
 
 func _process(delta: float) -> void:
@@ -64,6 +66,12 @@ func get_secondary_color() -> Color:
 
 func assign_heart_properties(soulType : SoulType) -> void:
 	change_color(soulType)
+	
+	if SoulType == SoulType.ORANGE:
+		orange_effects.visible = true
+	else:
+		orange_effects.visible = false
+	
 	for i in behaviors:
 		i.end()
 		i.queue_free()
@@ -79,3 +87,4 @@ func assign_heart_properties(soulType : SoulType) -> void:
 func visually_rotate(deg : float) -> void:
 	collision.rotation_degrees = deg
 	heart.rotation_degrees = deg
+	orange_effects.rotation_degrees = deg

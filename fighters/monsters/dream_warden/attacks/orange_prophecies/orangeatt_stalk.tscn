@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bob4ssdghdx1i"]
+
+[ext_resource type="Script" uid="uid://dppf3qd0vrw7l" path="res://fighters/monsters/dream_warden/attacks/revolve/diamond.gd" id="1_pgjyn"]
+[ext_resource type="PackedScene" uid="uid://ck17amkk4fxn5" path="res://pellets/generic_pellet/generic_pellet.tscn" id="2_waa1l"]
+[ext_resource type="Texture2D" uid="uid://b0nc5bkj0q7tu" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/orange_stalk.png" id="3_waa1l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waa1l"]
+size = Vector2(30, 20)
+
+[node name="Diamond" type="Node2D" unique_id=1274552507 node_paths=PackedStringArray("pellet")]
+script = ExtResource("1_pgjyn")
+pellet = NodePath("GenericPellet")
+
+[node name="GenericPellet" parent="." unique_id=1232204779 instance=ExtResource("2_waa1l")]
+rotation = -1.5707964
+scale = Vector2(2, 2)
+life_time = 9999.0
+rotate_sprite = false
+
+[node name="Sprite" parent="GenericPellet" index="0" unique_id=539580610]
+texture = ExtResource("3_waa1l")
+region_enabled = false
+
+[node name="CollisionShape2D" parent="GenericPellet" index="1" unique_id=1479671691]
+shape = SubResource("RectangleShape2D_waa1l")
+
+[editable path="GenericPellet"]

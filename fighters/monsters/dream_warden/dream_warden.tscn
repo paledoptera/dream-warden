@@ -2,11 +2,15 @@
 
 [ext_resource type="Script" uid="uid://ceqa65qm8o57q" path="res://fighters/monsters/dream_warden/dream_warden.gd" id="1_54jqm"]
 [ext_resource type="PackedScene" uid="uid://bochrdxnrsb3k" path="res://fighters/monsters/dream_warden/_res/warden.tscn" id="2_2nhnr"]
+[ext_resource type="PackedScene" uid="uid://bhqmxi0xfgw57" path="res://fighters/monsters/dream_warden/_res/warden_26.tscn" id="3_v7v0u"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_2nhnr"]
 size = Vector2(500, -400)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_v7v0u"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_jh36n"]
+viewport_path = NodePath("3DSprite/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_fkrc8"]
 viewport_path = NodePath("3DSprite/SubViewport")
 
 [sub_resource type="Animation" id="Animation_v7v0u"]
@@ -562,8 +566,9 @@ _data = {
 
 [node name="DreamWarden" type="Node2D" unique_id=312367948]
 script = ExtResource("1_54jqm")
-idle_lines = PackedStringArray("  * Shatter the reverie.")
-opening_line_singular = "  * It's the end."
+idle_lines = PackedStringArray("  * Blinding flashes light up the sky.", "  * Is this real?", "  * The atmosphere is thin.", "  * A strange fog fills the battlefield.")
+opening_line_singular = "  * It's the end.
+  * Iridescent feathers fall around you."
 title = "Dream Warden"
 base_fighter_stats = Dictionary[int, int]({
 0: 21000,
@@ -598,18 +603,22 @@ size = 8.83
 
 [node name="warden2" parent="3DSprite/SubViewport" unique_id=1415119822 instance=ExtResource("2_2nhnr")]
 transform = Transform3D(0.8875359, 0.026494678, -0.7260764, -0.19614854, 1.1124136, -0.19917443, 0.6995818, 0.27828535, 0.8653043, 0, 0, -5)
+visible = false
+
+[node name="warden26" parent="3DSprite/SubViewport" unique_id=671200952 instance=ExtResource("3_v7v0u")]
+transform = Transform3D(0.8875359, 0.026494678, -0.7260764, -0.19614854, 1.1124136, -0.19917443, 0.6995818, 0.27828535, 0.8653043, 0, -1.3848629, -5)
 
 [node name="AfterimagesPivot" type="Node2D" parent="." unique_id=490918706]
 
 [node name="Afterimage1" type="MeshInstance2D" parent="AfterimagesPivot" unique_id=1024104224]
 modulate = Color(1, 1, 1, 0.40392157)
 mesh = SubResource("QuadMesh_2nhnr")
-texture = SubResource("ViewportTexture_v7v0u")
+texture = SubResource("ViewportTexture_jh36n")
 
 [node name="Afterimage2" type="MeshInstance2D" parent="AfterimagesPivot" unique_id=1868341612]
 modulate = Color(1, 1, 1, 0)
 mesh = SubResource("QuadMesh_2nhnr")
-texture = SubResource("ViewportTexture_v7v0u")
+texture = SubResource("ViewportTexture_fkrc8")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2038955998]
 libraries/ = SubResource("AnimationLibrary_v7v0u")

@@ -39,7 +39,7 @@ static func basic_moving_soul(p_color : Color) -> SoulType:
 
 static var RED := basic_moving_soul(Color("FF0000"))
 static var CYAN := basic_moving_soul(Color("42FCFF"))
-static var ORANGE := basic_moving_soul(Color("FCA600"))
+static var ORANGE := SoulType.new(Color("FCA600")).addBehavior("movement/orange_soul_move")
 static var BLUE := SoulType.new(Color("003CFF")).addBehavior("movement/blue_soul_move")
 static var PURPLE := SoulType.new(Color("D535D9")).addBehavior("movement/string_move")
 static var GREEN := SoulType.new(Color("00C000")).addBehavior("shielding_behavior")

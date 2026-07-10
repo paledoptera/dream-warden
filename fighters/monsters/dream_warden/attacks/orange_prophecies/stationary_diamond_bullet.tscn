@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ds0sxy4h87mn1"]
+
+[ext_resource type="Script" uid="uid://dppf3qd0vrw7l" path="res://fighters/monsters/dream_warden/attacks/revolve/diamond.gd" id="1_hdwoc"]
+[ext_resource type="PackedScene" uid="uid://ck17amkk4fxn5" path="res://pellets/generic_pellet/generic_pellet.tscn" id="2_ibnxe"]
+
+[node name="Diamond" type="Node2D" unique_id=1274552507 node_paths=PackedStringArray("pellet")]
+script = ExtResource("1_hdwoc")
+pellet = NodePath("GenericPellet")
+
+[node name="GenericPellet" parent="." unique_id=1232204779 instance=ExtResource("2_ibnxe")]
+rotation = -1.5707964
+scale = Vector2(2, 2)
+life_time = 9999.0
+rotate_sprite = false
