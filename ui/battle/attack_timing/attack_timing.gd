@@ -39,10 +39,11 @@ func hit() -> void:
 		for timing: CharTiming in closest_timings:
 			var damage := timing.hit()
 			get_parent().do_attack(timing.char_id, damage)
+			Sounds.play("snd_laz_c")
 			active_timings.erase(timing)
 	if active_timings.is_empty():
 		handle_input = false
-		await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.5).timeout
 		handle_input = true
 		focused = false
 		get_parent().do_next_action()

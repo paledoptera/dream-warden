@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cte7khih2kb45"]
 
 [ext_resource type="Script" uid="uid://c647nxwp6djnn" path="res://ui/battle/monster_select/monster_panel/monster_panel.gd" id="1_fyfih"]
-[ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_layat"]
+[ext_resource type="Texture2D" uid="uid://btwsgbuxeysas" path="res://soul/res/soul.png" id="2_g7idw"]
 [ext_resource type="Texture2D" uid="uid://b61in3gfg66uu" path="res://fighters/characters/susie/res/nomercy.png" id="3_7eb5v"]
 [ext_resource type="Texture2D" uid="uid://dufngnrs83map" path="res://Sprite-0003.png" id="4_g7idw"]
 
@@ -43,7 +43,7 @@ clip_text = true
 [node name="Heart" type="Sprite2D" parent="." unique_id=2006183509]
 visible = false
 position = Vector2(63, 17)
-texture = ExtResource("1_layat")
+texture = ExtResource("2_g7idw")
 
 [node name="HPBar" type="ProgressBar" parent="." unique_id=550332195]
 custom_minimum_size = Vector2(81, 16)

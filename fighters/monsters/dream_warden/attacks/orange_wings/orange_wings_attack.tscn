@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://2wd3u53cs71a"]
+
+[ext_resource type="Script" uid="uid://bibwkn3yn6ji8" path="res://fighters/monsters/dream_warden/attacks/orange_wings/wings_attack.gd" id="1_hna6w"]
+[ext_resource type="Script" uid="uid://df4oxwu504umq" path="res://pellets/pellet_spawner.gd" id="2_t2cmk"]
+[ext_resource type="PackedScene" uid="uid://c06u0ltv50r20" path="res://fighters/monsters/dream_warden/attacks/orange_wings/wings_bullet.tscn" id="3_dofyq"]
+[ext_resource type="PackedScene" uid="uid://ymvde2d86kvp" path="res://specialattacks/orange/orange_attack.tscn" id="4_fn7no"]
+
+[node name="WingsAttack" type="Node2D" unique_id=1614279879 node_paths=PackedStringArray("spawnpoints")]
+script = ExtResource("1_hna6w")
+spawnpoints = [NodePath("Center"), NodePath("SideSwapper/Side")]
+
+[node name="Center" type="Marker2D" parent="." unique_id=1571653594]
+position = Vector2(0, -100)
+
+[node name="SideSwapper" type="Node2D" parent="." unique_id=186205003]
+
+[node name="Side" type="Marker2D" parent="SideSwapper" unique_id=1041481482]
+position = Vector2(32, -100)
+
+[node name="Timer" type="Timer" parent="." unique_id=1746701825]
+wait_time = 0.5
+autostart = true
+
+[node name="PelletSpawner" type="Node2D" parent="." unique_id=544333175]
+script = ExtResource("2_t2cmk")
+pellet = ExtResource("3_dofyq")
+metadata/_custom_type_script = "uid://df4oxwu504umq"
+
+[node name="OrangeAttack" parent="." unique_id=1160995327 instance=ExtResource("4_fn7no")]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

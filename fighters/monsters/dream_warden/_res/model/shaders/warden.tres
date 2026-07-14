@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bx564va2cpvrk"]
+
+[ext_resource type="Shader" uid="uid://b1k2fsc6b0xsi" path="res://fighters/monsters/dream_warden/_res/model/shaders/warden.gdshader" id="1_l1w65"]
+[ext_resource type="Texture2D" uid="uid://bhqfkyyjdhfip" path="res://fighters/monsters/dream_warden/_res/model/assets/IMAGE_DEPTHS.png" id="2_as6m3"]
+[ext_resource type="Texture2D" uid="uid://clvcdx5vu1arc" path="res://fighters/monsters/dream_warden/_res/model/assets/warden_warden_color_1.png" id="2_v04vl"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_l1w65")
+shader_parameter/depths = ExtResource("2_as6m3")
+shader_parameter/warden_color = ExtResource("2_v04vl")
+shader_parameter/scroll_speed = 0.36

@@ -25,7 +25,9 @@ var tp_coefficient := 1
 var displaying_text := false
 var characters: Array[Character] = []
 var monsters: Array[Monster] = []
-var items: Array[Item] = []
+var items: Array[Item] = [
+	preload("uid://2803pobuh87q") # Phanta
+]
 var heartColor : Color = SoulType.RED.color
 var battle: Battle
 var soul: Soul

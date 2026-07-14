@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cbu3432aw4rry"]
+
+[ext_resource type="Texture2D" uid="uid://6f7f3w2m22va" path="res://fighters/monsters/dream_warden/attacks/phase0_red/rush/spark.png" id="1_5msir"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsybd"]
+atlas = ExtResource("1_5msir")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxa5p"]
+atlas = ExtResource("1_5msir")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkokj"]
+atlas = ExtResource("1_5msir")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlutg"]
+atlas = ExtResource("1_5msir")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mfgr"]
+atlas = ExtResource("1_5msir")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o6fm"]
+atlas = ExtResource("1_5msir")
+region = Rect2(80, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_udmkn"]
+atlas = ExtResource("1_5msir")
+region = Rect2(96, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlnly"]
+atlas = ExtResource("1_5msir")
+region = Rect2(112, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtnkp"]
+atlas = ExtResource("1_5msir")
+region = Rect2(128, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y04b2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsybd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxa5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkokj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlutg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mfgr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o6fm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_udmkn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlnly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtnkp")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"sparkle",
+"speed": 30.0
+}]
+
+[node name="SparkleContainer" type="Node2D" unique_id=658872986]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=29068007]
+position = Vector2(40, -40)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y04b2")
+animation = &"sparkle"
+frame = 9
+frame_progress = 1.0

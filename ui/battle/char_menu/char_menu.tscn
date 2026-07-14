@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bd2jy3sq4c58u"]
+[gd_scene format=3 uid="uid://bd2jy3sq4c58u"]
 
 [ext_resource type="Script" uid="uid://il0gaqwbwkjg" path="res://ui/battle/char_menu/char_menu.gd" id="1_1ln4u"]
 [ext_resource type="Texture2D" uid="uid://b6vlddkq2yji4" path="res://ui/battle/char_menu/res/hp_static.png" id="1_g0hy4"]
@@ -40,13 +40,13 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ln4u"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="CharMenu" type="Control"]
+[node name="CharMenu" type="Control" unique_id=385047789]
 custom_minimum_size = Vector2(212, 36)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_1ln4u")
 
-[node name="Actions" type="Panel" parent="."]
+[node name="Actions" type="Panel" parent="." unique_id=852195466]
 custom_minimum_size = Vector2(210, 32)
 layout_mode = 0
 offset_top = 4.0
@@ -54,96 +54,96 @@ offset_right = 212.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cp84r")
 
-[node name="BGLineAnimation" type="Node2D" parent="Actions"]
+[node name="BGLineAnimation" type="Node2D" parent="Actions" unique_id=1521926395]
 visible = false
 position = Vector2(0, -4)
 script = ExtResource("2_mei5j")
 
-[node name="LeftPanel1" type="Panel" parent="Actions/BGLineAnimation"]
+[node name="LeftPanel1" type="Panel" parent="Actions/BGLineAnimation" unique_id=1854594243]
 offset_top = 6.0
 offset_right = 2.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
 
-[node name="LeftPanel2" type="Panel" parent="Actions/BGLineAnimation"]
+[node name="LeftPanel2" type="Panel" parent="Actions/BGLineAnimation" unique_id=2131290061]
 offset_top = 6.0
 offset_right = 2.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
 
-[node name="RightPanel1" type="Panel" parent="Actions/BGLineAnimation"]
+[node name="RightPanel1" type="Panel" parent="Actions/BGLineAnimation" unique_id=291036415]
 offset_left = 210.0
 offset_top = 6.0
 offset_right = 212.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
 
-[node name="RightPanel2" type="Panel" parent="Actions/BGLineAnimation"]
+[node name="RightPanel2" type="Panel" parent="Actions/BGLineAnimation" unique_id=1876426438]
 offset_left = 210.0
 offset_top = 6.0
 offset_right = 212.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_an0ot")
 
-[node name="Attack" parent="Actions" instance=ExtResource("2_an0ot")]
+[node name="Attack" parent="Actions" unique_id=1383099677 instance=ExtResource("2_an0ot")]
 self_modulate = Color(1, 1, 0, 1)
 position = Vector2(33, 16)
 selected = true
 
-[node name="Act" parent="Actions" instance=ExtResource("2_an0ot")]
-self_modulate = Color(1, 0.498039, 0.152941, 1)
+[node name="Act" parent="Actions" unique_id=920593258 instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
 position = Vector2(68, 16)
 region_rect = Rect2(31, 0, 31, 26)
 sprite = 1
 
-[node name="Magic" parent="Actions" instance=ExtResource("2_an0ot")]
+[node name="Magic" parent="Actions" unique_id=2061847303 instance=ExtResource("2_an0ot")]
 visible = false
-self_modulate = Color(1, 0.498039, 0.152941, 1)
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
 position = Vector2(68, 16)
 region_rect = Rect2(62, 0, 31, 26)
 sprite = 2
 
-[node name="Item" parent="Actions" instance=ExtResource("2_an0ot")]
-self_modulate = Color(1, 0.498039, 0.152941, 1)
+[node name="Item" parent="Actions" unique_id=778257879 instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
 position = Vector2(103, 16)
 region_rect = Rect2(93, 0, 31, 26)
 sprite = 3
 
-[node name="Spare" parent="Actions" instance=ExtResource("2_an0ot")]
-self_modulate = Color(1, 0.498039, 0.152941, 1)
+[node name="Spare" parent="Actions" unique_id=1007018140 instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
 position = Vector2(138, 16)
 region_rect = Rect2(124, 0, 31, 26)
 sprite = 4
 
-[node name="Defend" parent="Actions" instance=ExtResource("2_an0ot")]
-self_modulate = Color(1, 0.498039, 0.152941, 1)
+[node name="Defend" parent="Actions" unique_id=350659729 instance=ExtResource("2_an0ot")]
+self_modulate = Color(1, 0.49803922, 0.15294118, 1)
 position = Vector2(173, 16)
 region_rect = Rect2(155, 0, 31, 26)
 sprite = 5
 
-[node name="Stats" type="Panel" parent="."]
+[node name="Stats" type="Panel" parent="." unique_id=1694652500]
 custom_minimum_size = Vector2(212, 36)
 layout_mode = 0
 offset_right = 212.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cp84r")
 
-[node name="HPStatic" type="Sprite2D" parent="Stats"]
+[node name="HPStatic" type="Sprite2D" parent="Stats" unique_id=908678154]
 position = Vector2(141, 18)
 texture = ExtResource("1_g0hy4")
 
-[node name="Icon" type="Sprite2D" parent="Stats"]
+[node name="Icon" type="Sprite2D" parent="Stats" unique_id=344987187]
 position = Vector2(27, 19)
 texture = ExtResource("4_lgnlm")
 
-[node name="ActionIcon" type="Sprite2D" parent="Stats"]
+[node name="ActionIcon" type="Sprite2D" parent="Stats" unique_id=1490478010]
 visible = false
 position = Vector2(27, 19)
 texture = ExtResource("5_ler53")
 hframes = 6
 region_rect = Rect2(0, 0, 32, 32)
 
-[node name="Name" type="Label" parent="Stats"]
+[node name="Name" type="Label" parent="Stats" unique_id=194277551]
 layout_mode = 0
 offset_left = 51.0
 offset_top = 13.0
@@ -155,7 +155,7 @@ text = "robot"
 vertical_alignment = 1
 uppercase = true
 
-[node name="CurrentHP" type="Label" parent="Stats"]
+[node name="CurrentHP" type="Label" parent="Stats" unique_id=1976015944]
 layout_mode = 0
 offset_left = 128.0
 offset_top = 7.0
@@ -167,7 +167,7 @@ label_settings = SubResource("LabelSettings_1ln4u")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="MaxHP" type="Label" parent="Stats"]
+[node name="MaxHP" type="Label" parent="Stats" unique_id=1785329785]
 layout_mode = 0
 offset_left = 174.0
 offset_top = 7.0
@@ -180,9 +180,9 @@ label_settings = SubResource("LabelSettings_rjcck")
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="HealthBar" type="ProgressBar" parent="Stats"]
+[node name="HealthBar" type="ProgressBar" parent="Stats" unique_id=1226588939]
 custom_minimum_size = Vector2(76, 9)
-layout_mode = 2
+layout_mode = 0
 offset_left = 128.0
 offset_top = 21.0
 offset_right = 204.0
@@ -193,14 +193,14 @@ value = 100.0
 allow_greater = true
 show_percentage = false
 
-[node name="Cover1" type="Panel" parent="."]
+[node name="Cover1" type="Panel" parent="." unique_id=506823047]
 layout_mode = 0
 offset_top = 2.0
 offset_right = 2.0
 offset_bottom = 36.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1ln4u")
 
-[node name="Cover2" type="Panel" parent="."]
+[node name="Cover2" type="Panel" parent="." unique_id=983438287]
 layout_mode = 0
 offset_left = 210.0
 offset_top = 2.0

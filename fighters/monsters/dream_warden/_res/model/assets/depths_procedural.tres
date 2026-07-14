@@ -1,0 +1,30 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://di4ubl323bo57"]
+
+[sub_resource type="Gradient" id="Gradient_jotil"]
+offsets = PackedFloat32Array(0, 0.17945206, 0.47808218, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0010482625, 0.00025094656, 0.009450857, 1, 0.021929651, 0.0052498016, 0.19771191, 1, 0.64411265, 0.70594394, 0.90182126, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_jotil"]
+noise_type = 2
+seed = 55
+frequency = 0.028
+offset = Vector3(0, -169.55, -93.2)
+fractal_lacunarity = 1.84
+fractal_gain = 0.33
+fractal_weighted_strength = 1.0
+cellular_distance_function = 3
+cellular_jitter = -0.97
+domain_warp_enabled = true
+domain_warp_amplitude = 10.7
+domain_warp_fractal_octaves = 1
+domain_warp_fractal_lacunarity = 0.34
+domain_warp_fractal_gain = -23.76
+
+[resource]
+width = 898
+height = 651
+noise = SubResource("FastNoiseLite_jotil")
+color_ramp = SubResource("Gradient_jotil")
+seamless = true
+in_3d_space = true
+seamless_blend_skirt = 1.0

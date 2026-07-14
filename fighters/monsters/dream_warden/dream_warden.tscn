@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bt53ruak41iac"]
 
 [ext_resource type="Script" uid="uid://ceqa65qm8o57q" path="res://fighters/monsters/dream_warden/dream_warden.gd" id="1_54jqm"]
-[ext_resource type="PackedScene" uid="uid://bochrdxnrsb3k" path="res://fighters/monsters/dream_warden/_res/warden.tscn" id="2_2nhnr"]
-[ext_resource type="PackedScene" uid="uid://bhqmxi0xfgw57" path="res://fighters/monsters/dream_warden/_res/warden_26.tscn" id="3_v7v0u"]
+[ext_resource type="Texture2D" uid="uid://cdui5ji0cmn4f" path="res://fighters/monsters/dream_warden/_res/block.png" id="3_v7v0u"]
+[ext_resource type="Texture2D" uid="uid://tk4iibqvh1lq" path="res://fighters/monsters/dream_warden/_res/blocked_text.png" id="4_fkrc8"]
+[ext_resource type="PackedScene" uid="uid://daeern1c5gfgq" path="res://fighters/monsters/dream_warden/_res/model/warden_model.tscn" id="4_jh36n"]
+[ext_resource type="Texture2D" uid="uid://hnbbofqg1obh" path="res://fighters/characters/susie/res/slash.png" id="5_fkrc8"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_2nhnr"]
-size = Vector2(500, -400)
+size = Vector2(1000, -800)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_jh36n"]
 viewport_path = NodePath("3DSprite/SubViewport")
@@ -25,72 +27,72 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-250, -200)]
+"values": [Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("3DSprite/SubViewport/warden2:position")
+tracks/1/path = NodePath("3DSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, -5)]
+"values": [Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("3DSprite/SubViewport/warden2:rotation")
+tracks/2/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0.1745329, -0.6981316, -0.17453294)]
+"values": [Color(1, 1, 1, 0.40392157)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("3DSprite:scale")
+tracks/3/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
+tracks/4/path = NodePath("AfterimagesPivot/Afterimage2:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.40392157)]
+"values": [Vector2(0, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
+tracks/5/path = NodePath("AfterimagesPivot/Afterimage1:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Vector2(0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AfterimagesPivot/Afterimage2:position")
+tracks/6/path = NodePath("AfterimagesPivot:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -102,26 +104,414 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AfterimagesPivot/Afterimage1:position")
+tracks/7/path = NodePath("AfterimagesPivot/Afterimage1:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, 1)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AfterimagesPivot:position")
+tracks/8/path = NodePath("AfterimagesPivot/Afterimage2:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("3DSprite:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("AfterimagesPivot:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("AfterimagesPivot:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("3DSprite/SubViewport/warden:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.17453286, -0.6981316, -0.17453294)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockSprite:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockSprite:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AttackBlockerContainer/AttackBlocker/CounterBlock:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AttackBlockerContainer/AttackBlocker/CounterBlock/Sprite2D:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("AttackBlockerContainer/AttackBlocker/CounterBlock/Sprite2D:scale")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockSprite/Sprite2D:self_modulate")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("AttackBlockerContainer/AttackBlocker:scale")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("AttackBlockerContainer/AttackBlocker:modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.45767742, 0.77602017, 0.81970006, 1)]
+}
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("AttackBlockerContainer:modulate")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/22/type = "value"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("AttackBlockerContainer:skew")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/23/type = "value"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("AttackBlockerContainer/AttackBlocker:skew")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.26179945]
+}
+tracks/24/type = "value"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockBlast:modulate")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/25/type = "value"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockBlast:scale")
+tracks/25/interp = 1
+tracks/25/loop_wrap = true
+tracks/25/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 4)]
+}
+tracks/26/type = "value"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("AttackBlockedText:position")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("AttackBlockedText:scale")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/28/type = "value"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("AttackBlockedText:visible")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/29/type = "value"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("AttackBlockedText:modulate")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/30/type = "value"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("NormalStrike:visible")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/31/type = "value"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("NormalStrike:frame")
+tracks/31/interp = 1
+tracks/31/loop_wrap = true
+tracks/31/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fkrc8"]
+resource_name = "attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AfterimagesPivot/Afterimage1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AfterimagesPivot/Afterimage2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AfterimagesPivot:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.23333333, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2), Vector2(0, 2), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AfterimagesPivot:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.04, 1.04), Vector2(1.131, 1.131)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AfterimagesPivot:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.53333336),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("3DSprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.6),
+"transitions": PackedFloat32Array(2, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(11.431173, 11.431173, 11.431173, 0.6901961), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.26666668),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.40392157), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.13333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.5254902), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("3DSprite:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -150,198 +540,246 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("3DSprite:modulate")
+tracks/11/path = NodePath("3DSprite/SubViewport/warden:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.36666667),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("AfterimagesPivot:scale")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("AfterimagesPivot:modulate")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector3(0.17453286, -0.6981316, -0.17453294), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fkrc8"]
-resource_name = "attack"
-length = 0.6
+[sub_resource type="Animation" id="Animation_r35kl"]
+resource_name = "block"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("3DSprite/SubViewport/warden2:rotation")
+tracks/0/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.43333334),
-"transitions": PackedFloat32Array(0.5, 1),
+"times": PackedFloat32Array(0.23333332, 0.33333334, 1.1666666),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.1745329, -0.6981316, -0.17453294), Vector3(0, 0, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("3DSprite/SubViewport/warden2:position")
+tracks/1/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockSprite:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.23333332, 0.36666664, 1.2333333),
+"transitions": PackedFloat32Array(1, 1.231144, 1),
 "update": 0,
-"values": [Vector3(0, 0, -5)]
+"values": [Vector2(2, 2), Vector2(3, 3), Vector2(4, 4)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AfterimagesPivot/Afterimage1:position")
+tracks/2/path = NodePath("AttackBlockerContainer/AttackBlocker/CounterBlock:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.23333332, 0.43333334, 1.0333334),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -9.999), Vector2(0, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.29803923), Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("AfterimagesPivot/Afterimage2:position")
+tracks/3/path = NodePath("AttackBlockerContainer/AttackBlocker/CounterBlock/Sprite2D:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.23333332, 0.36666664),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -9.8), Vector2(0, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("AfterimagesPivot:position")
-tracks/4/interp = 2
+tracks/4/path = NodePath("AttackBlockerContainer/AttackBlocker/CounterBlock/Sprite2D:scale")
+tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.23333333, 0.33333334),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.23333332, 0.73333335),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 8.998), Vector2(0, 0)]
+"values": [Vector2(1, 1), Vector2(0.75, 0.75)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("AfterimagesPivot:scale")
+tracks/5/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockSprite/Sprite2D:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.36666667, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0.23333332, 0.5666666, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1, 1), Vector2(1.04, 1.04), Vector2(1.131, 1.131)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AfterimagesPivot:modulate")
+tracks/6/path = NodePath("AttackBlockerContainer/AttackBlocker:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.53333336),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0.23333332, 0.36666664, 0.5333333, 1.2333333),
+"transitions": PackedFloat32Array(2, 0.5, -2, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Vector2(0.1, 0.5), Vector2(1.2, 1), Vector2(1, 1), Vector2(1, 1)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("3DSprite:modulate")
+tracks/7/path = NodePath("AttackBlockerContainer/AttackBlocker:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(2, 1),
+"times": PackedFloat32Array(0.23333332, 0.43333334, 0.76666665),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(0.45895782, 0.77664757, 0.8198382, 0.29700002), Color(0.45767742, 0.77602017, 0.81970006, 1), Color(0.45767742, 0.77602017, 0.81970006, 1)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
+tracks/8/path = NodePath("AttackBlockerContainer:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.23333332, 0.36666664, 0.4333333, 0.5, 0.79999995, 0.8666667, 1.2333333),
+"transitions": PackedFloat32Array(11.313706, 1, 1, 1, 0.43527532, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.40392157)]
+"values": [Color(1, 1, 1, 1), Color(1.8247963, 1.8247963, 1.8247963, 1), Color(1, 1, 1, 0.68200004), Color(1, 1, 1, 1), Color(1, 1, 1, 0.47300002), Color(1.8247963, 1.8247963, 1.8247963, 1), Color(1, 1, 1, 0)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
+tracks/9/enabled = false
+tracks/9/path = NodePath("AttackBlockerContainer:skew")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0.5254902)]
+"times": PackedFloat32Array(0.23333332, 0.36666664, 0.4, 0.46666667, 0.5333333, 0.5666666, 0.70000005, 0.76666665, 1.0333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.0, 0.0, -0.01745329251994329, 0.08726646259971647, 0.00872664625997164, 0.0, 0.08726646259971647, 0.00872664625997164, 0.0]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("3DSprite:scale")
+tracks/10/enabled = false
+tracks/10/path = NodePath("AttackBlockerContainer/AttackBlocker:skew")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.935, 0.935)]
+"times": PackedFloat32Array(0.23333332, 0.4, 0.5, 0.5333333, 0.6, 0.70000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0.26179945, 0.26179945, 0.26179945, 0.18151425, 0.27576202, 0.26179945]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("AfterimagesPivot/Afterimage1:scale")
+tracks/11/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockBlast:modulate")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.23333332, 0.36666664, 0.8666667),
+"transitions": PackedFloat32Array(1, 0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.554), Color(1, 1, 1, 0)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("AfterimagesPivot/Afterimage2:scale")
+tracks/12/path = NodePath("AttackBlockerContainer/AttackBlocker/BlockBlast:scale")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.29999998, 1.2333333),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(2, 2), Vector2(7, 7)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AttackBlockedText:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.43333334, 0.46666667, 0.5, 0.5333333, 0.5666666, 0.6, 0.6333333, 0.6666666, 0.70000005, 0.73333335, 0.76666665, 0.79999995, 0.8333334, 0.8666667, 0.9, 0.9333333, 0.9666667, 1, 1.0333333, 1.0666666, 1.5333333, 1.5666667, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(41, 0), Vector2(45, -2), Vector2(49, -4), Vector2(52, -5), Vector2(53, -5), Vector2(54, -5), Vector2(55, -4), Vector2(56, -2), Vector2(57, 0), Vector2(57, 2), Vector2(57, 5), Vector2(57, 1), Vector2(57, 0), Vector2(57, -1), Vector2(57, -1), Vector2(57, 0), Vector2(57, 2), Vector2(57, 5), Vector2(57, 3), Vector2(57, 3), Vector2(57, 1), Vector2(57, -12)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AttackBlockedText:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0.43333334, 0.46666667, 1.5666667, 1.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.5, 0.25), Vector2(1, 1), Vector2(1, 1), Vector2(1, 1.5)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("AttackBlockedText:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, false, true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("AttackBlockedText:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(1.5666667, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("NormalStrike:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.16666666, 0.43333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("NormalStrike:frame")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.16666666, 0.23333332, 0.29999998, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_jh36n"]
@@ -368,87 +806,63 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-250, -200)]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("3DSprite/SubViewport/warden2:position")
+tracks/2/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, -5)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("3DSprite/SubViewport/warden2:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector3(0.34906584, -0.6981317, -0.17453292), Vector3(0.1745329, -0.6981316, -0.17453294)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("AfterimagesPivot/Afterimage1:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.33333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.40392157), Color(1, 1, 1, 0)]
 }
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AfterimagesPivot/Afterimage2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.43333334),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0.5254902), Color(1, 1, 1, 0)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("AfterimagesPivot/Afterimage1:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AfterimagesPivot/Afterimage1:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(0.5, -2),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.427, 1.195)]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("AfterimagesPivot/Afterimage2:scale")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AfterimagesPivot/Afterimage2:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.46666667),
 "transitions": PackedFloat32Array(0.5, -2),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 1.101)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("3DSprite:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("3DSprite:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.43333337),
 "transitions": PackedFloat32Array(0.24148409, 1),
 "update": 0,
@@ -469,7 +883,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector2(-250, -200), Vector2(-250, -210), Vector2(-250, -200)]
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -481,7 +895,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.40392157)]
+"values": [Color(1, 1, 1, 0.36078432)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -493,7 +907,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0.5254902)]
+"values": [Color(1, 1, 1, 0.35686275)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -529,7 +943,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.5, 1, 1.5000001, 2),
 "transitions": PackedFloat32Array(0.7, 2, 0.7, 2, 0.5),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(4, 0), Vector2(0, 0), Vector2(-4, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(2, 0), Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -555,11 +969,24 @@ tracks/7/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("3DSprite/SubViewport/warden:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.17453286, -0.6981316, -0.17453294), Vector3(0.17453286, -0.6981316, -0.17453294)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v7v0u"]
 _data = {
 &"RESET": SubResource("Animation_v7v0u"),
 &"attack_start": SubResource("Animation_fkrc8"),
+&"block": SubResource("Animation_r35kl"),
 &"hurt": SubResource("Animation_jh36n"),
 &"idle": SubResource("Animation_2nhnr")
 }
@@ -567,8 +994,8 @@ _data = {
 [node name="DreamWarden" type="Node2D" unique_id=312367948]
 script = ExtResource("1_54jqm")
 idle_lines = PackedStringArray("  * Blinding flashes light up the sky.", "  * Is this real?", "  * The atmosphere is thin.", "  * A strange fog fills the battlefield.")
-opening_line_singular = "  * It's the end.
-  * Iridescent feathers fall around you."
+opening_line_singular = "  * Iridescent feathers fall around you.
+  * TP Gain reduced outside of ???"
 title = "Dream Warden"
 base_fighter_stats = Dictionary[int, int]({
 0: 21000,
@@ -577,36 +1004,36 @@ base_fighter_stats = Dictionary[int, int]({
 })
 
 [node name="3DSprite" type="SubViewportContainer" parent="." unique_id=692537947]
+custom_minimum_size = Vector2(1000, 800)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_top = -200.0
-offset_right = 250.0
-offset_bottom = 200.0
+offset_right = 1000.0
+offset_bottom = 800.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset_ratio = Vector2(0.5, 0.5)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
 stretch = true
 stretch_shrink = 2
 
 [node name="SubViewport" type="SubViewport" parent="3DSprite" unique_id=1616138353]
 transparent_bg = true
 handle_input_locally = false
-size = Vector2i(250, 200)
+canvas_item_default_texture_filter = 0
+size = Vector2i(500, 400)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="3DSprite/SubViewport" unique_id=656756326]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.941, 0)
 projection = 1
-size = 8.83
+size = 17.66
 
-[node name="warden2" parent="3DSprite/SubViewport" unique_id=1415119822 instance=ExtResource("2_2nhnr")]
-transform = Transform3D(0.8875359, 0.026494678, -0.7260764, -0.19614854, 1.1124136, -0.19917443, 0.6995818, 0.27828535, 0.8653043, 0, 0, -5)
-visible = false
+[node name="warden" parent="3DSprite/SubViewport" unique_id=1864175887 instance=ExtResource("4_jh36n")]
+transform = Transform3D(0.8875359, 0.026494712, -0.7260764, -0.19614857, 1.1124136, -0.19917439, 0.6995818, 0.27828532, 0.8653043, 0, -1.3848629, -5)
 
-[node name="warden26" parent="3DSprite/SubViewport" unique_id=671200952 instance=ExtResource("3_v7v0u")]
-transform = Transform3D(0.8875359, 0.026494678, -0.7260764, -0.19614854, 1.1124136, -0.19917443, 0.6995818, 0.27828535, 0.8653043, 0, -1.3848629, -5)
+[node name="AnimationPlayer" parent="3DSprite/SubViewport/warden/warden" parent_id_path=PackedInt32Array(1864175887, 760203765) index="2" unique_id=1273104432]
+autoplay = &""
 
 [node name="AfterimagesPivot" type="Node2D" parent="." unique_id=490918706]
 
@@ -623,3 +1050,78 @@ texture = SubResource("ViewportTexture_fkrc8")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2038955998]
 libraries/ = SubResource("AnimationLibrary_v7v0u")
 autoplay = &"idle"
+
+[node name="Actions" type="AnimationPlayer" parent="." unique_id=960748948]
+libraries/ = SubResource("AnimationLibrary_v7v0u")
+autoplay = &"idle"
+
+[node name="AttackBlockerContainer" type="Node2D" parent="." unique_id=541133819]
+position = Vector2(19, 0)
+
+[node name="AttackBlocker" type="Node2D" parent="AttackBlockerContainer" unique_id=752194910]
+modulate = Color(0.45767742, 0.77602017, 0.81970006, 1)
+position = Vector2(-23, 0)
+rotation = 1.5707964
+skew = 0.26179945
+
+[node name="BlockSprite" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker" unique_id=1780297835]
+modulate = Color(1, 1, 1, 0)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+texture = ExtResource("3_v7v0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/BlockSprite" unique_id=1917340442]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.6666667, 0.6666666)
+texture = ExtResource("3_v7v0u")
+
+[node name="Sprite2D2" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/BlockSprite/Sprite2D" unique_id=143808185]
+scale = Vector2(0.75, 0.7500001)
+texture = ExtResource("3_v7v0u")
+
+[node name="Sprite2D3" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/BlockSprite/Sprite2D" unique_id=518059190]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_v7v0u")
+
+[node name="Sprite2D4" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/BlockSprite/Sprite2D" unique_id=1245582189]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_v7v0u")
+
+[node name="Sprite2D5" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/BlockSprite/Sprite2D" unique_id=318794676]
+scale = Vector2(0.375, 0.37500006)
+texture = ExtResource("3_v7v0u")
+
+[node name="CounterBlock" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker" unique_id=1246836097]
+modulate = Color(1, 1, 1, 0)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("3_v7v0u")
+
+[node name="Sprite2D" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/CounterBlock" unique_id=2143012712]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_v7v0u")
+
+[node name="BlockBlast" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker" unique_id=1912180483]
+modulate = Color(1, 1, 1, 0)
+rotation = 1.5707964
+scale = Vector2(4, 4)
+texture = ExtResource("3_v7v0u")
+
+[node name="CounterBlock2" type="Sprite2D" parent="AttackBlockerContainer/AttackBlocker/BlockBlast" unique_id=1854554004]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("3_v7v0u")
+
+[node name="AttackBlockedText" type="Sprite2D" parent="." unique_id=1530960845]
+visible = false
+texture = ExtResource("4_fkrc8")
+offset = Vector2(0, -10)
+
+[node name="NormalStrike" type="Sprite2D" parent="." unique_id=1626968804]
+visible = false
+position = Vector2(-5, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("5_fkrc8")
+hframes = 4
+
+[editable path="3DSprite/SubViewport/warden"]
+[editable path="3DSprite/SubViewport/warden/warden"]

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://2803pobuh87q"]
+
+[ext_resource type="Script" uid="uid://drff552q4x8m8" path="res://holdables/item.gd" id="1_cd0wf"]
+[ext_resource type="Script" uid="uid://bo5637cxjcma2" path="res://holdables/use_type/heal_use_predicate.gd" id="2_r5v5d"]
+
+[sub_resource type="Resource" id="Resource_cd0wf"]
+script = ExtResource("2_r5v5d")
+amount = 200
+remove_after_use = true
+metadata/_custom_type_script = "uid://bo5637cxjcma2"
+
+[resource]
+script = ExtResource("1_cd0wf")
+name = "Phanta"
+long_description = ""
+usePredicate = SubResource("Resource_cd0wf")
+metadata/_custom_type_script = "uid://drff552q4x8m8"

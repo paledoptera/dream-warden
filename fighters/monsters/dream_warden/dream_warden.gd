@@ -1,10 +1,14 @@
 extends Monster
+class_name DreamWarden
 
 const SPECIAL_ATTACK = preload("uid://dbi6lj71m2qh8")
 @export var ultra_3d_world: SubViewport
 
 var starting_pos: Vector2
+var block_attacks: bool = true
 var turn: int = -1
+var phase: int = 1
+
 
 func _ready() -> void:
 	super()
@@ -14,8 +18,9 @@ func _ready() -> void:
 func do_animation(p_animation: Animations) -> Signal:
 	match p_animation:
 		Animations.HURT:
-			$AnimationPlayer.play("hurt")
-			await get_tree().create_timer(0.1).timeout
+			$AnimationPlayer.play("block")
+			
+			await get_tree().create_timer(1.0).timeout
 			Sounds.play("snd_ward_hit")
 			#velocity = 0.0
 			#squishing = false
@@ -24,6 +29,12 @@ func do_animation(p_animation: Animations) -> Signal:
 			
 		Animations.FAINT:
 			$AnimationPlayer.play("die")
+		
+		Animations.SPECIAL1:
+			$Actions.play("block")
+			await get_tree().create_timer(0.4).timeout
+			Sounds.play("snd_ward_deflect")
+			
 	return $AnimationPlayer.animation_finished
 
 func instantiate_3d_attack(scene: PackedScene) -> void:
@@ -35,44 +46,52 @@ func instantiate_3d_attack(scene: PackedScene) -> void:
 
 func start_attack() -> float:
 	
-	turn += 1
-	turn = wrapi(turn,0,5)
+	match phase:
+		1: # Red Soul
+			turn += 1
+			turn = wrapi(turn,0,5)
+			
+			animate("attack_start")
+			
+			match turn:
+					0: # Wings
+						goto_center_screen()
+						#instantiate_attack(preload("uid://q3t3r8c6t065")) # beam
+						instantiate_attack(preload("uid://cuwui318cvb75")) # wings
+						return 8.0
+					1: # Beam
+						goto_center_screen()
+						instantiate_attack(preload("uid://q3t3r8c6t065")) # beam
+						return 8.5
+					2: # Revolve
+						goto_center_screen()
+						instantiate_attack(preload("uid://cp8jvyn2dnnpv")) # revolve
+						return 10.0
+					3: # Rush
+						goto_center_screen()
+						instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
+						
+						return 8.0
+					4:
+						instantiate_attack(preload("uid://bqj31vq3siu3")) # bright_hell
+						return 8.0
+						
+					#6:
+						#goto_center_screen()
+						#instantiate_attack(preload("uid://biy34d1rdl0yb")) # orange_prophecies_attack
+						#return 8.0
+					#8:
+						#goto_center_screen()
+						#instantiate_attack(preload("uid://2wd3u53cs71a")) # orange_wings_attack
+#
+						#return 8.0
+					#
+					#7:
+						#pass
+						#instantiate_3d_attack(SPECIAL_ATTACK)
+						#owner.animations.play("slide_down")
 	
 	
-	match turn:
-		
-		
-		0:
-			goto_center_screen()
-			$AnimationPlayer.play("attack_start")
-			instantiate_attack(preload("uid://biy34d1rdl0yb")) # orange_prophecies_attack
-			#instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
-			#instantiate_attack(preload("uid://cuwui318cvb75")) # wings
-			return 8.0
-		1:
-			goto_center_screen()
-			$AnimationPlayer.play("attack_start")
-			instantiate_attack(preload("uid://q3t3r8c6t065"))
-			return 8.0
-		2:
-			$AnimationPlayer.play("attack_start")
-			instantiate_attack(preload("uid://bqj31vq3siu3")) # laser
-			return 8.0
-		3:
-			goto_center_screen()
-			$AnimationPlayer.play("attack_start")
-			instantiate_attack(preload("uid://cp8jvyn2dnnpv")) # revolve
-			return 10.0
-		4:
-			goto_center_screen()
-			$AnimationPlayer.play("attack_start")
-			instantiate_attack(preload("uid://biy34d1rdl0yb")) # orange_prophecies_attack
-			#instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
-			#instantiate_attack(preload("uid://cuwui318cvb75")) # wings
-		7:
-			pass
-			#instantiate_3d_attack(SPECIAL_ATTACK)
-			#owner.animations.play("slide_down")
 			
 	return 8.0
 
@@ -90,3 +109,11 @@ func goto_starting_pos() -> void:
 	var tween = create_tween()
 	tween.tween_property(self,"global_position",starting_pos,2.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	
+
+func animate(animation_name: String, play_backwards: bool = false) -> void:
+	if play_backwards:
+		$AnimationPlayer.play_backwards(animation_name)
+		$"3DSprite/SubViewport/warden/warden/AnimationPlayer".play_backwards(animation_name)
+		return
+	$AnimationPlayer.play(animation_name)
+	$"3DSprite/SubViewport/warden/warden/AnimationPlayer".play(animation_name)

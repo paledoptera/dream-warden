@@ -5,15 +5,42 @@
 [ext_resource type="Texture2D" uid="uid://37mbafkr1iha" path="res://fighters/characters/susie/res/susie_organized_sheet.png" id="2_p2yf0"]
 [ext_resource type="Script" uid="uid://ncp0eorg046u" path="res://fighters/characters/spells/spell.gd" id="3_38nha"]
 [ext_resource type="Script" uid="uid://c74hytev4kjc7" path="res://fighters/characters/spells/generic/basic_attack.gd" id="4_d0k2r"]
+[ext_resource type="Script" uid="uid://5bj6c7r0v2ee" path="res://fighters/characters/spells/generic/basic_heal.gd" id="5_d0k2r"]
+
+[sub_resource type="Resource" id="Resource_d0k2r"]
+script = ExtResource("3_38nha")
+title = "Check"
+text = "  * DREAM WARDEN - AT 50 DF 99
+  * The guardian of the prophecy."
+description = "Consider Strategy"
+tp_percent_cost = 0
+target = 1
+metadata/_custom_type_script = "uid://ncp0eorg046u"
+
+[sub_resource type="Resource" id="Resource_5moxy"]
+script = ExtResource("3_38nha")
+title = "Unleash"
+description = "Shine bright"
+tp_percent_cost = 100
+metadata/_custom_type_script = "uid://ncp0eorg046u"
 
 [sub_resource type="Resource" id="Resource_n1vev"]
 script = ExtResource("4_d0k2r")
 animation_code = 5
-title = "Red Buster"
+title = "Fate Buster"
 text = "  * %s used magic to attack %s."
-description = "Red Buster"
+description = "Defy Fate"
+tp_percent_cost = 50
 target = 1
 metadata/_custom_type_script = "uid://c74hytev4kjc7"
+
+[sub_resource type="Resource" id="Resource_t1kk3"]
+script = ExtResource("5_d0k2r")
+title = "Blazing Heal"
+text = "  * %s healed %s."
+description = "Regain Strength"
+tp_percent_cost = 32
+metadata/_custom_type_script = "uid://5bj6c7r0v2ee"
 
 [sub_resource type="Animation" id="Animation_shquf"]
 length = 0.001
@@ -219,7 +246,7 @@ uses_magic = true
 main_color = Color(0.9843137, 0.003921569, 0.9882353, 1)
 icon_color = Color(0.90588236, 0.4745098, 0.77254903, 1)
 icon = ExtResource("2_2bari")
-spells = Array[ExtResource("3_38nha")]([SubResource("Resource_n1vev")])
+spells = Array[ExtResource("3_38nha")]([SubResource("Resource_d0k2r"), SubResource("Resource_5moxy"), SubResource("Resource_n1vev"), SubResource("Resource_t1kk3")])
 title = "Susie"
 base_fighter_stats = Dictionary[int, int]({
 0: 460,
@@ -232,6 +259,7 @@ metadata/_custom_type_script = "uid://d1ho1nqa4x7fm"
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1724150961]
 scale = Vector2(2, 2)
 texture = ExtResource("2_p2yf0")
+offset = Vector2(0, -27)
 hframes = 5
 vframes = 3
 

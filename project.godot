@@ -58,8 +58,8 @@ project/assembly_name="Delta Battle"
 
 folder_colors={
 "res://fighters/characters/_/": "gray",
-"res://fighters/monsters/dream_warden/attacks/laser/_res/": "gray",
-"res://fighters/monsters/dream_warden/attacks/wings/_res/": "gray"
+"res://fighters/monsters/dream_warden/attacks/phase0_red/bright_hell/_res/": "gray",
+"res://fighters/monsters/dream_warden/attacks/phase0_red/wings/_res/": "gray"
 }
 
 [gui]

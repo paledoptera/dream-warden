@@ -2,7 +2,7 @@ extends AbstractFighter
 class_name Monster
 
 enum Animations {
-	HURT, SPARE, FAINT
+	HURT, SPARE, FAINT, SPECIAL1,
 }
 
 @export_multiline var description := ""

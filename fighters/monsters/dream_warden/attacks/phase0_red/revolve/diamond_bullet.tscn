@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://o4i3coiv8dpu"]
+
+[ext_resource type="Script" uid="uid://dppf3qd0vrw7l" path="res://fighters/monsters/dream_warden/attacks/phase0_red/revolve/diamond.gd" id="1_gqjlt"]
+[ext_resource type="PackedScene" uid="uid://ck17amkk4fxn5" path="res://pellets/generic_pellet/generic_pellet.tscn" id="2_qddqo"]
+
+[node name="Diamond" type="Node2D" unique_id=1274552507 node_paths=PackedStringArray("pellet")]
+script = ExtResource("1_gqjlt")
+pellet = NodePath("GenericPellet")
+
+[node name="GenericPellet" parent="." unique_id=1232204779 instance=ExtResource("2_qddqo")]
+scale = Vector2(2, 2)
+rotate_sprite = false
+velocity = Vector2(150, 0)

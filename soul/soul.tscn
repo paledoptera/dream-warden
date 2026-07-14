@@ -322,7 +322,7 @@ _data = {
 }
 
 [node name="Soul" type="CharacterBody2D" unique_id=1454885809 node_paths=PackedStringArray("heart")]
-z_index = 10
+z_index = 11
 motion_mode = 1
 script = ExtResource("1_6lv18")
 heart = NodePath("Heart")
