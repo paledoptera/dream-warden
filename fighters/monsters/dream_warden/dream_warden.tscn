@@ -1,10 +1,62 @@
 [gd_scene format=3 uid="uid://bt53ruak41iac"]
 
 [ext_resource type="Script" uid="uid://ceqa65qm8o57q" path="res://fighters/monsters/dream_warden/dream_warden.gd" id="1_54jqm"]
+[ext_resource type="Script" uid="uid://cci227fj67d4u" path="res://ui/text_box/components/dialogue/_dialogue_marker.gd" id="2_2c0fu"]
+[ext_resource type="Script" uid="uid://m17i7j602jax" path="res://ui/text_box/components/dialogue/dialogue.gd" id="3_hok4j"]
 [ext_resource type="Texture2D" uid="uid://cdui5ji0cmn4f" path="res://fighters/monsters/dream_warden/_res/block.png" id="3_v7v0u"]
 [ext_resource type="Texture2D" uid="uid://tk4iibqvh1lq" path="res://fighters/monsters/dream_warden/_res/blocked_text.png" id="4_fkrc8"]
+[ext_resource type="Script" uid="uid://b8tmchw2csyvn" path="res://ui/text_box/components/dialogue/gradient_marker.gd" id="4_hok4j"]
 [ext_resource type="PackedScene" uid="uid://daeern1c5gfgq" path="res://fighters/monsters/dream_warden/_res/model/warden_model.tscn" id="4_jh36n"]
 [ext_resource type="Texture2D" uid="uid://hnbbofqg1obh" path="res://fighters/characters/susie/res/slash.png" id="5_fkrc8"]
+
+[sub_resource type="Resource" id="Resource_icoan"]
+resource_name = "Blinding flashes"
+script = ExtResource("3_hok4j")
+text = "  * Blinding flashes light up the sky."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_t1kk3"]
+script = ExtResource("3_hok4j")
+text = "  * Test"
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Gradient" id="Gradient_s6ho4"]
+colors = PackedColorArray(0.96862745, 1, 0.28627452, 1, 0.9607843, 0.9843137, 0.63529414, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1kk3"]
+gradient = SubResource("Gradient_s6ho4")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_kd6yx"]
+script = ExtResource("4_hok4j")
+texture = SubResource("GradientTexture2D_t1kk3")
+start_char = 44
+end_char = 47
+metadata/_custom_type_script = "uid://b8tmchw2csyvn"
+
+[sub_resource type="Gradient" id="Gradient_hok4j"]
+colors = PackedColorArray(0.67058825, 1, 0.654902, 1, 0.20392157, 0.9529412, 0.21176471, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tgo65"]
+gradient = SubResource("Gradient_hok4j")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Resource" id="Resource_11jbd"]
+script = ExtResource("4_hok4j")
+texture = SubResource("GradientTexture2D_tgo65")
+start_char = 71
+metadata/_custom_type_script = "uid://b8tmchw2csyvn"
+
+[sub_resource type="Resource" id="Resource_2c0fu"]
+script = ExtResource("3_hok4j")
+text = "  * Iridescent feathers fall around you.
+  * TP Gain reduced outside of ???"
+require_input = false
+markers = Array[ExtResource("2_2c0fu")]([SubResource("Resource_kd6yx"), SubResource("Resource_11jbd")])
+metadata/_custom_type_script = "uid://m17i7j602jax"
 
 [sub_resource type="QuadMesh" id="QuadMesh_2nhnr"]
 size = Vector2(1000, -800)
@@ -991,11 +1043,11 @@ _data = {
 &"idle": SubResource("Animation_2nhnr")
 }
 
-[node name="DreamWarden" type="Node2D" unique_id=312367948]
+[node name="DreamWarden" type="Node2D" unique_id=312367948 node_paths=PackedStringArray("ultra_3d_world")]
 script = ExtResource("1_54jqm")
-idle_lines = PackedStringArray("  * Blinding flashes light up the sky.", "  * Is this real?", "  * The atmosphere is thin.", "  * A strange fog fills the battlefield.")
-opening_line_singular = "  * Iridescent feathers fall around you.
-  * TP Gain reduced outside of ???"
+ultra_3d_world = NodePath("3DSprite/SubViewport")
+idle_lines = Array[ExtResource("3_hok4j")]([SubResource("Resource_icoan"), SubResource("Resource_t1kk3")])
+opening_line_singular = SubResource("Resource_2c0fu")
 title = "Dream Warden"
 base_fighter_stats = Dictionary[int, int]({
 0: 21000,
@@ -1032,7 +1084,7 @@ size = 17.66
 [node name="warden" parent="3DSprite/SubViewport" unique_id=1864175887 instance=ExtResource("4_jh36n")]
 transform = Transform3D(0.8875359, 0.026494712, -0.7260764, -0.19614857, 1.1124136, -0.19917439, 0.6995818, 0.27828532, 0.8653043, 0, -1.3848629, -5)
 
-[node name="AnimationPlayer" parent="3DSprite/SubViewport/warden/warden" parent_id_path=PackedInt32Array(1864175887, 760203765) index="2" unique_id=1273104432]
+[node name="AnimationPlayer" parent="3DSprite/SubViewport/warden/warden" parent_id_path=PackedInt32Array(1864175887, 760203765) index="2" unique_id=1974588653]
 autoplay = &""
 
 [node name="AfterimagesPivot" type="Node2D" parent="." unique_id=490918706]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhns1nxcuvral"
-path="res://.godot/imported/Screenshot 2026-07-07 010339.png-3296fd4a69f76a5ce83575896e560ba5.ctex"
+uid="uid://c1w78g8cngbv4"
+path="res://.godot/imported/0007.png-af167dfb667f45540f64b095e420e1a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Screenshot 2026-07-07 010339.png"
-dest_files=["res://.godot/imported/Screenshot 2026-07-07 010339.png-3296fd4a69f76a5ce83575896e560ba5.ctex"]
+source_file="res://fighters/monsters/dream_warden/attacks/phase0_red/bright_hell/shard/0007.png"
+dest_files=["res://.godot/imported/0007.png-af167dfb667f45540f64b095e420e1a3.ctex"]
 
 [params]
 

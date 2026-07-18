@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 func hurt(p_damage: int) -> void:
 	if invulnerable:
 		return
-	get_parent().hurt(5 * p_damage)
+	Global.battle.hurt(5 * p_damage)
 	invulnerable_state()
 
 func invulnerable_state()-> void:

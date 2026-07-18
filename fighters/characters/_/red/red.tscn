@@ -5,17 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://crhdd7567g3y6" path="res://fighters/characters/_/red/res/red_char_icon.png" id="2_smr1s"]
 [ext_resource type="Script" uid="uid://ncp0eorg046u" path="res://fighters/characters/spells/spell.gd" id="3_rt23h"]
 [ext_resource type="Script" uid="uid://5bj6c7r0v2ee" path="res://fighters/characters/spells/generic/basic_heal.gd" id="4_e1kqw"]
+[ext_resource type="Script" uid="uid://m17i7j602jax" path="res://ui/text_box/components/dialogue/dialogue.gd" id="4_q5c3g"]
 [ext_resource type="Script" uid="uid://c74hytev4kjc7" path="res://fighters/characters/spells/generic/basic_attack.gd" id="5_e1kqw"]
 
 [sub_resource type="Resource" id="Resource_ki0i3"]
 script = ExtResource("4_e1kqw")
-heal_amount = 50
 animation_code = 6
 title = "Heal"
 text = "  * %s healed %s."
 description = "Heal ally."
 tp_percent_cost = 30
-target = 0
 metadata/_custom_type_script = "uid://5bj6c7r0v2ee"
 
 [sub_resource type="Resource" id="Resource_i1457"]
@@ -227,7 +226,7 @@ _data = {
 &"prep_attack": SubResource("Animation_j2q4k")
 }
 
-[node name="Red" type="Node2D"]
+[node name="Red" type="Node2D" unique_id=180536396]
 script = ExtResource("1_fovij")
 uses_magic = true
 main_color = Color(0.917647, 0, 0.137255, 1)
@@ -244,12 +243,10 @@ base_fighter_stats = Dictionary[int, int]({
 main_sprite = NodePath("RedRobot")
 metadata/_custom_type_script = "uid://d1ho1nqa4x7fm"
 
-[node name="RedRobot" type="Sprite2D" parent="."]
+[node name="RedRobot" type="Sprite2D" parent="." unique_id=193982537]
 scale = Vector2(2, 2)
 texture = ExtResource("2_754ah")
 hframes = 13
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_shquf")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=76567127]
+libraries/ = SubResource("AnimationLibrary_shquf")

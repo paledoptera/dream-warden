@@ -1,20 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0460juclptxn"]
+[gd_scene format=3 uid="uid://c0460juclptxn"]
 
 [ext_resource type="Script" uid="uid://ctt7qr658fn61" path="res://ui/battle/char_select/char_select.gd" id="1_tggk0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tggk0"]
 bg_color = Color(0, 0, 0, 1)
 
-[node name="CharSelect" type="Node2D"]
+[node name="CharSelect" type="Node2D" unique_id=1023481760]
 script = ExtResource("1_tggk0")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=1429020448]
 custom_minimum_size = Vector2(640, 115)
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_tggk0")
 
-[node name="Characters" type="VBoxContainer" parent="."]
+[node name="Characters" type="VBoxContainer" parent="." unique_id=717435959]
 custom_minimum_size = Vector2(640, 104)
 offset_top = 6.0
 offset_right = 640.0

@@ -2,10 +2,10 @@ extends Control
 class_name SelectPanel
 
 @export_node_path("Sprite2D") var heart_path
-@export_node_path("Label") var title_path
+@export_node_path("RichTextLabel") var title_path
 
 var heart: Sprite2D
-var title: Label
+var title: RichTextLabel
 
 func _ready() -> void:
 	heart = get_node_or_null(heart_path)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b42bu62tgflb1"]
+[gd_scene format=3 uid="uid://b42bu62tgflb1"]
 
 [ext_resource type="Script" uid="uid://1knrjnbe2e56" path="res://fighters/monsters/slime/attacks/slime_drip/slime_drip.gd" id="1_i2ppl"]
 [ext_resource type="Script" uid="uid://dim2rwiooyu4j" path="res://fighters/monsters/slime/attacks/slime_drip/base_droplet.gd" id="2_i2ppl"]
@@ -7,10 +7,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xc2ml"]
 radius = 3.0
 
-[node name="SlimeDrip" type="Node2D"]
+[node name="SlimeDrip" type="Node2D" unique_id=554137711]
 script = ExtResource("1_i2ppl")
 
-[node name="BaseDroplet" type="Area2D" parent="."]
+[node name="BaseDroplet" type="Area2D" parent="." unique_id=1641576803]
 visible = false
 position = Vector2(0, -2000)
 collision_layer = 2
@@ -22,14 +22,14 @@ time_points = 0.1
 shield_repelled = true
 metadata/_custom_type_script = "uid://l1dijweo3y2y"
 
-[node name="Sprite" type="Sprite2D" parent="BaseDroplet"]
+[node name="Sprite" type="Sprite2D" parent="BaseDroplet" unique_id=1534632872]
 texture = ExtResource("2_xc2ml")
 hframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseDroplet"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BaseDroplet" unique_id=1833004879]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_xc2ml")
 
-[node name="Droplets" type="Node2D" parent="."]
+[node name="Droplets" type="Node2D" parent="." unique_id=393702071]
 
 [connection signal="body_entered" from="BaseDroplet" to="BaseDroplet" method="_on_body_entered"]

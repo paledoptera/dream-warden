@@ -16,12 +16,13 @@ visible = false
 position = Vector2(21, 16)
 texture = ExtResource("2_863fx")
 
-[node name="Title" type="Label" parent="." unique_id=1849124695]
+[node name="Title" type="RichTextLabel" parent="." unique_id=110517331]
 custom_minimum_size = Vector2(150, 32)
 layout_mode = 0
 offset_left = 33.0
 offset_top = -2.0
 offset_right = 237.0
 offset_bottom = 30.0
+bbcode_enabled = true
 text = "Glowshard"
-clip_text = true
+scroll_active = false

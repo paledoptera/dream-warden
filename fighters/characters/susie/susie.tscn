@@ -5,29 +5,87 @@
 [ext_resource type="Texture2D" uid="uid://37mbafkr1iha" path="res://fighters/characters/susie/res/susie_organized_sheet.png" id="2_p2yf0"]
 [ext_resource type="Script" uid="uid://ncp0eorg046u" path="res://fighters/characters/spells/spell.gd" id="3_38nha"]
 [ext_resource type="Script" uid="uid://c74hytev4kjc7" path="res://fighters/characters/spells/generic/basic_attack.gd" id="4_d0k2r"]
+[ext_resource type="Script" uid="uid://m17i7j602jax" path="res://ui/text_box/components/dialogue/dialogue.gd" id="4_n1vev"]
+[ext_resource type="Script" uid="uid://cci227fj67d4u" path="res://ui/text_box/components/dialogue/_dialogue_marker.gd" id="4_tuj5u"]
 [ext_resource type="Script" uid="uid://5bj6c7r0v2ee" path="res://fighters/characters/spells/generic/basic_heal.gd" id="5_d0k2r"]
+[ext_resource type="Script" uid="uid://qf5ag5dlrsbc" path="res://ui/text_box/components/dialogue/sprite_marker.gd" id="6_xty68"]
+[ext_resource type="Texture2D" uid="uid://bnjfnk5u3jbcs" path="res://ui/infinity.png" id="7_ra48v"]
+[ext_resource type="Script" uid="uid://b8tmchw2csyvn" path="res://ui/text_box/components/dialogue/gradient_marker.gd" id="8_ra48v"]
 
-[sub_resource type="Resource" id="Resource_d0k2r"]
+[sub_resource type="Resource" id="Resource_11jbd"]
+script = ExtResource("6_xty68")
+texture = ExtResource("7_ra48v")
+sprite_scale = Vector2(2, 2)
+offset = Vector2(0, 9)
+start_char = 29
+metadata/_custom_type_script = "uid://qf5ag5dlrsbc"
+
+[sub_resource type="Resource" id="Resource_n1vev"]
+script = ExtResource("4_n1vev")
+text = "  * DREAM WARDEN - AT 50 DF .
+  * The guardian of the prophecy."
+markers = Array[ExtResource("4_tuj5u")]([SubResource("Resource_11jbd")])
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_xty68"]
+script = ExtResource("4_n1vev")
+text = "  * The core is surrounded by an
+	 unbreakable LIGHT shield...
+  * Strike the shield to gain TP."
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Gradient" id="Gradient_dch65"]
+colors = PackedColorArray(0.9843137, 0.98039216, 0.68235296, 1, 0.96862745, 1, 0.2901961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dch65"]
+gradient = SubResource("Gradient_dch65")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Resource" id="Resource_ra48v"]
+script = ExtResource("8_ra48v")
+texture = SubResource("GradientTexture2D_dch65")
+start_char = 15
+end_char = 21
+metadata/_custom_type_script = "uid://b8tmchw2csyvn"
+
+[sub_resource type="Resource" id="Resource_2pmsn"]
+script = ExtResource("4_n1vev")
+text = "  * Then, use \"UNLEASH\" to reveal
+	 the WEAK POINT!"
+markers = Array[ExtResource("4_tuj5u")]([SubResource("Resource_ra48v")])
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_dch65"]
+script = ExtResource("4_n1vev")
+text = "  * Just another enemy to strike down...
+  * Isn't that right, Susie?"
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_o88lh"]
+resource_name = "Check"
 script = ExtResource("3_38nha")
-title = "Check"
+title = "[color=fa81fa]Check"
+dialogue = Array[ExtResource("4_n1vev")]([SubResource("Resource_n1vev"), SubResource("Resource_xty68"), SubResource("Resource_2pmsn"), SubResource("Resource_dch65")])
 text = "  * DREAM WARDEN - AT 50 DF 99
   * The guardian of the prophecy."
-description = "Consider Strategy"
+description = "Consider strategy"
 tp_percent_cost = 0
 target = 1
 metadata/_custom_type_script = "uid://ncp0eorg046u"
 
 [sub_resource type="Resource" id="Resource_5moxy"]
+resource_name = "Unleash"
 script = ExtResource("3_38nha")
 title = "Unleash"
 description = "Shine bright"
 tp_percent_cost = 100
 metadata/_custom_type_script = "uid://ncp0eorg046u"
 
-[sub_resource type="Resource" id="Resource_n1vev"]
+[sub_resource type="Resource" id="Resource_tuj5u"]
+resource_name = "Rude Buster"
 script = ExtResource("4_d0k2r")
 animation_code = 5
-title = "Fate Buster"
+title = "Rude Buster"
 text = "  * %s used magic to attack %s."
 description = "Defy Fate"
 tp_percent_cost = 50
@@ -36,7 +94,7 @@ metadata/_custom_type_script = "uid://c74hytev4kjc7"
 
 [sub_resource type="Resource" id="Resource_t1kk3"]
 script = ExtResource("5_d0k2r")
-title = "Blazing Heal"
+title = "Heal Flame"
 text = "  * %s healed %s."
 description = "Regain Strength"
 tp_percent_cost = 32
@@ -246,7 +304,7 @@ uses_magic = true
 main_color = Color(0.9843137, 0.003921569, 0.9882353, 1)
 icon_color = Color(0.90588236, 0.4745098, 0.77254903, 1)
 icon = ExtResource("2_2bari")
-spells = Array[ExtResource("3_38nha")]([SubResource("Resource_d0k2r"), SubResource("Resource_5moxy"), SubResource("Resource_n1vev"), SubResource("Resource_t1kk3")])
+spells = Array[ExtResource("3_38nha")]([SubResource("Resource_o88lh"), SubResource("Resource_5moxy"), SubResource("Resource_tuj5u"), SubResource("Resource_t1kk3")])
 title = "Susie"
 base_fighter_stats = Dictionary[int, int]({
 0: 460,

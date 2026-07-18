@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbtunvii0ogrj"]
+[gd_scene format=3 uid="uid://bbtunvii0ogrj"]
 
 [ext_resource type="Script" uid="uid://covpvcqb3xwai" path="res://scenes/menus/win_screen/win_screen.gd" id="1_misvs"]
 [ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="2_1d1ta"]
 
-[node name="WinScreen" type="Node2D"]
+[node name="WinScreen" type="Node2D" unique_id=306365533]
 script = ExtResource("1_misvs")
 
-[node name="Win" type="Label" parent="."]
+[node name="Win" type="Label" parent="." unique_id=829140170]
 custom_minimum_size = Vector2(640, 0)
 offset_top = 82.0
 offset_right = 640.0
@@ -17,7 +17,7 @@ text = "YOU WON!!!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Play" type="Button" parent="."]
+[node name="Play" type="Button" parent="." unique_id=1479360072]
 custom_minimum_size = Vector2(128, 0)
 offset_left = 215.0
 offset_top = 247.0
@@ -29,7 +29,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "RESTART"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="." unique_id=991626049]
 custom_minimum_size = Vector2(210, 0)
 offset_left = 215.0
 offset_top = 313.0
@@ -41,7 +41,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "QUIT"
 
-[node name="Heart" type="Sprite2D" parent="."]
+[node name="Heart" type="Sprite2D" parent="." unique_id=1677727827]
 self_modulate = Color(1, 0, 0, 1)
 position = Vector2(183, 274)
 scale = Vector2(2, 2)

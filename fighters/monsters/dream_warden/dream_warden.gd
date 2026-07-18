@@ -8,6 +8,7 @@ var starting_pos: Vector2
 var block_attacks: bool = true
 var turn: int = -1
 var phase: int = 1
+var flavortext_line: int = 0
 
 
 func _ready() -> void:
@@ -56,24 +57,27 @@ func start_attack() -> float:
 			match turn:
 					0: # Wings
 						goto_center_screen()
-						#instantiate_attack(preload("uid://q3t3r8c6t065")) # beam
 						instantiate_attack(preload("uid://cuwui318cvb75")) # wings
+						flavortext_line = 0
 						return 8.0
 					1: # Beam
 						goto_center_screen()
 						instantiate_attack(preload("uid://q3t3r8c6t065")) # beam
+						flavortext_line = 1
 						return 8.5
 					2: # Revolve
 						goto_center_screen()
 						instantiate_attack(preload("uid://cp8jvyn2dnnpv")) # revolve
+						flavortext_line = 2
 						return 10.0
 					3: # Rush
 						goto_center_screen()
 						instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
-						
+						flavortext_line = 3
 						return 8.0
-					4:
+					4: # Bright Hell
 						instantiate_attack(preload("uid://bqj31vq3siu3")) # bright_hell
+						flavortext_line = 4
 						return 8.0
 						
 					#6:
@@ -100,6 +104,11 @@ func end_attack() -> void:
 	goto_starting_pos()
 	$AnimationPlayer.play_backwards("attack_start")
 	$AnimationPlayer.queue("idle")
+
+func get_idle_line() -> Dialogue:
+	return idle_lines[flavortext_line]
+	
+	
 
 func goto_center_screen() -> void:
 	var tween = create_tween()

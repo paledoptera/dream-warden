@@ -2,19 +2,18 @@
 
 [ext_resource type="Script" uid="uid://cosoh16n65vwr" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://dh7u53yj0xavd" path="res://ui/battle/bottom_panel/bottom_panel.tscn" id="1_7gynk"]
-[ext_resource type="Texture2D" uid="uid://chmiryi84x8l3" path="res://scenes/battle/cloudland2.png" id="2_agsc7"]
 [ext_resource type="Texture2D" uid="uid://bwoj3auyp6174" path="res://scenes/battle/background.png" id="2_icoan"]
-[ext_resource type="PackedScene" uid="uid://nq51imabpl3n" path="res://scenes/battle/background.tscn" id="2_oiw7q"]
 [ext_resource type="PackedScene" uid="uid://b3uxp6uapsy5m" path="res://ui/battle/soul_cage/soul_cage.tscn" id="2_xd4uy"]
 [ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/soul.tscn" id="3_0yh6x"]
 [ext_resource type="PackedScene" uid="uid://b56rv68xwgvla" path="res://fighters/characters/susie/susie.tscn" id="3_fh7rg"]
-[ext_resource type="Texture2D" uid="uid://c7l1212n1ta4y" path="res://scenes/battle/layers/layers/layer5.png" id="3_fisqk"]
 [ext_resource type="Texture2D" uid="uid://cgopnlivpbvru" path="res://scenes/battle/back_buldings_032021.png" id="3_kd6yx"]
-[ext_resource type="Texture2D" uid="uid://dt7vxrayp4mpv" path="res://scenes/battle/background_test.png" id="4_kd6yx"]
+[ext_resource type="PackedScene" uid="uid://dgdn5haymn4gc" path="res://effects/depths/depths_bkg.tscn" id="4_mxe8n"]
 [ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
 [ext_resource type="PackedScene" uid="uid://btwju6msq5h0t" path="res://scenes/battle/fire_rising.tscn" id="5_t1kk3"]
 [ext_resource type="PackedScene" uid="uid://bt53ruak41iac" path="res://fighters/monsters/dream_warden/dream_warden.tscn" id="6_agsc7"]
+[ext_resource type="Script" uid="uid://m17i7j602jax" path="res://ui/text_box/components/dialogue/dialogue.gd" id="12_icoan"]
 [ext_resource type="PackedScene" uid="uid://ch6nqfnn4lcxk" path="res://scenes/battle/clock.tscn" id="12_mxe8n"]
+[ext_resource type="Script" uid="uid://cci227fj67d4u" path="res://ui/text_box/components/dialogue/_dialogue_marker.gd" id="13_kd6yx"]
 
 [sub_resource type="Shader" id="Shader_agsc7"]
 code = "shader_type canvas_item;
@@ -109,183 +108,10 @@ shader_parameter/noise_scale = 1.0
 shader_parameter/swirl_strength = 0.1000000997499999
 shader_parameter/hue_shift_speed = 0.658000031255
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kd6yx"]
-blend_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_agsc7"]
-blend_mode = 2
-
-[sub_resource type="Shader" id="Shader_oiw7q"]
-code = "shader_type canvas_item;
-
-// =============================
-// original:https://www.shadertoy.com/view/MsXGRf
-//adaptation: GerardoLCDF
-// =============================
-uniform sampler2D channel0 : filter_nearest; 
-
-float noise( in vec3 x )
-{
-    vec3 p = floor(x);
-    vec3 f = fract(x);
-    f = f * f * (3.0 - 2.0 * f);
-    
-    vec2 size = vec2(256.0); 
-    
-    vec2 uv = (p.xy + vec2(37.0, 17.0) * p.z) + f.xy;
-    vec2 rg = texture( channel0, (uv + 0.5) / size ).yx;
-    
-    return mix( rg.x, rg.y, f.z );
-}
-
-vec4 map( in vec3 p )
-{
-    vec3 r = p; p.y += 0.6;
-    
-    p = -4.0 * p / dot(p, p);
-    
-
-    float an = -1.0 * sin(0.1 * TIME + length(p.xz) + p.y);
-    float co = cos(an);
-    float si = sin(an);
-    p.xz = mat2(vec2(co, si), vec2(-si, co)) * p.xz;
-    
-    p.xz += -1.0 + 2.0 * noise( p * 1.1 );
-
-    float f;
-    vec3 q = p * 0.85 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
-    
-    f  = 0.50000 * noise( q ); q = q * 2.02 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
-    f += 0.25000 * noise( q ); q = q * 2.03 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
-    f += 0.12500 * noise( q ); q = q * 2.01 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
-    f += 0.06250 * noise( q ); q = q * 2.02 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
-    f += 0.04000 * noise( q ); q = q * 2.00 - vec3(0.0, 1.0, 0.0) * TIME * 0.12;
-    
-    float den = clamp( (-r.y - 0.6 + 4.0 * f) * 1.2, 0.0, 1.0 );
-
-    vec3 col = 1.2 * mix( vec3(1.0, 0.8, 0.6), 0.9 * vec3(0.3, 0.2, 0.35), den ) ;
-    col += 0.05 * sin(0.05 * q);
-    col *= 1.0 - 0.8 * smoothstep(0.6, 1.0, sin(0.7 * q.x) * sin(0.7 * q.y) * sin(0.7 * q.z)) * vec3(0.6, 1.0, 0.8);
-    col *= 1.0 + 1.0 * smoothstep(0.5, 1.0, 1.0 - length( (fract(q.xz * 0.12) - 0.5) / 0.5 )) * vec3(1.0, 0.9, 0.8);
-    col = mix( vec3(0.8, 0.32, 0.2), col, clamp( (r.y + 0.1) / 1.5, 0.0, 1.0 ) );
-    
-    return vec4( col, den );
-}
-
-void fragment()
-{
-    vec2 screen_size = 1.0 / SCREEN_PIXEL_SIZE;
-    vec2 q = FRAGCOORD.xy / screen_size; 
-
-    vec2 p = (-1.0 + 2.0 * q) * vec2( screen_size.x / screen_size.y, 1.0 );
-
-    vec2 mo = SCREEN_UV;
-
-    float an = -0.07 * TIME + 3.0 * mo.x;
-    vec3 ro = 4.5 * normalize(vec3(cos(an), 0.5, sin(an)));
-    ro.y += 1.0;
-    vec3 ta = vec3(0.0, 0.5, 0.0);
-    float cr = -0.4 * cos(0.02 * TIME);
-    
-    vec3 ww = normalize( ta - ro );
-    vec3 uu = normalize( cross( vec3(sin(cr), cos(cr), 0.0), ww ) );
-    vec3 vv = normalize( cross(ww, uu) );
-    vec3 rd = normalize( p.x * uu + p.y * vv + 2.5 * ww );
-
-    vec4 sum = vec4( 0.0 );
-    vec3 bg = vec3(0.4, 0.5, 0.5) * 1.3;
-    float t = 0.05 * fract( 10.5421 * dot(vec2(0.0149451, 0.038921), FRAGCOORD.xy) );
-    const int MAX_STEPS = 128; 
-    for( int i = 0; i < MAX_STEPS; i++ )
-    {
-        if( sum.a > 0.99 ) break;
-        
-        vec3 pos = ro + t * rd;
-        vec4 col = map( pos );
-        
-        col.a *= 0.5;
-        col.rgb = mix( bg, col.rgb, exp(-0.002 * t * t * t) ) * col.a;
-        
-        sum = sum + col * (1.0 - sum.a);
-        
-        t += 0.05;
-    }
-    
-    vec3 final_col = clamp( mix( bg, sum.xyz / (0.001 + sum.w), sum.w ), 0.0, 1.0 );
-    final_col = final_col * final_col * (3.0 - 2.0 * final_col) * 1.4 - 0.4;
-    final_col *= 0.25 + 0.75 * pow( 16.0 * q.x * q.y * (1.0 - q.x) * (1.0 - q.y), 0.1 );
-    
-    COLOR = vec4( final_col, 1.0 );
-}"
-
-[sub_resource type="Gradient" id="Gradient_agsc7"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0.38644066, 0.45084745, 0.46101695, 0.5559322, 0.71525425)
-colors = PackedColorArray(0, 0, 0, 1, 0.728822, 0.728822, 0.728822, 1, 0.28851813, 0.28851798, 0.28851783, 1, 0.5409909, 0.5409905, 0.5409902, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_agsc7"]
-noise_type = 0
-seed = 1
-frequency = 0.07
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_oiw7q"]
-noise = SubResource("FastNoiseLite_agsc7")
-color_ramp = SubResource("Gradient_agsc7")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fisqk"]
-shader = SubResource("Shader_oiw7q")
-shader_parameter/channel0 = SubResource("NoiseTexture2D_oiw7q")
-
-[sub_resource type="Shader" id="Shader_fisqk"]
-code = "shader_type canvas_item;
-
-uniform sampler2D flowMap; //Displacement map
-uniform float strength;    //Force of the effect
-uniform float speed;       //Speed of the effect
-uniform int frames : hint_range(1, 10); //Frames of the effect
-
-//Returns a value between 0 and 1 depending of the frames -> exemple: frames = 4, frame 1 = 0.25
-float clock(float time){
-	float fframes = float(frames);
-	return floor(mod(time * speed, fframes)) / fframes;
-}
-
-void fragment(){
-	float c = clock(TIME); //Get clock frame
-	vec4 offset = texture(flowMap, vec2(UV.x + c, UV.y + c)) * strength; //Get offset 
-	//COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + normal.xy); //Apply offset
-	COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + offset.xy - vec2(0.5,0.5)*strength); //We need to remove the displacement 
-}
-
-
-// TEST CLOCK
-/*
-void fragment(){
-	float c = clock(TIME);
-	COLOR = vec4( c, c, c, 1);
-}
-*/"
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_oiw7q"]
-noise_type = 2
-seed = 1
-frequency = 0.146
-fractal_type = 0
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fisqk"]
-noise = SubResource("FastNoiseLite_oiw7q")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mxe8n"]
-shader = SubResource("Shader_fisqk")
-shader_parameter/flowMap = SubResource("NoiseTexture2D_fisqk")
-shader_parameter/strength = 0.003
-shader_parameter/speed = 10.0
-shader_parameter/frames = 4
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_t1kk3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_kd6yx"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n6gaa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_t1kk3"]
 viewport_path = NodePath("SubViewport2")
 
 [sub_resource type="Animation" id="Animation_agsc7"]
@@ -293,7 +119,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomPanel:position")
+tracks/0/path = NodePath("Camera2D/BottomPanel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -309,7 +135,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomPanel:position")
+tracks/0/path = NodePath("Camera2D/BottomPanel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -325,7 +151,7 @@ length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BottomPanel:position")
+tracks/0/path = NodePath("Camera2D/BottomPanel:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -342,169 +168,134 @@ _data = {
 &"slide_up": SubResource("Animation_fisqk")
 }
 
-[node name="Battle" type="Node2D" unique_id=1451098202 node_paths=PackedStringArray("animations")]
+[sub_resource type="Resource" id="Resource_icoan"]
+resource_name = "Blinding flashes"
+script = ExtResource("12_icoan")
+text = "  * Blinding flashes light up the sky."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_t1kk3"]
+resource_name = "World revolves"
+script = ExtResource("12_icoan")
+text = "  * The world revolves around you...
+  * Stars streak across the sky."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_kd6yx"]
+resource_name = "Atmosphere thins"
+script = ExtResource("12_icoan")
+text = "  * The atmosphere thins.
+  * Your hair stands on end."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_n6gaa"]
+resource_name = "Strange fog"
+script = ExtResource("12_icoan")
+text = "  * A strange fog fills the battlefield."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_6ofp8"]
+script = ExtResource("12_icoan")
+text = "  * Iridescent feathers fall around you.
+  * The wind is howling..."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[node name="Battle" type="Node2D" unique_id=1451098202 node_paths=PackedStringArray("animations", "soul", "soul_cage", "bottom_panel")]
 script = ExtResource("1_0yh6x")
 animations = NodePath("AnimationPlayer")
+soul = NodePath("Camera2D/Soul")
+soul_cage = NodePath("Camera2D/SoulCage")
+bottom_panel = NodePath("Camera2D/BottomPanel")
 
-[node name="SubViewportContainer3" type="SubViewportContainer" parent="." unique_id=166667966]
+[node name="Background" type="SubViewportContainer" parent="." unique_id=166667966]
 modulate = Color(2.0696762, 2.0696762, 2.0696762, 1)
+offset_top = 51.0
 offset_right = 640.0
-offset_bottom = 480.0
+offset_bottom = 1011.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -0.5)
 stretch = true
 stretch_shrink = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer3" unique_id=1096449070]
+[node name="SubViewport" type="SubViewport" parent="Background" unique_id=1096449070]
 handle_input_locally = false
-size = Vector2i(320, 240)
+size = Vector2i(320, 480)
 render_target_update_mode = 4
 
-[node name="TextureRect2" type="TextureRect" parent="SubViewportContainer3/SubViewport" unique_id=203411286]
+[node name="Sky" type="TextureRect" parent="Background/SubViewport" unique_id=203411286]
 material = SubResource("ShaderMaterial_oiw7q")
+custom_maximum_size = Vector2(320, 240)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -59.5
-offset_bottom = -59.5
+offset_top = 221.8125
+offset_bottom = -18.1875
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_icoan")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer3/SubViewport" unique_id=1842574344]
+[node name="Sky2" type="TextureRect" parent="Background/SubViewport" unique_id=269316077]
 material = SubResource("ShaderMaterial_oiw7q")
+custom_maximum_size = Vector2(320, 240)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -59.5
-offset_bottom = -59.5
+offset_left = -0.5
+offset_top = -18.5
+offset_right = -0.5
+offset_bottom = -258.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_icoan")
+expand_mode = 1
+flip_v = true
+
+[node name="Buildings" type="TextureRect" parent="Background/SubViewport" unique_id=1842574344]
+material = SubResource("ShaderMaterial_oiw7q")
+custom_maximum_size = Vector2(320, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 175.5
+offset_bottom = -64.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_kd6yx")
 expand_mode = 1
 
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1782381503]
+[node name="DepthsBkg" parent="." unique_id=27529299 instance=ExtResource("4_mxe8n")]
 visible = false
-modulate = Color(1, 1, 1, 0.22745098)
-material = SubResource("CanvasItemMaterial_kd6yx")
-repeat_size = Vector2(640, 480)
-autoscroll = Vector2(0, -20)
-repeat_times = 6
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=162120304]
-use_parent_material = true
-texture = ExtResource("4_kd6yx")
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=1873449428]
-visible = false
-modulate = Color(0.87058824, 0.87058824, 0.87058824, 0.13725491)
-material = SubResource("CanvasItemMaterial_agsc7")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 640.0
-offset_bottom = 480.0
-grow_horizontal = 2
-grow_vertical = 2
-stretch = true
-stretch_shrink = 2
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer2" unique_id=1414449098]
-handle_input_locally = false
-size = Vector2i(320, 240)
-render_target_update_mode = 0
-
-[node name="TextureRect3" type="TextureRect" parent="SubViewportContainer2/SubViewport" unique_id=466602126]
-material = SubResource("ShaderMaterial_fisqk")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_fisqk")
-expand_mode = 1
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=2341872]
-visible = false
-modulate = Color(0.9999941, 0.32595962, 0.6215381, 1)
-self_modulate = Color(1, 1, 1, 0.13725491)
-z_index = 20
-offset_right = 640.0
-offset_bottom = 480.0
-stretch = true
-stretch_shrink = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2115799560]
-handle_input_locally = false
-size = Vector2i(320, 240)
-render_target_update_mode = 0
-
-[node name="TextureRect" type="TextureRect" parent="SubViewportContainer/SubViewport" unique_id=1468344007]
-material = SubResource("ShaderMaterial_mxe8n")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_agsc7")
-expand_mode = 1
+modulate = Color(1, 1, 1, 0.259)
+position = Vector2(308, 171)
 
 [node name="Clock" parent="." unique_id=913049443 instance=ExtResource("12_mxe8n")]
 
 [node name="MainClock" parent="Clock/SubViewport2" parent_id_path=PackedInt32Array(913049443, 698166261) index="1" unique_id=1788779321]
-texture = SubResource("ViewportTexture_t1kk3")
+texture = SubResource("ViewportTexture_kd6yx")
 
 [node name="Afterimage1" parent="Clock/SubViewport2/MainClock" index="0" unique_id=394784902]
-texture = SubResource("ViewportTexture_t1kk3")
+texture = SubResource("ViewportTexture_kd6yx")
 
 [node name="Afterimage2" parent="Clock/SubViewport2/MainClock" index="1" unique_id=729563524]
-texture = SubResource("ViewportTexture_t1kk3")
+texture = SubResource("ViewportTexture_kd6yx")
 
 [node name="Afterimage3" parent="Clock/SubViewport2/MainClock" index="2" unique_id=1218521683]
-texture = SubResource("ViewportTexture_t1kk3")
+texture = SubResource("ViewportTexture_kd6yx")
 
 [node name="Afterimage4" parent="Clock/SubViewport2/MainClock" index="3" unique_id=579023528]
-texture = SubResource("ViewportTexture_t1kk3")
+texture = SubResource("ViewportTexture_kd6yx")
 
 [node name="Afterimage5" parent="Clock/SubViewport2/MainClock" index="4" unique_id=322422116]
-texture = SubResource("ViewportTexture_t1kk3")
+texture = SubResource("ViewportTexture_kd6yx")
 
 [node name="TextureRect" parent="Clock" index="3" unique_id=399944368]
-texture = SubResource("ViewportTexture_n6gaa")
-
-[node name="Background2" parent="." unique_id=1337807087 instance=ExtResource("2_oiw7q")]
-visible = false
-modulate = Color(0.8039216, 0, 0.5176471, 0.4509804)
-z_index = 1
-position = Vector2(323, 171)
-scale = Vector2(1.005, 1.005)
-
-[node name="SoulCage" parent="." unique_id=599519693 instance=ExtResource("2_xd4uy")]
-position = Vector2(308, 171)
-
-[node name="Characters" type="Node2D" parent="." unique_id=905090157]
-
-[node name="Susie" parent="Characters" unique_id=1652858960 instance=ExtResource("3_fh7rg")]
-position = Vector2(150, 206)
-
-[node name="Monsters" type="Node2D" parent="." unique_id=1395229772]
-
-[node name="DreamWarden" parent="Monsters" unique_id=312367948 node_paths=PackedStringArray("ultra_3d_world") instance=ExtResource("6_agsc7")]
-position = Vector2(442, 177)
-ultra_3d_world = NodePath("../../3DWorld/SubViewport")
-
-[node name="BottomPanel" parent="." unique_id=2001215419 instance=ExtResource("1_7gynk")]
-z_index = 5
-position = Vector2(0, 365)
-
-[node name="Soul" parent="." unique_id=272991104 instance=ExtResource("3_0yh6x")]
-visible = false
-position = Vector2(308, 171)
-
-[node name="TPBar" parent="." unique_id=1477987401 instance=ExtResource("5_h0kxc")]
-z_index = 6
-position = Vector2(51, 139)
+texture = SubResource("ViewportTexture_t1kk3")
 
 [node name="3DWorld" type="SubViewportContainer" parent="." unique_id=343720224]
 z_index = 4
@@ -528,7 +319,33 @@ render_target_update_mode = 4
 libraries/ = SubResource("AnimationLibrary_fisqk")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=833185454]
-position = Vector2(320, 240)
+anchor_mode = 0
+
+[node name="SoulCage" parent="Camera2D" unique_id=599519693 instance=ExtResource("2_xd4uy")]
+position = Vector2(308, 171)
+
+[node name="BottomPanel" parent="Camera2D" unique_id=2001215419 instance=ExtResource("1_7gynk")]
+z_index = 5
+position = Vector2(0, 365)
+
+[node name="Soul" parent="Camera2D" unique_id=272991104 instance=ExtResource("3_0yh6x")]
+visible = false
+position = Vector2(308, 171)
+
+[node name="TPBar" parent="Camera2D" unique_id=1477987401 instance=ExtResource("5_h0kxc")]
+z_index = 6
+position = Vector2(51, 139)
+
+[node name="Characters" type="Node2D" parent="." unique_id=905090157]
+
+[node name="Susie" parent="Characters" unique_id=1652858960 instance=ExtResource("3_fh7rg")]
+position = Vector2(150, 206)
+
+[node name="Monsters" type="Node2D" parent="." unique_id=1395229772]
+
+[node name="DreamWarden" parent="Monsters" unique_id=312367948 instance=ExtResource("6_agsc7")]
+position = Vector2(442, 177)
+idle_lines = Array[ExtResource("12_icoan")]([SubResource("Resource_icoan"), SubResource("Resource_t1kk3"), SubResource("Resource_kd6yx"), SubResource("Resource_n6gaa"), SubResource("Resource_6ofp8")])
 
 [node name="SubViewportContainer4" type="SubViewportContainer" parent="." unique_id=299775321]
 visible = false

@@ -5,6 +5,16 @@ extends Node2D
 @onready var last: Node = $SpinnerContainer/Start
 var current: Node
 
+func _enter_tree() -> void:
+	Global.battle.bottom_panel.slide_down()
+	Global.battle.move_camera(Vector2(0.0,-100.0),1.0,Tween.EaseType.EASE_OUT)
+	Global.battle.move_soul_cage(Vector2(0.0,25.0),1.0,false,Tween.EaseType.EASE_OUT)
+
+func _exit_tree() -> void:
+	Global.battle.bottom_panel.slide_up()
+	Global.battle.move_camera(Vector2(0.0,0.0),1.0,Tween.EaseType.EASE_OUT)
+	Global.battle.move_soul_cage(Vector2(0.0,-25.0),1.0,false,Tween.EaseType.EASE_OUT)
+
 func _process(delta: float) -> void:
 	spinner.rotate(2 * delta)
 	

@@ -18,7 +18,7 @@ var tp := 0.0:
 
 signal tp_changed
 signal monster_killed(monster: Monster, context: DefeatContext)
-signal display_text(p_text: String, p_requires_input: bool)
+signal display_text(p_dialogue: Variant)
 signal text_finished
 
 var tp_coefficient := 1
@@ -50,34 +50,38 @@ func _unhandled_input(p_event: InputEvent) -> void:
 			else:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 
-func get_opening_line() -> String:
-	var lines := PackedStringArray()
+func get_opening_line() -> Dialogue:
+	var dialogue = monsters[0].get_opening_line()
 	
 	for monster: Monster in monsters:
-		var line := monster.get_opening_line()
-		if line != "":
-			lines.append(monster.get_opening_line())
-	
-	if lines.is_empty():
-		if Global.monsters.size() == 1:
-			return "  * You encountered a monster!"
-		return "  * You encountered some monsters!"
-	return lines[randi_range(0, lines.size() - 1)]
-
-func get_idle_line() -> String:
-	var lines := PackedStringArray()
-	
-	for monster: Monster in monsters:
-		if monster == null:
+		if monster == monsters[0]:
 			continue
-		var line := monster.get_idle_line()
-		if line != "":
-			lines.append(monster.get_idle_line())
+		
+		if dialogue.text != "":
+			dialogue.text += monster.get_opening_line().text
 	
-	if lines.is_empty():
+	if dialogue.text == "":
 		if Global.monsters.size() == 1:
-			return "  * The battle goes on..."
-	return lines[randi_range(0, lines.size() - 1)]
+			dialogue.text = "  * You encountered a monster!"
+		else:
+			dialogue.text = "  * You encountered some monsters!"
+	
+	return dialogue
+
+func get_idle_line() -> Dialogue:
+	var dialogue = monsters[0].get_idle_line()
+	
+	for monster: Monster in monsters:
+		if monster == monsters[0]:
+			continue
+		
+		if dialogue.text != "":
+			dialogue.text += monster.get_idle_line().text
+	
+	if dialogue.text == "":
+		dialogue.text = "  * The battle goes on..."
+	
+	return dialogue
 
 func delete_monster(p_monster: Monster, p_context: DefeatContext) -> void:
 	var monster_index := monsters.find(p_monster)

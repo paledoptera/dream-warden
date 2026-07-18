@@ -1,8 +1,10 @@
 extends Node2D
 class_name Battle
 
-@onready var soul_cage: StaticBody2D = $SoulCage
 @export var animations: AnimationPlayer
+@export var soul: Soul
+@export var soul_cage: StaticBody2D
+@export var bottom_panel: Node2D
 
 var in_attack := false
 var turn_timer := 0.0
@@ -23,7 +25,7 @@ func _ready() -> void:
 			item.usePredicate.item = item
 	#set_positions($Characters, Global.characters, Vector2(108.0, 0.0))
 	#set_positions($Monsters, Global.monsters, Vector2(640.0 - 108.0, 0.0))
-	Global.display_text.emit(Global.get_opening_line(), false)
+	Global.display_text.emit(Global.get_opening_line())
 	Global.monster_killed.connect(monster_killed)
 	
 	for monster: Monster in Global.monsters:
@@ -70,13 +72,13 @@ func set_positions(p_parent: Node, p_nodes: Array, p_offset := Vector2.ZERO):
 
 func start_attack() -> void:
 	play_heart_animation()
-	$Soul.position = ($Characters.get_child(0) as Character).position
-	$Soul.visible = true
+	soul.position = ($Characters.get_child(0) as Character).position
+	soul.visible = true
 	var tween := get_tree().create_tween()
-	tween.tween_property($Soul, "position", Global.CENTER, 0.25)
-	$SoulCage.expand()
-	await $SoulCage.finished_animation
-	$Soul.active = true
+	tween.tween_property(soul, "position", Global.CENTER, 0.25)
+	soul_cage.expand()
+	await soul_cage.finished_animation
+	soul.active = true
 	
 	var alive_monsters: Array[Monster] = []
 	for monster: Monster in Global.monsters:
@@ -93,21 +95,21 @@ func end_attack(p_continue_battle := true) -> void:
 		if monster != null:
 			monster.end_attack()
 	
-	$Soul.active = false
+	soul.active = false
 	var tween := get_tree().create_tween()
-	tween.tween_property($Soul, "position", ($Characters.get_child(0) as Character).position, 0.25)
+	tween.tween_property(soul, "position", ($Characters.get_child(0) as Character).position, 0.25)
 	tween.finished.connect(play_heart_animation)
-	$SoulCage.contract()
-	await $SoulCage.finished_animation
+	soul_cage.contract()
+	await soul_cage.finished_animation
 	if p_continue_battle:
-		$BottomPanel.current_char = -1
-		for char_menu: CharMenu in $BottomPanel.char_menus:
+		bottom_panel.current_char = -1
+		for char_menu: CharMenu in bottom_panel.char_menus:
 			char_menu.selected_item = 0
-		$BottomPanel.start_turn()
-		Global.display_text.emit(Global.get_idle_line(), false)
+		bottom_panel.start_turn()
+		Global.display_text.emit(Global.get_idle_line())
 
 func play_heart_animation() -> void:
-	$Soul.visible = false
+	soul.visible = false
 
 func hurt(p_damage: int) -> void:
 	var alive_characters: Array[Character] = []
@@ -133,11 +135,22 @@ func monster_killed(p_monster: Monster, p_context: Global.DefeatContext) -> void
 			monsters_dead = false
 			break
 	if monsters_dead:
-		$BottomPanel.continue_battle = false
-		$BottomPanel/AttackTiming.focused = false
+		bottom_panel.continue_battle = false
+		bottom_panel.get_node("AttackTiming").focused = false
 		for character: Character in Global.characters:
 			character.do_animation(Character.Animations.IDLE)
 		var money := (total_money * Global.chapter / 4) * money_multiplier
 		Global.display_text.emit("  * You won!\n[color=#000]----[/color]Got %d EXP and %dD$." % [total_xp, money], true)
 		await Global.text_finished
 		Global.change_to_scene("res://scenes/menus/win_screen/win_screen.tscn")
+
+func move_camera(new_position: Vector2, time: float = 0.5, ease: Tween.EaseType = Tween.EaseType.EASE_IN_OUT, trans: Tween.TransitionType = Tween.TransitionType.TRANS_CUBIC):
+	var tween = create_tween()
+	tween.tween_property($Camera2D,"position",new_position,time).set_ease(ease).set_trans(trans)
+
+func move_soul_cage(new_position: Vector2, time: float = 0.5, global_coords: bool = false, ease: Tween.EaseType = Tween.EaseType.EASE_IN_OUT, trans: Tween.TransitionType = Tween.TransitionType.TRANS_CUBIC):
+	var tween = create_tween()
+	var pos = new_position
+	if not global_coords:
+		pos += soul_cage.position
+	tween.tween_property(soul_cage,"position",pos,time).set_ease(ease).set_trans(trans)

@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" format=3 uid="uid://c3idgfsw4co8b"]
+
+[ext_resource type="FontFile" uid="uid://i65lhainpmd6" path="res://ui/theme/fonts/8BitOperatorJVE/8BitOperatorJVE.ttf" id="1_lf1j7"]
+
+[resource]
+base_font = ExtResource("1_lf1j7")
+spacing_glyph = 2

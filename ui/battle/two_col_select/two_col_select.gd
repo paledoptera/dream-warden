@@ -13,7 +13,11 @@ func initialize_panels() -> void:
 
 func set_selected_item(p_item: int) -> void:
 	$Description.text = visible_items[p_item].description
-	$TP.text = str(roundi(visible_items[p_item].tp)) + "%"
+	if visible_items[p_item].tp == 0:
+		$TP.visible = false
+	else:
+		$TP.visible = true
+		$TP.text = str(roundi(visible_items[p_item].tp)) + "%"
 	$Clip/Items.position.y = 3.0
 	$Arrows.visible = visible_items.size() > 6
 	if $Arrows.visible:

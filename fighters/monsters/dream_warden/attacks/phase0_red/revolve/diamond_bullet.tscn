@@ -9,5 +9,7 @@ pellet = NodePath("GenericPellet")
 
 [node name="GenericPellet" parent="." unique_id=1232204779 instance=ExtResource("2_qddqo")]
 scale = Vector2(2, 2)
+life_time = 4.0
 rotate_sprite = false
 velocity = Vector2(150, 0)
+destructible = true

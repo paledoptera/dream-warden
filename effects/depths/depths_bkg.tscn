@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dgdn5haymn4gc"]
+
+[ext_resource type="Texture2D" uid="uid://4ae0c881e7sr" path="res://fighters/monsters/dream_warden/_res/model/assets/IMAGE_DEPTHS_tiled.png" id="1_pgdkq"]
+
+[node name="DepthsBkg" type="Node2D" unique_id=27529299]
+
+[node name="TextureRect5" type="TextureRect" parent="." unique_id=1059149425]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 320.0
+offset_bottom = 240.0
+scale = Vector2(1.048, 1.048)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+texture = ExtResource("1_pgdkq")
+stretch_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="." unique_id=1690547700]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 320.0
+offset_bottom = 240.0
+scale = Vector2(1.263, 1.263)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+texture = ExtResource("1_pgdkq")
+stretch_mode = 1
+
+[node name="Base" type="TextureRect" parent="." unique_id=958067918]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+offset_transform_scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_pgdkq")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1793746354]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.631, 1.631)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+texture = ExtResource("1_pgdkq")
+stretch_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="." unique_id=448850824]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.816, 1.816)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+texture = ExtResource("1_pgdkq")
+stretch_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="." unique_id=899601424]
+modulate = Color(1, 1, 1, 0.2)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.977, 1.977)
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+texture = ExtResource("1_pgdkq")
+stretch_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=264485615]

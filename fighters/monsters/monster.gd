@@ -11,9 +11,9 @@ enum Animations {
 @export var xp_bled := 10
 @export var money_dropped := 5
 
-@export var idle_lines: PackedStringArray
-@export_multiline var opening_line_singular := "  * An enemy approaches."
-@export_multiline var opening_line_plural := "  * Multiple enemies approach."
+@export var idle_lines: Array[Dialogue]
+@export var opening_line_singular := Dialogue.new()
+@export var opening_line_plural := Dialogue.new()
 
 
 var hurting := false
@@ -44,16 +44,17 @@ func shake_sprite(amount: float) -> void:
 func do_animation(_p_animation: Animations) -> Signal:
 	return get_tree().create_timer(0.1).timeout
 
-func get_opening_line() -> String:
+func get_opening_line() -> Dialogue:
 	for monster: Monster in Global.monsters:
 		if monster == null or monster == self:
 			continue
 		return opening_line_plural
 	return opening_line_singular
 
-func get_idle_line() -> String:
+func get_idle_line() -> Dialogue:
 	if idle_lines.is_empty():
-		return "  * Keep fighting!"
+		return Dialogue.new()
+	
 	return idle_lines[randi_range(0, idle_lines.size() - 1)]
 
 func set_selected(p_selected: bool) -> void:

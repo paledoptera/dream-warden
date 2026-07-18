@@ -14,15 +14,15 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2i0nk"]
 
-[node name="CustomizeBattle" type="Node2D"]
+[node name="CustomizeBattle" type="Node2D" unique_id=1005037488]
 script = ExtResource("1_myn3y")
 characters = Array[PackedScene]([ExtResource("2_2i0nk"), ExtResource("3_pggh3")])
 weapons = Array[ExtResource("2_g0rt7")]([ExtResource("3_slti3"), ExtResource("4_hsrc4")])
 armors = Array[ExtResource("2_g0rt7")]([ExtResource("3_u5orj"), ExtResource("4_slti3"), ExtResource("5_hsrc4")])
 
-[node name="Main" type="Node2D" parent="."]
+[node name="Main" type="Node2D" parent="." unique_id=1351399122]
 
-[node name="Title" type="Label" parent="Main"]
+[node name="Title" type="Label" parent="Main" unique_id=1290989169]
 custom_minimum_size = Vector2(400, 0)
 offset_left = 120.0
 offset_top = 34.0
@@ -35,7 +35,7 @@ text = "CUSTOMIZE BATTLE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Start" type="Button" parent="Main"]
+[node name="Start" type="Button" parent="Main" unique_id=532543940]
 custom_minimum_size = Vector2(400, 0)
 offset_left = 120.0
 offset_top = 386.0
@@ -46,14 +46,14 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "BEGIN"
 
-[node name="VBox" type="VBoxContainer" parent="Main"]
+[node name="VBox" type="VBoxContainer" parent="Main" unique_id=1835733404]
 custom_minimum_size = Vector2(640, 480)
 offset_right = 640.0
 offset_bottom = 360.0
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Characters" type="Button" parent="Main/VBox"]
+[node name="Characters" type="Button" parent="Main/VBox" unique_id=7071395]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Enemies")
@@ -61,7 +61,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "CHARACTERS"
 
-[node name="Enemies" type="Button" parent="Main/VBox"]
+[node name="Enemies" type="Button" parent="Main/VBox" unique_id=98605798]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Characters")
@@ -70,7 +70,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "ENEMIES"
 
-[node name="Equipment" type="Button" parent="Main/VBox"]
+[node name="Equipment" type="Button" parent="Main/VBox" unique_id=133764689]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../Enemies")
@@ -79,10 +79,10 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "EQUIPMENT"
 
-[node name="Characters" type="Node2D" parent="."]
+[node name="Characters" type="Node2D" parent="." unique_id=1945298653]
 visible = false
 
-[node name="Title" type="Label" parent="Characters"]
+[node name="Title" type="Label" parent="Characters" unique_id=1617474289]
 custom_minimum_size = Vector2(640, 0)
 offset_top = 34.0
 offset_right = 640.0
@@ -94,28 +94,28 @@ text = "CUSTOMIZE CHARACTERS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBox" type="VBoxContainer" parent="Characters"]
+[node name="VBox" type="VBoxContainer" parent="Characters" unique_id=1378598390]
 custom_minimum_size = Vector2(640, 480)
 offset_right = 640.0
 offset_bottom = 480.0
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Char1" parent="Characters/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Char1" parent="Characters/VBox" unique_id=1402845930 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Char2")
 
-[node name="Char2" parent="Characters/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Char2" parent="Characters/VBox" unique_id=1097787127 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Char1")
 focus_neighbor_bottom = NodePath("../Char3")
 
-[node name="Char3" parent="Characters/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Char3" parent="Characters/VBox" unique_id=546519792 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Char2")
 focus_neighbor_bottom = NodePath("../../Back")
 
-[node name="Back" type="Button" parent="Characters"]
+[node name="Back" type="Button" parent="Characters" unique_id=692812997]
 custom_minimum_size = Vector2(400, 0)
 offset_left = 120.0
 offset_top = 386.0
@@ -126,10 +126,10 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "BACK"
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Enemies" type="Node2D" parent="." unique_id=2110623528]
 visible = false
 
-[node name="Title" type="Label" parent="Enemies"]
+[node name="Title" type="Label" parent="Enemies" unique_id=1333588742]
 custom_minimum_size = Vector2(640, 0)
 offset_top = 34.0
 offset_right = 640.0
@@ -141,28 +141,28 @@ text = "CUSTOMIZE ENEMIES"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBox" type="VBoxContainer" parent="Enemies"]
+[node name="VBox" type="VBoxContainer" parent="Enemies" unique_id=581828107]
 custom_minimum_size = Vector2(640, 480)
 offset_right = 640.0
 offset_bottom = 480.0
 theme_override_constants/separation = 24
 alignment = 1
 
-[node name="Enemy1" parent="Enemies/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Enemy1" parent="Enemies/VBox" unique_id=831824378 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Enemy2")
 
-[node name="Enemy2" parent="Enemies/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Enemy2" parent="Enemies/VBox" unique_id=152191950 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Enemy1")
 focus_neighbor_bottom = NodePath("../Enemy3")
 
-[node name="Enemy3" parent="Enemies/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Enemy3" parent="Enemies/VBox" unique_id=642790345 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Enemy2")
 focus_neighbor_bottom = NodePath("../../Back")
 
-[node name="Back" type="Button" parent="Enemies"]
+[node name="Back" type="Button" parent="Enemies" unique_id=13878037]
 custom_minimum_size = Vector2(400, 0)
 offset_left = 120.0
 offset_top = 386.0
@@ -173,10 +173,10 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "BACK"
 
-[node name="Equipment" type="Node2D" parent="."]
+[node name="Equipment" type="Node2D" parent="." unique_id=1283980263]
 visible = false
 
-[node name="Title" type="Label" parent="Equipment"]
+[node name="Title" type="Label" parent="Equipment" unique_id=60002968]
 custom_minimum_size = Vector2(640, 0)
 offset_top = 34.0
 offset_right = 640.0
@@ -188,7 +188,7 @@ text = "CUSTOMIZE EQUIPMENT"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBox" type="VBoxContainer" parent="Equipment"]
+[node name="VBox" type="VBoxContainer" parent="Equipment" unique_id=939840273]
 custom_minimum_size = Vector2(640, 480)
 offset_top = -5.0
 offset_right = 640.0
@@ -196,7 +196,7 @@ offset_bottom = 475.0
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="WeaponLabel" type="Label" parent="Equipment/VBox"]
+[node name="WeaponLabel" type="Label" parent="Equipment/VBox" unique_id=516174896]
 custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../VBox/Characters")
@@ -206,11 +206,11 @@ text = "WEAPON"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Weapon" parent="Equipment/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Weapon" parent="Equipment/VBox" unique_id=1500458963 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../Armor1")
 
-[node name="ArmorLabel" type="Label" parent="Equipment/VBox"]
+[node name="ArmorLabel" type="Label" parent="Equipment/VBox" unique_id=1887762237]
 custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
 focus_neighbor_top = NodePath("../VBox/Characters")
@@ -220,17 +220,17 @@ text = "ARMOR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Armor1" parent="Equipment/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Armor1" parent="Equipment/VBox" unique_id=2109335348 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Weapon")
 focus_neighbor_bottom = NodePath("../Armor2")
 
-[node name="Armor2" parent="Equipment/VBox" instance=ExtResource("2_p2nvh")]
+[node name="Armor2" parent="Equipment/VBox" unique_id=254889685 instance=ExtResource("2_p2nvh")]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Armor1")
 focus_neighbor_bottom = NodePath("../../Back")
 
-[node name="Back" type="Button" parent="Equipment"]
+[node name="Back" type="Button" parent="Equipment" unique_id=1139825322]
 custom_minimum_size = Vector2(400, 0)
 offset_left = 120.0
 offset_top = 386.0
@@ -241,7 +241,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "BACK"
 
-[node name="Heart" type="Sprite2D" parent="."]
+[node name="Heart" type="Sprite2D" parent="." unique_id=704417368]
 modulate = Color(1, 0, 0, 1)
 material = SubResource("ShaderMaterial_2i0nk")
 position = Vector2(93, 166)

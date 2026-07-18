@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dtuxxajnf41ym"]
+[gd_scene format=3 uid="uid://dtuxxajnf41ym"]
 
 [ext_resource type="Script" uid="uid://bgih30aac76ts" path="res://fighters/monsters/slime/slime.gd" id="1_r1nth"]
 [ext_resource type="Shader" uid="uid://dyrt7gdlbx6eb" path="res://fighters/shaders/generic_monster.gdshader" id="2_7jcwp"]
@@ -136,7 +136,7 @@ _data = {
 &"spare": SubResource("Animation_dux00")
 }
 
-[node name="Slime" type="Node2D"]
+[node name="Slime" type="Node2D" unique_id=2125444945]
 script = ExtResource("1_r1nth")
 description = "  * Slime - A bouncy little menace that [color=#000]----[/color]only cares about how high it can [color=#000]----[/color]jump."
 acts = Array[ExtResource("2_la5cp")]([ExtResource("3_vwcsi"), ExtResource("4_24fbq"), ExtResource("5_h1ox4")])
@@ -153,13 +153,11 @@ base_fighter_stats = Dictionary[int, int]({
 main_sprite = NodePath("Sprite")
 metadata/_custom_type_script = "uid://c7cl86f4gnd2b"
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=693067140]
 material = SubResource("ShaderMaterial_kuoc1")
 scale = Vector2(2, 2)
 texture = ExtResource("2_r1nth")
 hframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_foetk")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1916611037]
+libraries/ = SubResource("AnimationLibrary_foetk")

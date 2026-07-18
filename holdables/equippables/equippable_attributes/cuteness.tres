@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EquippableAttribute" load_steps=2 format=3 uid="uid://bxooyqytm3e8u"]
+[gd_resource type="Resource" script_class="EquippableAttribute" format=3 uid="uid://bxooyqytm3e8u"]
 
 [ext_resource type="Script" uid="uid://cp643of2mfab3" path="res://holdables/equippables/equippable_attribute.gd" id="1_014th"]
 

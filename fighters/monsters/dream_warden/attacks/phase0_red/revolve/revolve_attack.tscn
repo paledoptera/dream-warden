@@ -31,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_4vb0n"]
 resource_name = "shock"
-length = 0.39999999999999997
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -70,11 +70,12 @@ pellet = ExtResource("6_4enun")
 metadata/_custom_type_script = "uid://df4oxwu504umq"
 
 [node name="PelletSpawnerMega" type="Node2D" parent="." unique_id=1644954684 node_paths=PackedStringArray("spawnpoints")]
+visible = false
 modulate = Color(1, 1, 1, 0.21568628)
 scale = Vector2(3, 3)
 script = ExtResource("2_b07jm")
 pellet = ExtResource("3_u2qme")
-spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5")]
+spawnpoints = [NodePath("Spawn1"), NodePath("Spawn2"), NodePath("Spawn3"), NodePath("Spawn4"), NodePath("Spawn5"), NodePath("Spawn6"), NodePath("Spawn7")]
 metadata/_custom_type_script = "uid://dhdmngna8kfp0"
 
 [node name="Spawn1" type="Marker2D" parent="PelletSpawnerMega" unique_id=1018569113]
@@ -93,7 +94,7 @@ position = Vector2(-4.371139e-08, 1)
 texture = ExtResource("3_oqxvf")
 
 [node name="Spawn3" type="Marker2D" parent="PelletSpawnerMega" unique_id=167528987]
-position = Vector2(-6, 3)
+position = Vector2(-6, 3.3333337)
 rotation = -2.6179938
 
 [node name="Sprite2D" type="Sprite2D" parent="PelletSpawnerMega/Spawn3" unique_id=178000622]
@@ -116,9 +117,24 @@ rotation = -2.0943952
 position = Vector2(-4.371139e-08, 1)
 texture = ExtResource("3_oqxvf")
 
+[node name="Spawn6" type="Marker2D" parent="PelletSpawnerMega" unique_id=191766614]
+position = Vector2(7.598078, -0.23205058)
+rotation = -0.6981316
+
+[node name="Sprite2D" type="Sprite2D" parent="PelletSpawnerMega/Spawn6" unique_id=358280653]
+position = Vector2(-4.371139e-08, 1)
+texture = ExtResource("3_oqxvf")
+
+[node name="Spawn7" type="Marker2D" parent="PelletSpawnerMega" unique_id=1595483356]
+position = Vector2(-6.333333, -0.232)
+rotation = -2.443461
+
+[node name="Sprite2D" type="Sprite2D" parent="PelletSpawnerMega/Spawn7" unique_id=1841805659]
+position = Vector2(-4.371139e-08, 1)
+texture = ExtResource("3_oqxvf")
+
 [node name="SpinnerContainer" type="Node2D" parent="." unique_id=871331910]
-modulate = Color(1, 1, 1, 0.2901961)
-position = Vector2(0, 119.217)
+position = Vector2(0, 66)
 scale = Vector2(3.5, 1)
 
 [node name="Spinner" type="Node2D" parent="SpinnerContainer" unique_id=1279563718]
@@ -165,7 +181,7 @@ texture = ExtResource("4_b07jm")
 [node name="Start" type="Marker2D" parent="SpinnerContainer" unique_id=1144269293]
 
 [node name="Lightning" type="Line2D" parent="." unique_id=518992968]
-points = PackedVector2Array(0, 0, 150, 0)
+points = PackedVector2Array(-2199, -365, -2163, 1429)
 width = 50.0
 texture = ExtResource("8_hdr8k")
 texture_mode = 2

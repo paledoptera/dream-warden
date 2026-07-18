@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbuggbug5olof"]
+[gd_scene format=3 uid="uid://cbuggbug5olof"]
 
 [ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_e71i2"]
 [ext_resource type="Script" uid="uid://lcbxarr5x4i3" path="res://ui/battle/char_select/char_panel/char_panel.gd" id="1_ey76b"]
@@ -9,7 +9,7 @@ bg_color = Color(0.501961, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7b3e"]
 bg_color = Color(0, 1, 0, 1)
 
-[node name="CharPanel" type="Control"]
+[node name="CharPanel" type="Control" unique_id=1033333308]
 custom_minimum_size = Vector2(640, 30)
 layout_mode = 3
 anchors_preset = 0
@@ -19,22 +19,22 @@ script = ExtResource("1_ey76b")
 heart_path = NodePath("Heart")
 title_path = NodePath("Title")
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="RichTextLabel" parent="." unique_id=603275217]
 layout_mode = 0
 offset_left = 80.0
 offset_top = -1.0
 offset_right = 415.0
 offset_bottom = 31.0
+bbcode_enabled = true
 text = "Character Name"
 vertical_alignment = 1
-clip_text = true
 
-[node name="Heart" type="Sprite2D" parent="."]
+[node name="Heart" type="Sprite2D" parent="." unique_id=280463306]
 visible = false
 position = Vector2(63, 17)
 texture = ExtResource("1_e71i2")
 
-[node name="HPBG" type="Panel" parent="."]
+[node name="HPBG" type="Panel" parent="." unique_id=1782117727]
 custom_minimum_size = Vector2(81, 16)
 layout_mode = 0
 offset_left = 420.0
@@ -43,7 +43,7 @@ offset_right = 501.0
 offset_bottom = 20.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ey76b")
 
-[node name="HPFG" type="Panel" parent="."]
+[node name="HPFG" type="Panel" parent="." unique_id=823009372]
 custom_minimum_size = Vector2(81, 16)
 layout_mode = 0
 offset_left = 420.0

@@ -28,7 +28,7 @@ var context := CONTEXT.BATTLE:
 		context = p_context
 		match context:
 			CONTEXT.BATTLE:
-				get_parent().start_attack()
+				Global.battle.start_attack()
 			CONTEXT.CHAR_MENU:
 				char_menus[current_char].activate()
 				Global.characters[current_char].do_animation(Character.Animations.IDLE)
@@ -70,7 +70,7 @@ func _ready() -> void:
 	context = CONTEXT.CHAR_MENU
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if (Global.displaying_text and $TextBox.require_input) or context == CONTEXT.BATTLE or !continue_battle:
+	if (Global.displaying_text and $TextBox.current.require_input) or context == CONTEXT.BATTLE or !continue_battle:
 		return
 	if (event.is_action("confirm") or event.is_action("cancel")) and event.is_pressed():
 		if event.is_action("cancel"):
@@ -316,3 +316,11 @@ func do_attack(p_char_id: int, p_damage: int) -> void:
 			return
 	var character := Global.characters[p_char_id]
 	character.do_attack(monster, p_damage)
+
+func slide_down() -> void:
+	var tween = create_tween()
+	tween.tween_property(self,"position",Vector2(position.x,481.0),0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+
+func slide_up() -> void:
+	var tween = create_tween()
+	tween.tween_property(self,"position",Vector2(position.x,365.0),0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)

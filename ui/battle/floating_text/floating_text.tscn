@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmx1iqawpm42c"]
+[gd_scene format=3 uid="uid://dmx1iqawpm42c"]
 
 [ext_resource type="Script" uid="uid://c1fps78mt4kvr" path="res://ui/battle/floating_text/floating_text.gd" id="1_dka6m"]
 
@@ -44,7 +44,7 @@ _data = {
 &"stretch": SubResource("Animation_dka6m")
 }
 
-[node name="FloatingText" type="Label"]
+[node name="FloatingText" type="Label" unique_id=580137652]
 top_level = true
 custom_minimum_size = Vector2(320, 320)
 offset_left = -160.0
@@ -58,7 +58,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_dka6m")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_nmj1o")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1123361173]
+libraries/ = SubResource("AnimationLibrary_nmj1o")

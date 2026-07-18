@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cw777caepj6ix"]
+[gd_scene format=3 uid="uid://cw777caepj6ix"]
 
 [ext_resource type="Script" uid="uid://dxpkcl8xyswed" path="res://ui/battle/two_col_select/two_col_select.gd" id="1_b2wis"]
 [ext_resource type="Texture2D" uid="uid://dykkx5rmb62wp" path="res://ui/battle/two_col_select/res/arrow.png" id="1_yqb1m"]
@@ -45,32 +45,32 @@ _data = {
 &"arrow_movement": SubResource("Animation_b2wis")
 }
 
-[node name="TwoColSelect" type="Node2D"]
+[node name="TwoColSelect" type="Node2D" unique_id=2107173194]
 script = ExtResource("1_b2wis")
 columns = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Panel" type="Panel" parent="." unique_id=2034382380]
 clip_children = 2
 custom_minimum_size = Vector2(500, 115)
 offset_right = 640.0
 offset_bottom = 115.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ctcw1")
 
-[node name="Clip" type="Panel" parent="."]
+[node name="Clip" type="Panel" parent="." unique_id=2118678549]
 clip_contents = true
 offset_top = 7.0
 offset_right = 500.0
 offset_bottom = 115.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_ctcw1")
 
-[node name="Items" type="GridContainer" parent="Clip"]
+[node name="Items" type="GridContainer" parent="Clip" unique_id=469084372]
 layout_mode = 0
 offset_top = 3.0
 offset_right = 500.0
 offset_bottom = 109.0
 columns = 2
 
-[node name="Description" type="Label" parent="."]
+[node name="Description" type="Label" parent="." unique_id=61739947]
 visible = false
 offset_left = 500.0
 offset_top = 8.0
@@ -80,7 +80,7 @@ theme_override_colors/font_color = Color(0.501961, 0.501961, 0.501961, 1)
 text = "Rude Damage"
 autowrap_mode = 2
 
-[node name="TP" type="Label" parent="."]
+[node name="TP" type="Label" parent="." unique_id=188713652]
 visible = false
 offset_left = 500.0
 offset_top = 78.0
@@ -90,19 +90,17 @@ theme_override_colors/font_color = Color(1, 0.627451, 0.25098, 1)
 text = "50% TP"
 autowrap_mode = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_o7abl")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1025126891]
+libraries/ = SubResource("AnimationLibrary_o7abl")
 
-[node name="Arrows" type="Node2D" parent="."]
+[node name="Arrows" type="Node2D" parent="." unique_id=993845743]
 
-[node name="DownArrow" type="Sprite2D" parent="Arrows"]
+[node name="DownArrow" type="Sprite2D" parent="Arrows" unique_id=426200832]
 visible = false
 position = Vector2(476, 99)
 texture = ExtResource("1_yqb1m")
 
-[node name="UpArrow" type="Sprite2D" parent="Arrows"]
+[node name="UpArrow" type="Sprite2D" parent="Arrows" unique_id=66970798]
 visible = false
 position = Vector2(476, 21)
 rotation = -3.14159

@@ -81,7 +81,7 @@ func prep_spare() -> void:
 func do_attack(p_monster: Monster, p_damage: int) -> void:
 	if p_monster is DreamWarden and p_monster.block_attacks:
 		p_monster.do_animation(p_monster.Animations.SPECIAL1)
-		Global.tp += p_damage/3
+		Global.tp += p_damage/4
 	elif p_monster and !p_monster.dying:
 		p_monster.take_damage(self, p_damage)
 		p_monster.damage_or_die_animation()

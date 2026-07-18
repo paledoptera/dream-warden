@@ -1,12 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://gvvlu8b17lwv"]
+[gd_scene format=3 uid="uid://gvvlu8b17lwv"]
 
 [ext_resource type="Texture2D" uid="uid://b0mx4qepjjvn" path="res://globals/global/res/heart.png" id="1_qeco5"]
 [ext_resource type="Script" uid="uid://cmx566l7n4rnj" path="res://scenes/menus/lost_screen/lost_screen.gd" id="1_yigqx"]
 
-[node name="LostScreen" type="Node2D"]
+[node name="LostScreen" type="Node2D" unique_id=2040477558]
 script = ExtResource("1_yigqx")
 
-[node name="Lost" type="Label" parent="."]
+[node name="Lost" type="Label" parent="." unique_id=1484483663]
 custom_minimum_size = Vector2(640, 0)
 offset_top = 82.0
 offset_right = 640.0
@@ -17,7 +17,7 @@ text = " You lost..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Play" type="Button" parent="."]
+[node name="Play" type="Button" parent="." unique_id=1046000469]
 custom_minimum_size = Vector2(128, 0)
 offset_left = 215.0
 offset_top = 247.0
@@ -29,7 +29,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "TRY AGAIN"
 
-[node name="Quit" type="Button" parent="."]
+[node name="Quit" type="Button" parent="." unique_id=433908142]
 custom_minimum_size = Vector2(210, 0)
 offset_left = 215.0
 offset_top = 313.0
@@ -41,7 +41,7 @@ mouse_filter = 2
 theme_override_font_sizes/font_size = 48
 text = "GIVE UP"
 
-[node name="Heart" type="Sprite2D" parent="."]
+[node name="Heart" type="Sprite2D" parent="." unique_id=93401407]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(183, 274)
 scale = Vector2(2, 2)
