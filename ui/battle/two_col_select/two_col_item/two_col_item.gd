@@ -17,7 +17,7 @@ func set_select(p_selected: bool) -> void:
 	update_modulation()
 
 func update_modulation() -> void:
-	if tp > Global.tp:
+	if tp*2.5 > Global.tp:
 		modulate = Color("#808080")
 	else:
 		modulate = Color.WHITE

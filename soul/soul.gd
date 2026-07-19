@@ -8,6 +8,7 @@ class_name Soul
 
 @onready var orange_effects: Node2D = $OrangeEffects
 var current_soul_type: SoulType
+var last_position:= Vector2.ZERO
 
 var active := false:
 	set(p_active):
@@ -33,12 +34,14 @@ func _process(delta: float) -> void:
 		i.tick(delta)
 
 func _physics_process(delta: float) -> void:
+	last_position = global_position
 	for i in behaviors:
 		i.physics_tick(delta)
 
-func hurt(p_damage: int) -> void:
-	if invulnerable:
-		return
+func hurt(p_damage: int, ignore_iframes: bool = false) -> void:
+	if not ignore_iframes:
+		if invulnerable:
+			return
 	Global.battle.hurt(5 * p_damage)
 	invulnerable_state()
 

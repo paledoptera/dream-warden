@@ -13,7 +13,6 @@ stream_0/stream = ExtResource("2_11jbd")
 custom_minimum_size = Vector2(100, 40)
 text = "Textbox"
 scroll_active = false
-visible_characters_behavior = 1
 script = ExtResource("1_kta3i")
 
 [node name="TypingSound" type="AudioStreamPlayer" parent="." unique_id=731055459]

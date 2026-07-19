@@ -74,7 +74,7 @@ func start_attack() -> float:
 						goto_center_screen()
 						instantiate_attack(preload("uid://p5rdsyjnb42d")) # rush
 						flavortext_line = 3
-						return 8.0
+						return 5.0
 					4: # Bright Hell
 						instantiate_attack(preload("uid://bqj31vq3siu3")) # bright_hell
 						flavortext_line = 4
@@ -106,7 +106,17 @@ func end_attack() -> void:
 	$AnimationPlayer.queue("idle")
 
 func get_idle_line() -> Dialogue:
-	return idle_lines[flavortext_line]
+	var line = idle_lines[flavortext_line].duplicate()
+	if Global.tp >= 250.0:
+		line.text += str("\n  * (You can use UNLEASH!)")
+		print("UNLEASH:", line.text.find("UNLEASH"))
+		var yellow_gradient = GradientMarker.new()
+		yellow_gradient.start_char = line.text.find("UNLEASH")
+		yellow_gradient.end_char = yellow_gradient.start_char + 6
+		yellow_gradient.texture = preload("uid://cjff5uju5g06g")
+		line.markers.append(yellow_gradient)
+	
+	return line
 	
 	
 

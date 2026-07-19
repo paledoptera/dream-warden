@@ -37,13 +37,14 @@ func get_files_recursive(p_directory: String) -> PackedStringArray:
 			files.append(p_directory + "/" + file)
 	return files
 
-func play(p_sound: String, p_volume := 1.0, pitch:= 1.0) -> void:
+func play(p_sound: String, p_volume := 1.0, pitch:= 1.0, polyphony := 1) -> void:
 	if !sounds.has(p_sound):
 		#printerr("Error in sounds.gd: Attempt to play sound, \"" + p_sound + "\", but no such sound exists.")
 		return
 	var audio_player := sounds[p_sound]
 	audio_player.volume_linear = p_volume
 	audio_player.pitch_scale = pitch
+	audio_player.max_polyphony = polyphony
 	audio_player.play()
 
 func set_music(p_music: String, p_volume := 1.0, p_loop := true):

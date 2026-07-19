@@ -1,5 +1,7 @@
 extends Character
 
+@export var animation_player: AnimationPlayer
+
 func do_animation(p_animation: Animations) -> Signal:
 	match p_animation:
 		Animations.IDLE:
@@ -28,3 +30,6 @@ func do_animation(p_animation: Animations) -> Signal:
 			$AnimationPlayer.play("RESET")
 			$AnimationPlayer.play("idle")
 	return $AnimationPlayer.animation_finished
+
+func add_tp(tp: float):
+	Global.tp += tp

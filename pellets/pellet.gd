@@ -16,6 +16,8 @@ signal justice_shotted(shot_direction : float)
 @export var destructible: bool = false
 ##If the pellet can be dashed into with the orange soul
 @export var dashable: bool = false
+##If the pellet can hit you even if you have i-frames
+@export var ignore_iframes: bool = false
 var grazed := false
 
 func _ready() -> void:
@@ -29,7 +31,7 @@ func _on_body_entered(body: Node2D) -> void:
 				return
 			
 		
-		body.hurt(damage)
+		body.hurt(damage,ignore_iframes)
 		if destructible:
 			destroy()
 

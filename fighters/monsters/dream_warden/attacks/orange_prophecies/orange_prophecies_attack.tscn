@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://biy34d1rdl0yb"]
-
-[ext_resource type="Script" uid="uid://4tnmiafpyvqg" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/orange_prophecies_attack.gd" id="1_v7i0s"]
-[ext_resource type="PackedScene" uid="uid://ymvde2d86kvp" path="res://specialattacks/orange/orange_attack.tscn" id="2_x3a2y"]
-
-[node name="OrangePropheciesAttacks" type="Node2D" unique_id=2036329144]
-script = ExtResource("1_v7i0s")
-
-[node name="OrangeAttack" parent="." unique_id=1160995327 instance=ExtResource("2_x3a2y")]

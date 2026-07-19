@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c5p1kn3db4kly" path="res://specialattacks/orange/orange_attack.gd" id="1_t5guj"]
 [ext_resource type="Texture2D" uid="uid://dy0kvp08lktbp" path="res://soul/behaviors/behavior_assets/orange/bkg.png" id="2_jfix0"]
-[ext_resource type="PackedScene" uid="uid://ds0sxy4h87mn1" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/stationary_diamond_bullet.tscn" id="3_w2ys1"]
-[ext_resource type="PackedScene" uid="uid://bob4ssdghdx1i" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/orangeatt_stalk.tscn" id="4_g1xya"]
-[ext_resource type="PackedScene" uid="uid://c0u10gkhphtvt" path="res://fighters/monsters/dream_warden/attacks/orange_prophecies/orange_window_bullet.tscn" id="5_nafte"]
+[ext_resource type="PackedScene" uid="uid://ds0sxy4h87mn1" path="res://fighters/monsters/dream_warden/attacks/phase2_orange/orange_prophecies/stationary_diamond_bullet.tscn" id="3_w2ys1"]
+[ext_resource type="PackedScene" uid="uid://bob4ssdghdx1i" path="res://fighters/monsters/dream_warden/attacks/phase2_orange/orange_prophecies/orangeatt_stalk.tscn" id="4_g1xya"]
+[ext_resource type="PackedScene" uid="uid://c0u10gkhphtvt" path="res://fighters/monsters/dream_warden/attacks/phase2_orange/orange_prophecies/orange_window_bullet.tscn" id="5_nafte"]
 
 [node name="OrangeAttack" type="Node2D" unique_id=1160995327]
 script = ExtResource("1_t5guj")

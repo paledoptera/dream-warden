@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://b8tmchw2csyvn" path="res://ui/text_box/components/dialogue/gradient_marker.gd" id="4_hok4j"]
 [ext_resource type="PackedScene" uid="uid://daeern1c5gfgq" path="res://fighters/monsters/dream_warden/_res/model/warden_model.tscn" id="4_jh36n"]
 [ext_resource type="Texture2D" uid="uid://hnbbofqg1obh" path="res://fighters/characters/susie/res/slash.png" id="5_fkrc8"]
+[ext_resource type="Texture2D" uid="uid://cjff5uju5g06g" path="res://ui/text_box/components/text_effects/res/yellow_gradient.tres" id="5_s6ho4"]
 
 [sub_resource type="Resource" id="Resource_icoan"]
 resource_name = "Blinding flashes"
@@ -22,17 +23,9 @@ text = "  * Test"
 require_input = false
 metadata/_custom_type_script = "uid://m17i7j602jax"
 
-[sub_resource type="Gradient" id="Gradient_s6ho4"]
-colors = PackedColorArray(0.96862745, 1, 0.28627452, 1, 0.9607843, 0.9843137, 0.63529414, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1kk3"]
-gradient = SubResource("Gradient_s6ho4")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
 [sub_resource type="Resource" id="Resource_kd6yx"]
 script = ExtResource("4_hok4j")
-texture = SubResource("GradientTexture2D_t1kk3")
+texture = ExtResource("5_s6ho4")
 start_char = 44
 end_char = 47
 metadata/_custom_type_script = "uid://b8tmchw2csyvn"

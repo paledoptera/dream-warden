@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://c4k3g23df5p70"]
+
+[ext_resource type="Texture2D" uid="uid://ffua0i5vrfin" path="res://fighters/monsters/dream_warden/attacks/phase0_red/4_bright_hell/_res/electroball.png" id="1_4f00f"]
+[ext_resource type="Script" uid="uid://klji2nuto0tt" path="res://fighters/monsters/dream_warden/attacks/phase0_red/1_beam/electroball.gd" id="2_jugmd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8qg6"]
+atlas = ExtResource("1_4f00f")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12nm1"]
+atlas = ExtResource("1_4f00f")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d8gma"]
+atlas = ExtResource("1_4f00f")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srciq"]
+atlas = ExtResource("1_4f00f")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rivnn"]
+atlas = ExtResource("1_4f00f")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g4v7s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8qg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12nm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d8gma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srciq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rivnn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="ElectroBall" type="AnimatedSprite2D" unique_id=660043348]
+z_index = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_g4v7s")
+autoplay = "default"
+frame_progress = 0.9997107
+script = ExtResource("2_jugmd")
