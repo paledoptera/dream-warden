@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cev8j51xyelxs"]
+
+[ext_resource type="Texture2D" uid="uid://btwsgbuxeysas" path="res://soul/res/soul.png" id="1_s2chk"]
+
+[sub_resource type="GDScript" id="GDScript_ukb1h"]
+resource_name = "afterimage"
+script/source = "extends Sprite3D
+
+func _ready() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self,\"scale\",Vector3.ZERO,1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,\"modulate\",Color(\"00ffff00\"),1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+"
+
+[node name="Soul" type="Sprite3D" unique_id=1626579537]
+offset = Vector2(6, 40)
+modulate = Color(0, 1, 1, 0.42352942)
+pixel_size = 0.00208
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_s2chk")
+script = SubResource("GDScript_ukb1h")

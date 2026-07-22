@@ -1036,9 +1036,8 @@ _data = {
 &"idle": SubResource("Animation_2nhnr")
 }
 
-[node name="DreamWarden" type="Node2D" unique_id=312367948 node_paths=PackedStringArray("ultra_3d_world")]
+[node name="DreamWarden" type="Node2D" unique_id=312367948]
 script = ExtResource("1_54jqm")
-ultra_3d_world = NodePath("3DSprite/SubViewport")
 idle_lines = Array[ExtResource("3_hok4j")]([SubResource("Resource_icoan"), SubResource("Resource_t1kk3")])
 opening_line_singular = SubResource("Resource_2c0fu")
 title = "Dream Warden"

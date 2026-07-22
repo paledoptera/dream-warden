@@ -44,3 +44,8 @@ func animate_bar(p_is_decreasing : bool) -> void:
 		tween.tween_property(self, "foam", foam_amount, 0.1 * time_multiplier)
 		tween.set_parallel(false)
 		tween.tween_property(self, "foam", 0, 0.3 * time_multiplier)
+
+func slide_left() -> void:
+	var tween = create_tween()
+	tween.tween_property(self,"position",Vector2(-30.0,position.y),0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	

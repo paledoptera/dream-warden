@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
 [ext_resource type="PackedScene" uid="uid://btwju6msq5h0t" path="res://scenes/battle/fire_rising.tscn" id="5_t1kk3"]
 [ext_resource type="PackedScene" uid="uid://bt53ruak41iac" path="res://fighters/monsters/dream_warden/dream_warden.tscn" id="6_agsc7"]
+[ext_resource type="PackedScene" uid="uid://cb578rc4cw4ea" path="res://specialattacks/aqua_hud.tscn" id="10_t1kk3"]
 [ext_resource type="Script" uid="uid://m17i7j602jax" path="res://ui/text_box/components/dialogue/dialogue.gd" id="12_icoan"]
 [ext_resource type="PackedScene" uid="uid://ch6nqfnn4lcxk" path="res://scenes/battle/clock.tscn" id="12_mxe8n"]
 [ext_resource type="Script" uid="uid://cci227fj67d4u" path="res://ui/text_box/components/dialogue/_dialogue_marker.gd" id="13_kd6yx"]
@@ -108,10 +109,10 @@ shader_parameter/noise_scale = 1.0
 shader_parameter/swirl_strength = 0.1000000997499999
 shader_parameter/hue_shift_speed = 0.658000031255
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kd6yx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_t1kk3"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_t1kk3"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_n6gaa"]
 viewport_path = NodePath("SubViewport2")
 
 [sub_resource type="Animation" id="Animation_agsc7"]
@@ -205,12 +206,14 @@ text = "  * Iridescent feathers fall around you.
 require_input = false
 metadata/_custom_type_script = "uid://m17i7j602jax"
 
-[node name="Battle" type="Node2D" unique_id=1451098202 node_paths=PackedStringArray("animations", "soul", "soul_cage", "bottom_panel")]
+[node name="Battle" type="Node2D" unique_id=1451098202 node_paths=PackedStringArray("animations", "soul", "soul_cage", "bottom_panel", "tp_bar", "aqua_hud")]
 script = ExtResource("1_0yh6x")
 animations = NodePath("AnimationPlayer")
 soul = NodePath("Camera2D/Soul")
 soul_cage = NodePath("Camera2D/SoulCage")
 bottom_panel = NodePath("Camera2D/BottomPanel")
+tp_bar = NodePath("Camera2D/TPBar")
+aqua_hud = NodePath("Camera2D/AquaHUD")
 
 [node name="Background" type="SubViewportContainer" parent="." unique_id=166667966]
 modulate = Color(2.0696762, 2.0696762, 2.0696762, 1)
@@ -277,28 +280,28 @@ position = Vector2(308, 171)
 [node name="Clock" parent="." unique_id=913049443 instance=ExtResource("12_mxe8n")]
 
 [node name="MainClock" parent="Clock/SubViewport2" parent_id_path=PackedInt32Array(913049443, 698166261) index="1" unique_id=1788779321]
-texture = SubResource("ViewportTexture_kd6yx")
-
-[node name="Afterimage1" parent="Clock/SubViewport2/MainClock" index="0" unique_id=394784902]
-texture = SubResource("ViewportTexture_kd6yx")
-
-[node name="Afterimage2" parent="Clock/SubViewport2/MainClock" index="1" unique_id=729563524]
-texture = SubResource("ViewportTexture_kd6yx")
-
-[node name="Afterimage3" parent="Clock/SubViewport2/MainClock" index="2" unique_id=1218521683]
-texture = SubResource("ViewportTexture_kd6yx")
-
-[node name="Afterimage4" parent="Clock/SubViewport2/MainClock" index="3" unique_id=579023528]
-texture = SubResource("ViewportTexture_kd6yx")
-
-[node name="Afterimage5" parent="Clock/SubViewport2/MainClock" index="4" unique_id=322422116]
-texture = SubResource("ViewportTexture_kd6yx")
-
-[node name="TextureRect" parent="Clock" index="3" unique_id=399944368]
 texture = SubResource("ViewportTexture_t1kk3")
 
+[node name="Afterimage1" parent="Clock/SubViewport2/MainClock" index="0" unique_id=394784902]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage2" parent="Clock/SubViewport2/MainClock" index="1" unique_id=729563524]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage3" parent="Clock/SubViewport2/MainClock" index="2" unique_id=1218521683]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage4" parent="Clock/SubViewport2/MainClock" index="3" unique_id=579023528]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage5" parent="Clock/SubViewport2/MainClock" index="4" unique_id=322422116]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="TextureRect" parent="Clock" index="3" unique_id=399944368]
+texture = SubResource("ViewportTexture_n6gaa")
+
 [node name="3DWorld" type="SubViewportContainer" parent="." unique_id=343720224]
-z_index = 4
+z_index = 12
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -325,7 +328,7 @@ anchor_mode = 0
 position = Vector2(308, 171)
 
 [node name="BottomPanel" parent="Camera2D" unique_id=2001215419 instance=ExtResource("1_7gynk")]
-z_index = 5
+z_index = 15
 position = Vector2(0, 365)
 
 [node name="Soul" parent="Camera2D" unique_id=272991104 instance=ExtResource("3_0yh6x")]
@@ -333,8 +336,12 @@ visible = false
 position = Vector2(308, 171)
 
 [node name="TPBar" parent="Camera2D" unique_id=1477987401 instance=ExtResource("5_h0kxc")]
-z_index = 6
+z_index = 999
 position = Vector2(51, 139)
+
+[node name="AquaHUD" parent="Camera2D" unique_id=1907548078 instance=ExtResource("10_t1kk3")]
+position = Vector2(320, 570)
+scale = Vector2(1.5, 1.5)
 
 [node name="Characters" type="Node2D" parent="." unique_id=905090157]
 
@@ -343,8 +350,9 @@ position = Vector2(150, 206)
 
 [node name="Monsters" type="Node2D" parent="." unique_id=1395229772]
 
-[node name="DreamWarden" parent="Monsters" unique_id=312367948 instance=ExtResource("6_agsc7")]
+[node name="DreamWarden" parent="Monsters" unique_id=312367948 node_paths=PackedStringArray("ultra_3d_world") instance=ExtResource("6_agsc7")]
 position = Vector2(442, 177)
+ultra_3d_world = NodePath("../../3DWorld/SubViewport")
 idle_lines = Array[ExtResource("12_icoan")]([SubResource("Resource_icoan"), SubResource("Resource_t1kk3"), SubResource("Resource_kd6yx"), SubResource("Resource_n6gaa"), SubResource("Resource_6ofp8")])
 
 [node name="SubViewportContainer4" type="SubViewportContainer" parent="." unique_id=299775321]

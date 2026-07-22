@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://dlb7ga38getg"]
+
+[ext_resource type="Texture2D" uid="uid://c3jnt5dckm1a5" path="res://soul/res/soul_nooutline.png" id="1_xwkb4"]
+
+[sub_resource type="GDScript" id="GDScript_ukb1h"]
+resource_name = "AquaAfterimage"
+script/source = "extends Sprite3D
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	queue_free()
+"
+
+[sub_resource type="Animation" id="Animation_0kxwt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 1, 1, 0.4039216)]
+}
+
+[sub_resource type="Animation" id="Animation_xwkb4"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 1, 1, 1), Color(0, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0kxwt"]
+_data = {
+&"RESET": SubResource("Animation_0kxwt"),
+&"fade": SubResource("Animation_xwkb4")
+}
+
+[node name="Soul" type="Sprite3D" unique_id=1383687412]
+offset = Vector2(6, 40)
+modulate = Color(0, 1, 1, 0.4039216)
+pixel_size = 0.00208
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_xwkb4")
+script = SubResource("GDScript_ukb1h")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=762671755]
+libraries/ = SubResource("AnimationLibrary_0kxwt")
+autoplay = &"fade"
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=885871133]
+texture = ExtResource("1_xwkb4")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

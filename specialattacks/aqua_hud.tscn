@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cb578rc4cw4ea"]
+
+[ext_resource type="Texture2D" uid="uid://bq2crl0c6rpx1" path="res://specialattacks/res/tp_icon.png" id="1_knis6"]
+[ext_resource type="Script" uid="uid://bru61ry18hh67" path="res://specialattacks/aqua_hud.gd" id="2_ultli"]
+[ext_resource type="Texture2D" uid="uid://chupyk2wbyvfk" path="res://specialattacks/res/tp_bar_full.png" id="4_ultli"]
+
+[node name="AquaHUD" type="Sprite2D" unique_id=1907548078]
+z_index = 4096
+z_as_relative = false
+texture = ExtResource("1_knis6")
+script = ExtResource("2_ultli")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1706316442]
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+fill_mode = 3
+texture_progress = ExtResource("4_ultli")

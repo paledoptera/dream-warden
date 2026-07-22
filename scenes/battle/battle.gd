@@ -5,6 +5,8 @@ class_name Battle
 @export var soul: Soul
 @export var soul_cage: StaticBody2D
 @export var bottom_panel: Node2D
+@export var tp_bar: Node2D
+@export var aqua_hud: Node2D
 
 var in_attack := false
 var turn_timer := 0.0

@@ -1,16 +1,41 @@
 [gd_scene format=3 uid="uid://dbi6lj71m2qh8"]
 
-[ext_resource type="Texture2D" uid="uid://chmiryi84x8l3" path="res://scenes/battle/cloudland2.png" id="1_h8jhr"]
+[ext_resource type="Texture2D" uid="uid://ugfh5gac5dkm" path="res://scenes/battle/clock.png" id="1_1s4dt"]
+[ext_resource type="Script" uid="uid://dgbt3pi3vyfcc" path="res://specialattacks/aqua_attack.gd" id="1_2ijya"]
 [ext_resource type="Script" uid="uid://cmsn5e7jc21u8" path="res://specialattacks/player.gd" id="1_mw6fy"]
 [ext_resource type="Script" uid="uid://csgvuo8wv34sh" path="res://specialattacks/boss.gd" id="2_mw6fy"]
-[ext_resource type="Texture2D" uid="uid://37mbafkr1iha" path="res://fighters/characters/susie/res/susie_organized_sheet.png" id="3_h8jhr"]
+[ext_resource type="Texture2D" uid="uid://bk7dgtgpwuwxv" path="res://specialattacks/res/circle_outline.png" id="2_pifvd"]
+[ext_resource type="PackedScene" uid="uid://dxrrej4kwvhng" path="res://specialattacks/circle.tscn" id="3_mlat7"]
 [ext_resource type="AudioStream" uid="uid://b2q6ligynxj0x" path="res://globals/sounds/sound_effects/snd_laz_c.wav" id="4_b7wbq"]
-[ext_resource type="Texture2D" uid="uid://cu3fthva6hiiv" path="res://specialattacks/slash.png" id="4_o0dci"]
-[ext_resource type="PackedScene" uid="uid://bochrdxnrsb3k" path="res://fighters/monsters/dream_warden/_res/warden.tscn" id="7_uwsif"]
+[ext_resource type="Texture2D" uid="uid://drk600o8fm5h4" path="res://specialattacks/res/susie_fall.png" id="5_dl2jl"]
+[ext_resource type="Texture2D" uid="uid://drwsm37ur7773" path="res://specialattacks/res/susie_midair.png" id="5_lw8m3"]
+[ext_resource type="Texture2D" uid="uid://c0204022lsbyj" path="res://specialattacks/res/susie_idle.png" id="5_pgut6"]
+[ext_resource type="Texture2D" uid="uid://crmgkpqp16t5r" path="res://specialattacks/res/susie_jump_trans.png" id="6_5kdis"]
+[ext_resource type="Texture2D" uid="uid://biyi1e033flt2" path="res://specialattacks/res/susie_jump.png" id="6_cobll"]
+[ext_resource type="Texture2D" uid="uid://ujiov6tf756j" path="res://specialattacks/res/susie_land.png" id="6_jqut0"]
 [ext_resource type="Script" uid="uid://r0mflit5bp4c" path="res://specialattacks/face.gd" id="7_wtg4j"]
 [ext_resource type="AudioStream" uid="uid://blgycniv76tk8" path="res://globals/sounds/sound_effects/snd_ward_charge.wav" id="8_rgjhh"]
+[ext_resource type="Texture2D" uid="uid://knqjv6ci5coo" path="res://specialattacks/res/susie_roll.png" id="9_1s4dt"]
 [ext_resource type="AudioStream" uid="uid://cr54v0qolt555" path="res://globals/sounds/sound_effects/snd_ward_whisp1.wav" id="9_h8jhr"]
+[ext_resource type="Texture2D" uid="uid://dq7mm2ur4814s" path="res://specialattacks/res/susie_roll_start.png" id="10_pifvd"]
+[ext_resource type="Texture2D" uid="uid://btwsgbuxeysas" path="res://soul/res/soul.png" id="11_1s4dt"]
+[ext_resource type="Texture2D" uid="uid://ckbcskxqr2kn5" path="res://specialattacks/res/background_clouds/clouds1.png" id="11_r2muu"]
 [ext_resource type="AudioStream" uid="uid://dxnnang4d7yqo" path="res://globals/sounds/sound_effects/snd_ward_hit.wav" id="11_sa2hs"]
+[ext_resource type="Texture2D" uid="uid://83voviduke7x" path="res://specialattacks/res/background_clouds/clouds2.png" id="12_pgut6"]
+[ext_resource type="Texture2D" uid="uid://dtuq56o77spqu" path="res://specialattacks/res/background_clouds/clouds11.png" id="13_5kdis"]
+[ext_resource type="Texture2D" uid="uid://dpg2evgv6coae" path="res://specialattacks/res/background_clouds/clouds12.png" id="14_cobll"]
+[ext_resource type="Texture2D" uid="uid://b0unswiu2g8bk" path="res://specialattacks/res/susie_slash_sheet.png" id="14_rfx7g"]
+[ext_resource type="Texture2D" uid="uid://d1j03cw5qr2jn" path="res://specialattacks/res/background_clouds/clouds13.png" id="15_lw8m3"]
+[ext_resource type="PackedScene" uid="uid://daeern1c5gfgq" path="res://fighters/monsters/dream_warden/_res/model/warden_model.tscn" id="16_c06ra"]
+[ext_resource type="Texture2D" uid="uid://if6pcq7yxcqt" path="res://specialattacks/res/background_clouds/clouds14.png" id="16_dl2jl"]
+[ext_resource type="Texture2D" uid="uid://0kh2pcqnpdrn" path="res://specialattacks/res/background_clouds/clouds3.png" id="17_jqut0"]
+[ext_resource type="Texture2D" uid="uid://b5ndeb6c8tki5" path="res://specialattacks/res/background_clouds/clouds4.png" id="18_1s4dt"]
+[ext_resource type="Texture2D" uid="uid://bewosnoey0s6n" path="res://specialattacks/res/background_clouds/clouds5.png" id="19_pifvd"]
+[ext_resource type="Texture2D" uid="uid://dji1g0x3pwfmb" path="res://specialattacks/res/background_clouds/clouds6.png" id="20_mlat7"]
+[ext_resource type="Texture2D" uid="uid://i3geq4mc5ofx" path="res://specialattacks/res/background_clouds/clouds7.png" id="21_c06ra"]
+[ext_resource type="Texture2D" uid="uid://dpbax22x8x8ck" path="res://specialattacks/res/background_clouds/clouds8.png" id="22_2ijya"]
+[ext_resource type="Texture2D" uid="uid://dxgit2nv00dnn" path="res://specialattacks/res/background_clouds/clouds9.png" id="23_ukb1h"]
+[ext_resource type="Texture2D" uid="uid://4hmkngah6p22" path="res://specialattacks/res/background_clouds/clouds10.png" id="24_rfx7g"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_mxk0a"]
 top_radius = 0.943
@@ -19,9 +44,320 @@ height = 0.001
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mxk0a"]
 render_priority = -128
 shading_mode = 0
-albedo_color = Color(0.427493, 0.42749307, 0.42749307, 1)
-albedo_texture = ExtResource("1_h8jhr")
+albedo_color = Color(0.17283267, 0.17283267, 0.17283261, 1)
+albedo_texture = ExtResource("1_1s4dt")
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+uv1_offset = Vector3(0.129, -0.55, 0)
 texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mlat7"]
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_y04b2"]
+material = SubResource("StandardMaterial3D_mlat7")
+flip_faces = true
+top_radius = 0.9
+bottom_radius = 0.9
+height = 0.015
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c06ra"]
+atlas = ExtResource("5_lw8m3")
+region = Rect2(0, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ijya"]
+atlas = ExtResource("5_lw8m3")
+region = Rect2(80, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukb1h"]
+atlas = ExtResource("5_lw8m3")
+region = Rect2(160, 0, 80, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kdis"]
+atlas = ExtResource("5_pgut6")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cobll"]
+atlas = ExtResource("5_pgut6")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lw8m3"]
+atlas = ExtResource("5_pgut6")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dl2jl"]
+atlas = ExtResource("5_pgut6")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqut0"]
+atlas = ExtResource("6_cobll")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1s4dt"]
+atlas = ExtResource("6_cobll")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pifvd"]
+atlas = ExtResource("6_cobll")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlat7"]
+atlas = ExtResource("6_cobll")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfx7g"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxwhs"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6cjn"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mb1hm"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkxeb"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(256, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8kcn"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(320, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrydd"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(384, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8n8n6"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(448, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n30k0"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(512, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv5g3"]
+atlas = ExtResource("9_1s4dt")
+region = Rect2(576, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wyw3"]
+atlas = ExtResource("10_pifvd")
+region = Rect2(0, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyqap"]
+atlas = ExtResource("10_pifvd")
+region = Rect2(64, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glbiy"]
+atlas = ExtResource("10_pifvd")
+region = Rect2(128, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xlyn"]
+atlas = ExtResource("10_pifvd")
+region = Rect2(192, 0, 64, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsgre"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(0, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1erf7"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(138, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaemk"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(276, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ildnd"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(414, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7kef"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(552, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lad7v"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(690, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxbpo"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(828, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sl16"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(966, 0, 138, 71)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pre7a"]
+atlas = ExtResource("14_rfx7g")
+region = Rect2(1104, 0, 138, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y04b2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_dl2jl")
+}],
+"loop": 1,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jqut0")
+}],
+"loop": 1,
+"name": &"fall_end",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c06ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ijya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukb1h")
+}],
+"loop": 1,
+"name": &"fall_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kdis")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cobll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lw8m3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dl2jl")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqut0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1s4dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pifvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlat7")
+}],
+"loop": 1,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5kdis")
+}],
+"loop": 1,
+"name": &"jump_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rfx7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxwhs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6cjn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mb1hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkxeb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8kcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrydd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8n8n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n30k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv5g3")
+}],
+"loop": 1,
+"name": &"roll",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wyw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyqap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glbiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xlyn")
+}],
+"loop": 1,
+"name": &"roll_right_start",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lsgre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1erf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaemk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ildnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7kef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lad7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxbpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sl16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pre7a")
+}],
+"loop": 1,
+"name": &"slash",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_o0dci"]
 length = 0.001
@@ -52,50 +388,62 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Slash:scale")
+tracks/2/path = NodePath("Pivot/Susie:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(1, 1, 1)]
+"update": 1,
+"values": [&"idle"]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/Slash:rotation")
+tracks/3/path = NodePath("Pivot/Susie:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-1.5707964, 0, 0)]
+"update": 1,
+"values": [0]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/Slash:position")
+tracks/4/path = NodePath("Pivot/Susie:offset")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0.08596972, 0.54046965)]
+"values": [Vector2(14, 21)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Pivot/SusieSprite:frame")
+tracks/5/path = NodePath(".:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Pivot/Susie:flip_h")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_s74s4"]
@@ -128,6 +476,127 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_c2nda"]
 resource_name = "dash"
 
+[sub_resource type="Animation" id="Animation_dl2jl"]
+resource_name = "fall"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Susie:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(18, 17)]
+}
+
+[sub_resource type="Animation" id="Animation_jqut0"]
+resource_name = "fall_end"
+length = 0.06670000000000001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Susie:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall_end"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, 13)]
+}
+
+[sub_resource type="Animation" id="Animation_lw8m3"]
+resource_name = "fall_start"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Susie:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall_start"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, 14)]
+}
+
 [sub_resource type="Animation" id="Animation_mw6fy"]
 resource_name = "idle"
 length = 0.4
@@ -147,30 +616,258 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/SusieSprite:frame")
+tracks/1/path = NodePath("Pivot/Susie:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.10000001, 0.20000002, 0.3),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [10, 11, 12, 13]
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Susie:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, 21)]
 }
 
 [sub_resource type="Animation" id="Animation_cqm2y"]
 resource_name = "jump"
-length = 0.3
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/SusieSprite:scale")
+tracks/0/path = NodePath("Pivot/Susie:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.3),
-"transitions": PackedFloat32Array(1, 0.27739242, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"fall_start"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(17, 14)]
+}
+
+[sub_resource type="Animation" id="Animation_cobll"]
+resource_name = "jump_trans"
+length = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Susie:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump_trans"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mlat7"]
+resource_name = "roll_right_start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Susie:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"idle", &"roll_right_start", &"roll"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333333, 0.16666666, 0.23333332, 0.29999998, 0.36666667, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 1, 2, 0, 1, 2, 3, 4, 8, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.13333334, 0.16666667, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(14, 21), Vector2(-10, 21), Vector2(4, 23), Vector2(7, 26), Vector2(16, 30), Vector2(14, 21)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4333),
+"transitions": PackedFloat32Array(0.5, -4.4382772, 1),
 "update": 0,
-"values": [Vector3(1.27, 0.77, 1), Vector3(0.775, 1.205, 1), Vector3(0.99999994, 1.0000036, 0.99999994)]
+"values": [Vector3(0, 0, 0), Vector3(0, 0.34906584, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/Susie:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Pivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.36666667),
+"transitions": PackedFloat32Array(1, 0.5, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1s4dt"]
+resource_name = "roll_right_start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Susie:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"idle", &"roll_right_start", &"roll"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.1, 0.13333333, 0.16666666, 0.23333332, 0.29999998, 0.36666667, 0.43333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 1, 2, 0, 1, 2, 3, 4, 8, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.13333334, 0.16666667, 0.36666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(14, 21), Vector2(4, 23), Vector2(0, 26), Vector2(-10, 30), Vector2(14, 21)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4333),
+"transitions": PackedFloat32Array(0.5, -4.4382772, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.34906584, 0), Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/Susie:flip_h")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Pivot:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.16666667, 0.36666667),
+"transitions": PackedFloat32Array(1, 0.5, 2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0.1, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_ciuf0"]
@@ -192,74 +889,14 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_xpa20"]
 resource_name = "slash"
-length = 0.6
-tracks/0/type = "value"
+length = 0.5
+tracks/0/type = "audio"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Slash:scale")
+tracks/0/path = NodePath("AudioStreamPlayer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.1717504, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1, 1), Vector3(1.464, 1, 1), Vector3(0.46, 1, 1), Vector3(0, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Pivot/SusieSprite:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.99999994, 1.0000036, 0.99999994), Vector3(1.332, 0.858, 1), Vector3(0.992, 1.1, 1), Vector3(0.99999994, 1.0000036, 0.99999994)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Pivot/Slash:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.16666667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.315, 0.086, 0.54), Vector3(0, 0.08596972, 0.54046965), Vector3(0.285, 0.086, 0.54)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Pivot/Slash:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(-1.5707964, 1.5882496, 0), Vector3(-1.5707964, 0, 0), Vector3(-1.5707964, -0.70685834, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Pivot/SusieSprite:position")
-tracks/4/interp = 2
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.685), Vector3(0, 0, 0.555), Vector3(0, 0, 0.685)]
-}
-tracks/5/type = "audio"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("AudioStreamPlayer")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -267,15 +904,57 @@ tracks/5/keys = {
 }],
 "times": PackedFloat32Array(0)
 }
-tracks/5/use_blend = true
+tracks/0/use_blend = true
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Susie:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"slash"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Susie:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.20000002, 0.26666668, 0.33333334, 0.40000004, 0.4666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Pivot/Susie:offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-14, 21)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o0dci"]
 _data = {
 &"RESET": SubResource("Animation_o0dci"),
 &"crouch": SubResource("Animation_s74s4"),
 &"dash": SubResource("Animation_c2nda"),
+&"fall": SubResource("Animation_dl2jl"),
+&"fall_end": SubResource("Animation_jqut0"),
+&"fall_start": SubResource("Animation_lw8m3"),
 &"idle": SubResource("Animation_mw6fy"),
 &"jump": SubResource("Animation_cqm2y"),
+&"jump_start": SubResource("Animation_cobll"),
+&"roll_left": SubResource("Animation_mlat7"),
+&"roll_right": SubResource("Animation_1s4dt"),
 &"running": SubResource("Animation_ciuf0"),
 &"slash": SubResource("Animation_xpa20")
 }
@@ -290,18 +969,6 @@ length = 0.001
 [sub_resource type="Animation" id="Animation_8yviw"]
 resource_name = "new_animation"
 length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Model:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.3, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0.14367068, -0.035), Vector3(0, 0.204, -0.035), Vector3(0, 0.14367068, -0.035)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xpa20"]
 _data = {
@@ -514,59 +1181,143 @@ _data = {
 }
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_85sci"]
-top_radius = 1.225
-bottom_radius = 1.345
+top_radius = 1.0
+bottom_radius = 1.0
+height = 0.7
+cap_top = false
+cap_bottom = false
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_252hh"]
+frames = 14
+speed_scale = 20.0
+frame_0/texture = ExtResource("11_r2muu")
+frame_1/texture = ExtResource("12_pgut6")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("17_jqut0")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("18_1s4dt")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("19_pifvd")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("20_mlat7")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("21_c06ra")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("22_2ijya")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("23_ukb1h")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("24_rfx7g")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("13_5kdis")
+frame_10/duration = 1.0
+frame_11/texture = ExtResource("14_cobll")
+frame_11/duration = 1.0
+frame_12/texture = ExtResource("15_lw8m3")
+frame_12/duration = 1.0
+frame_13/texture = ExtResource("16_dl2jl")
+frame_13/duration = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wtg4j"]
 cull_mode = 1
 shading_mode = 0
-albedo_texture = ExtResource("1_h8jhr")
+albedo_color = Color(0.427493, 0.42749307, 0.42749295, 1)
+albedo_texture = SubResource("AnimatedTexture_252hh")
+uv1_scale = Vector3(2, 2.106, 1.058)
 texture_filter = 0
 
 [node name="3DAttack" type="Node3D" unique_id=52954856]
+script = ExtResource("1_2ijya")
 
 [node name="Floor" type="MeshInstance3D" parent="." unique_id=1549241374]
 mesh = SubResource("CylinderMesh_mxk0a")
 surface_material_override/0 = SubResource("StandardMaterial3D_mxk0a")
 
+[node name="Circles" type="Node3D" parent="Floor" unique_id=1541130391]
+
+[node name="Offset1" type="Node3D" parent="Floor/Circles" unique_id=2126814158]
+
+[node name="Circle" parent="Floor/Circles/Offset1" unique_id=1125195471 instance=ExtResource("3_mlat7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.68)
+
+[node name="Offset2" type="Node3D" parent="Floor/Circles" unique_id=1271863225]
+transform = Transform3D(0.49999997, 0, 0.86602545, 0, 1, 0, -0.86602545, 0, 0.49999997, 0, 0, 0)
+
+[node name="Circle" parent="Floor/Circles/Offset2" unique_id=1232351831 instance=ExtResource("3_mlat7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.68)
+
+[node name="Offset3" type="Node3D" parent="Floor/Circles" unique_id=84779025]
+transform = Transform3D(-0.5, 0, 0.8660253, 0, 1, 0, -0.8660253, 0, -0.5, 0, 0, 0)
+
+[node name="Circle" parent="Floor/Circles/Offset3" unique_id=478740247 instance=ExtResource("3_mlat7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.68)
+
+[node name="Offset4" type="Node3D" parent="Floor/Circles" unique_id=1438714334]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 0, 0)
+
+[node name="Circle" parent="Floor/Circles/Offset4" unique_id=317180885 instance=ExtResource("3_mlat7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.68)
+
+[node name="Offset5" type="Node3D" parent="Floor/Circles" unique_id=2050113128]
+transform = Transform3D(-0.49999985, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, -0.49999985, 0, 0, 0)
+
+[node name="Circle" parent="Floor/Circles/Offset5" unique_id=142102737 instance=ExtResource("3_mlat7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.68)
+
+[node name="Offset6" type="Node3D" parent="Floor/Circles" unique_id=364701034]
+transform = Transform3D(0.49999985, 0, -0.8660253, 0, 1, 0, 0.8660253, 0, 0.49999985, 0, 0, 0)
+
+[node name="Circle" parent="Floor/Circles/Offset6" unique_id=1628270738 instance=ExtResource("3_mlat7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.68)
+
+[node name="MiddleCircle" type="Sprite3D" parent="Floor/Circles" unique_id=492013632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0011071116, 0)
+modulate = Color(0.21960784, 0.32156864, 0.32156864, 1)
+axis = 1
+texture_filter = 0
+texture = ExtResource("2_pifvd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1825226455]
+mesh = SubResource("CylinderMesh_y04b2")
+
 [node name="Stage" type="Node3D" parent="." unique_id=1341929695]
 
 [node name="Camera3D" type="Camera3D" parent="Stage" unique_id=1288977249]
-transform = Transform3D(0.7071068, -0.24184474, 0.66446304, 0, 0.9396926, 0.34202012, -0.7071068, -0.24184474, 0.66446304, 1.8, 1.25, 2)
+transform = Transform3D(0.70710677, -0.24184474, 0.664463, 0, 0.9396926, 0.34202012, -0.70710677, -0.24184474, 0.664463, 1.8, 1.055, 2)
 projection = 1
 
-[node name="Player" type="Area3D" parent="Stage" unique_id=356763888 node_paths=PackedStringArray("stage", "anim", "action_anim")]
+[node name="Player" type="Area3D" parent="Stage" unique_id=356763888 node_paths=PackedStringArray("stage", "anim", "bkg")]
 script = ExtResource("1_mw6fy")
 stage = NodePath("..")
 anim = NodePath("AnimationPlayer")
-action_anim = NodePath("Actions")
+bkg = NodePath("../../MeshInstance3D")
 
 [node name="Pivot" type="Node3D" parent="Stage/Player" unique_id=1227527102]
 
-[node name="Slash" type="Sprite3D" parent="Stage/Player/Pivot" unique_id=1645905273]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.08596972, 0.54046965)
-pixel_size = 0.0191
+[node name="Susie" type="AnimatedSprite3D" parent="Stage/Player/Pivot" unique_id=1096824653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.685)
+offset = Vector2(14, 21)
+pixel_size = 0.00416
+billboard = 1
+alpha_cut = 1
 texture_filter = 0
-render_priority = -127
-texture = ExtResource("4_o0dci")
+sprite_frames = SubResource("SpriteFrames_y04b2")
+animation = &"idle"
+autoplay = "idle"
+speed_scale = 0.0
 
-[node name="SusieSprite" type="Hybrid2D3DSprite" parent="Stage/Player/Pivot" unique_id=1842899945]
-sprite_height_px = 100.0
-target_3d_height = 0.45
-transform = Transform3D(0.99999994, 0, 0, 0, 1.0000036, 0, 0, 0, 0.99999994, 0, 0, 0.685)
-offset = Vector2(0, 50)
-pixel_size = 0.0045
-texture = ExtResource("3_h8jhr")
-hframes = 5
-vframes = 3
+[node name="Soul" type="Sprite3D" parent="Stage/Player/Pivot/Susie" unique_id=502744601]
+offset = Vector2(6, 40)
+modulate = Color(0, 1, 1, 1)
+pixel_size = 0.00208
+billboard = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("11_1s4dt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Stage/Player" unique_id=629259773]
 libraries/ = SubResource("AnimationLibrary_o0dci")
-autoplay = &"idle"
-
-[node name="Actions" type="AnimationPlayer" parent="Stage/Player" unique_id=2002591393]
-libraries/ = SubResource("AnimationLibrary_o0dci")
-autoplay = &"idle"
+speed_scale = 1.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Stage/Player" unique_id=323613458]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23, 0.038, 0.967)
@@ -579,8 +1330,8 @@ volume_db = -6.0
 [node name="Boss" type="Node3D" parent="." unique_id=758955739 node_paths=PackedStringArray("player_sprite", "model")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16403198, 0)
 script = ExtResource("2_mw6fy")
-player_sprite = NodePath("../Stage/Player/Pivot/SusieSprite")
-model = NodePath("Model")
+player_sprite = NodePath("../Stage/Player/Pivot/Susie/Soul")
+model = NodePath("warden")
 
 [node name="LookatBase" type="Node3D" parent="Boss" unique_id=582374401]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11935425, 0)
@@ -589,21 +1340,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11935425, 0)
 libraries/ = SubResource("AnimationLibrary_xpa20")
 autoplay = &"hover"
 
-[node name="Model" type="Node3D" parent="Boss" unique_id=1967402170]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14367068, -0.035)
+[node name="warden" parent="Boss" unique_id=1864175887 instance=ExtResource("16_c06ra")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0, 0, 0)
 
-[node name="warden" parent="Boss/Model" unique_id=1415119822 instance=ExtResource("7_uwsif")]
-transform = Transform3D(-0.137, 0, 1.197692e-08, 0, 0.137, 0, -1.197692e-08, 0, -0.137, 0, 0.22293699, 0.035)
-
-[node name="Attack" type="Node3D" parent="." unique_id=1449890568 node_paths=PackedStringArray("player_sprite")]
+[node name="Attack" type="Node3D" parent="." unique_id=1449890568]
+visible = false
 script = ExtResource("7_wtg4j")
-player_sprite = NodePath("../Stage/Player/Pivot/SusieSprite")
 
 [node name="Marker3D" type="Marker3D" parent="Attack" unique_id=1189439]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.565)
 
 [node name="Sprite3D" type="Sprite3D" parent="Attack/Marker3D" unique_id=100651632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.122, -0.164)
+visible = false
 modulate = Color(1, 1, 1, 0)
 axis = 1
 no_depth_test = true
@@ -616,15 +1365,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_s74s4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Attack" unique_id=2123561458]
 libraries/ = SubResource("AnimationLibrary_85sci")
-autoplay = &"laser"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Attack" unique_id=80067718]
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Attack" unique_id=1796566026]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=103762387]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28930664, 0)
 mesh = SubResource("CylinderMesh_85sci")
 surface_material_override/0 = SubResource("StandardMaterial3D_wtg4j")
 
 [connection signal="animation_finished" from="Stage/Player/AnimationPlayer" to="Stage/Player" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="Stage/Player/Actions" to="Stage/Player" method="_on_animation_player_animation_finished"]

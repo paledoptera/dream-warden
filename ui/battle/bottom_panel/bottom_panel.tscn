@@ -18,7 +18,7 @@ script = ExtResource("1_11je6")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1668581643]
 offset_top = -37.0
-offset_right = 640.0
+offset_right = 1000.0
 offset_bottom = 480.0
 color = Color(0, 0, 0, 1)
 
@@ -27,7 +27,6 @@ custom_minimum_size = Vector2(640, 115)
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7giy0")
 bbcode_enabled = true
 text = "  * This is sample text"
-scroll_active = false
 autowrap_mode = 0
 
 [node name="MonsterSelect" parent="." unique_id=1467874767 instance=ExtResource("3_rmodj")]

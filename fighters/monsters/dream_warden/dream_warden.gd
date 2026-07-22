@@ -46,6 +46,7 @@ func instantiate_3d_attack(scene: PackedScene) -> void:
 	attacks.append(attack)
 
 func start_attack() -> float:
+	phase = 2
 	
 	match phase:
 		1: # Red Soul
@@ -79,7 +80,14 @@ func start_attack() -> float:
 						instantiate_attack(preload("uid://bqj31vq3siu3")) # bright_hell
 						flavortext_line = 4
 						return 8.0
-						
+	
+		2: # Aqua Soul
+			turn = 0
+			match turn:
+				0: # 3d Attack
+					instantiate_3d_attack(SPECIAL_ATTACK)
+					owner.animations.play("slide_down")
+					return 9999.0
 					#6:
 						#goto_center_screen()
 						#instantiate_attack(preload("uid://biy34d1rdl0yb")) # orange_prophecies_attack

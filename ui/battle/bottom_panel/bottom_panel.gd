@@ -317,10 +317,20 @@ func do_attack(p_char_id: int, p_damage: int) -> void:
 	var character := Global.characters[p_char_id]
 	character.do_attack(monster, p_damage)
 
-func slide_down() -> void:
+func slide_down() -> Tween:
 	var tween = create_tween()
 	tween.tween_property(self,"position",Vector2(position.x,481.0),0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	return tween
 
 func slide_up() -> void:
 	var tween = create_tween()
 	tween.tween_property(self,"position",Vector2(position.x,365.0),0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+
+func slide_left() -> void:
+	var tween = create_tween()
+	tween.tween_property(self,"position",Vector2(position.x,481.0),0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,"position",Vector2(-160.0,481.0),0.5).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+
+func hide_health() -> void:
+	var tween = create_tween()
+	tween.tween_property($Characters,"position",Vector2(0.0,100.0),0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

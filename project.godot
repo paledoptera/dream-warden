@@ -34,6 +34,7 @@ Sounds="*res://globals/sounds/sounds.gd"
 
 [debug]
 
+settings/stdout/print_fps=true
 gdscript/warnings/unused_signal=0
 gdscript/warnings/integer_division=0
 gdscript/warnings/confusable_local_declaration=0
@@ -49,6 +50,10 @@ window/ios/allow_high_refresh_rate=false
 [dotnet]
 
 project/assembly_name="Delta Battle"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [file_customization]
 

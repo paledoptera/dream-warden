@@ -1,0 +1,382 @@
+[gd_scene format=3 uid="uid://b53ljrv0fb6u4"]
+
+[ext_resource type="Script" uid="uid://cosoh16n65vwr" path="res://scenes/battle/battle.gd" id="1_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://dh7u53yj0xavd" path="res://ui/battle/bottom_panel/bottom_panel.tscn" id="1_7gynk"]
+[ext_resource type="Texture2D" uid="uid://bwoj3auyp6174" path="res://scenes/battle/background.png" id="2_icoan"]
+[ext_resource type="PackedScene" uid="uid://b3uxp6uapsy5m" path="res://ui/battle/soul_cage/soul_cage.tscn" id="2_xd4uy"]
+[ext_resource type="PackedScene" uid="uid://daa26yfs5qdsb" path="res://soul/soul.tscn" id="3_0yh6x"]
+[ext_resource type="PackedScene" uid="uid://b56rv68xwgvla" path="res://fighters/characters/susie/susie.tscn" id="3_fh7rg"]
+[ext_resource type="Texture2D" uid="uid://cgopnlivpbvru" path="res://scenes/battle/back_buldings_032021.png" id="3_kd6yx"]
+[ext_resource type="PackedScene" uid="uid://dgdn5haymn4gc" path="res://effects/depths/depths_bkg.tscn" id="4_mxe8n"]
+[ext_resource type="PackedScene" uid="uid://siv76bpw5pri" path="res://ui/battle/tp_bar/tp_bar.tscn" id="5_h0kxc"]
+[ext_resource type="PackedScene" uid="uid://btwju6msq5h0t" path="res://scenes/battle/fire_rising.tscn" id="5_t1kk3"]
+[ext_resource type="PackedScene" uid="uid://bt53ruak41iac" path="res://fighters/monsters/dream_warden/dream_warden.tscn" id="6_agsc7"]
+[ext_resource type="PackedScene" uid="uid://cb578rc4cw4ea" path="res://specialattacks/aqua_hud.tscn" id="10_t1kk3"]
+[ext_resource type="Script" uid="uid://m17i7j602jax" path="res://ui/text_box/components/dialogue/dialogue.gd" id="12_icoan"]
+[ext_resource type="PackedScene" uid="uid://ch6nqfnn4lcxk" path="res://scenes/battle/clock.tscn" id="12_mxe8n"]
+[ext_resource type="Script" uid="uid://cci227fj67d4u" path="res://ui/text_box/components/dialogue/_dialogue_marker.gd" id="13_kd6yx"]
+
+[sub_resource type="Shader" id="Shader_agsc7"]
+code = "shader_type canvas_item;
+
+// переменные анимаций
+uniform float time_factor : hint_range(0.0, 5.0) = 1.0;
+uniform float wave_strength : hint_range(0.0, 0.5) = 0.05;
+uniform float ripple_speed : hint_range(0.0, 5.0) = 1.0;
+
+// переменные визуала
+uniform sampler2D tex_screen : hint_screen_texture;
+uniform vec4 base_color : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 edge_color : source_color = vec4(1.0, 0.5, 0.7, 1.0);
+uniform float glow_intensity : hint_range(0.0, 5.0) = 1.5;
+uniform float edge_pulse : hint_range(0.0, 2.0) = 1.0;
+
+// переменные искажения
+uniform sampler2D noise_tex : repeat_enable; 
+uniform float noise_scale : hint_range(0.0, 5.0) = 1.0;
+uniform float swirl_strength : hint_range(-2.0, 2.0) = 0.5;
+uniform float hue_shift_speed : hint_range(0.0, 5.0) = 1.0;
+
+// перегоняю в хсв для радуги
+vec3 rgb2hsv(vec3 c) {
+	vec4 K = vec4(0.0, -1.0/3.0, 2.0/3.0, -1.0);
+	vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+	vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+	float d = q.x - min(q.w, q.y);
+	return vec3(abs((q.w - q.y)/(6.0*d + 1e-10) + q.z), d/(q.x + 1e-10), q.x);
+}
+
+// возвращаю в ргб
+vec3 hsv2rgb(vec3 c) {
+	vec3 p = abs(fract(c.xxx + vec3(0.0, 1.0/3.0, 2.0/3.0))*6.0 - 3.0);
+	return c.z * mix(vec3(1.0), clamp(p - 1.0, 0.0, 1.0), c.y);
+}
+
+// тот самый вихрь из первого варианта
+vec2 get_swirl_uv(vec2 uv, float strength) {
+	vec2 center = vec2(0.5);
+	vec2 diff = uv - center;
+	float dist = length(diff);
+	float angle = atan(diff.y, diff.x) + strength * (0.5 - dist) * sin(TIME * 0.5);
+	return center + vec2(cos(angle), sin(angle)) * dist;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	float t = TIME * time_factor;
+	
+	// тянучка значение шума
+	float noise_val = texture(noise_tex, uv * noise_scale + t * 0.05).r;
+	
+	// искажение сетки волнами
+	uv.y += sin(uv.x * 10.0 + t) * wave_strength * noise_val;
+	uv.x += cos(uv.y * 10.0 + t * 0.5) * wave_strength * noise_val;
+	
+	// рябь как круги на воде
+	float dist_center = distance(uv, vec2(0.5));
+	uv += sin(dist_center * 20.0 - t * ripple_speed) * (wave_strength * 0.5 * noise_val);
+	
+	// закручивание спиралью
+	uv = get_swirl_uv(uv, swirl_strength);
+	
+	// основной цвет по искаженным координатам
+	vec4 tex = texture(TEXTURE, uv);
+	
+	// светящийся контур
+	float edge_mask = smoothstep(0.35, 0.5, dist_center);
+	//final_rgb += edge_mask * edge_pulse * edge_color.rgb;
+	
+	// общее свечение и пульсация всей мембраны
+	float pulse = 0.8 + 0.2 * sin(t);
+	//final_rgb *= (glow_intensity * pulse);
+	
+	// чутка рандома
+	//final_rgb += 0.03 * vec3(sin(t * 3.0), cos(t * 2.0), noise_val * 0.1);
+	
+	COLOR = vec4(tex.rgb, tex.a) * base_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oiw7q"]
+shader = SubResource("Shader_agsc7")
+shader_parameter/time_factor = 5.0
+shader_parameter/wave_strength = 0.0010000000475
+shader_parameter/ripple_speed = 0.6210000294975
+shader_parameter/base_color = Color(1, 1, 1, 0.52156866)
+shader_parameter/edge_color = Color(1, 0.5, 0.7, 1)
+shader_parameter/glow_intensity = 0.330000015675
+shader_parameter/edge_pulse = 0.318000015105
+shader_parameter/noise_scale = 1.0
+shader_parameter/swirl_strength = 0.1000000997499999
+shader_parameter/hue_shift_speed = 0.658000031255
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_t1kk3"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_n6gaa"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="Animation" id="Animation_agsc7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/BottomPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 365)]
+}
+
+[sub_resource type="Animation" id="Animation_oiw7q"]
+resource_name = "slide_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/BottomPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 365), Vector2(0, 480)]
+}
+
+[sub_resource type="Animation" id="Animation_fisqk"]
+resource_name = "slide_down"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D/BottomPanel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector2(0, 480), Vector2(0, 365)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fisqk"]
+_data = {
+&"RESET": SubResource("Animation_agsc7"),
+&"slide_down": SubResource("Animation_oiw7q"),
+&"slide_up": SubResource("Animation_fisqk")
+}
+
+[sub_resource type="Resource" id="Resource_icoan"]
+resource_name = "Blinding flashes"
+script = ExtResource("12_icoan")
+text = "  * Blinding flashes light up the sky."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_t1kk3"]
+resource_name = "World revolves"
+script = ExtResource("12_icoan")
+text = "  * The world revolves around you...
+  * Stars streak across the sky."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_kd6yx"]
+resource_name = "Atmosphere thins"
+script = ExtResource("12_icoan")
+text = "  * The atmosphere thins.
+  * Your hair stands on end."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_n6gaa"]
+resource_name = "Strange fog"
+script = ExtResource("12_icoan")
+text = "  * A strange fog fills the battlefield."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[sub_resource type="Resource" id="Resource_6ofp8"]
+script = ExtResource("12_icoan")
+text = "  * Iridescent feathers fall around you.
+  * The wind is howling..."
+require_input = false
+metadata/_custom_type_script = "uid://m17i7j602jax"
+
+[node name="Battle" type="Node2D" unique_id=1451098202 node_paths=PackedStringArray("animations", "soul", "soul_cage", "bottom_panel", "tp_bar", "aqua_hud")]
+script = ExtResource("1_0yh6x")
+animations = NodePath("AnimationPlayer")
+soul = NodePath("Camera2D/Soul")
+soul_cage = NodePath("Camera2D/SoulCage")
+bottom_panel = NodePath("Camera2D/BottomPanel")
+tp_bar = NodePath("Camera2D/TPBar")
+aqua_hud = NodePath("Camera2D/AquaHUD")
+
+[node name="Background" type="SubViewportContainer" parent="." unique_id=166667966]
+modulate = Color(2.0696762, 2.0696762, 2.0696762, 1)
+offset_top = 51.0
+offset_right = 640.0
+offset_bottom = 1011.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(0, -0.5)
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background" unique_id=1096449070]
+handle_input_locally = false
+size = Vector2i(320, 480)
+render_target_update_mode = 4
+
+[node name="Sky" type="TextureRect" parent="Background/SubViewport" unique_id=203411286]
+material = SubResource("ShaderMaterial_oiw7q")
+custom_maximum_size = Vector2(320, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 221.8125
+offset_bottom = -18.1875
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_icoan")
+expand_mode = 1
+
+[node name="Sky2" type="TextureRect" parent="Background/SubViewport" unique_id=269316077]
+material = SubResource("ShaderMaterial_oiw7q")
+custom_maximum_size = Vector2(320, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -18.5
+offset_right = -0.5
+offset_bottom = -258.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_icoan")
+expand_mode = 1
+flip_v = true
+
+[node name="Buildings" type="TextureRect" parent="Background/SubViewport" unique_id=1842574344]
+material = SubResource("ShaderMaterial_oiw7q")
+custom_maximum_size = Vector2(320, 240)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 175.5
+offset_bottom = -64.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_kd6yx")
+expand_mode = 1
+
+[node name="DepthsBkg" parent="." unique_id=27529299 instance=ExtResource("4_mxe8n")]
+visible = false
+modulate = Color(1, 1, 1, 0.259)
+position = Vector2(308, 171)
+
+[node name="Clock" parent="." unique_id=913049443 instance=ExtResource("12_mxe8n")]
+
+[node name="MainClock" parent="Clock/SubViewport2" parent_id_path=PackedInt32Array(913049443, 698166261) index="1" unique_id=1788779321]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage1" parent="Clock/SubViewport2/MainClock" index="0" unique_id=394784902]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage2" parent="Clock/SubViewport2/MainClock" index="1" unique_id=729563524]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage3" parent="Clock/SubViewport2/MainClock" index="2" unique_id=1218521683]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage4" parent="Clock/SubViewport2/MainClock" index="3" unique_id=579023528]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="Afterimage5" parent="Clock/SubViewport2/MainClock" index="4" unique_id=322422116]
+texture = SubResource("ViewportTexture_t1kk3")
+
+[node name="TextureRect" parent="Clock" index="3" unique_id=399944368]
+texture = SubResource("ViewportTexture_n6gaa")
+
+[node name="3DWorld" type="SubViewportContainer" parent="." unique_id=343720224]
+z_index = 12
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="SubViewport" type="SubViewport" parent="3DWorld" unique_id=1103103086]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(320, 240)
+render_target_update_mode = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1954956949]
+libraries/ = SubResource("AnimationLibrary_fisqk")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=833185454]
+anchor_mode = 0
+
+[node name="SoulCage" parent="Camera2D" unique_id=599519693 instance=ExtResource("2_xd4uy")]
+position = Vector2(308, 171)
+
+[node name="BottomPanel" parent="Camera2D" unique_id=2001215419 instance=ExtResource("1_7gynk")]
+z_index = 15
+position = Vector2(0, 365)
+
+[node name="Soul" parent="Camera2D" unique_id=272991104 instance=ExtResource("3_0yh6x")]
+visible = false
+position = Vector2(308, 171)
+
+[node name="TPBar" parent="Camera2D" unique_id=1477987401 instance=ExtResource("5_h0kxc")]
+z_index = 999
+position = Vector2(51, 139)
+
+[node name="AquaHUD" parent="Camera2D" unique_id=1907548078 instance=ExtResource("10_t1kk3")]
+position = Vector2(473, 515)
+
+[node name="Characters" type="Node2D" parent="." unique_id=905090157]
+
+[node name="Susie" parent="Characters" unique_id=1652858960 instance=ExtResource("3_fh7rg")]
+position = Vector2(150, 206)
+
+[node name="Monsters" type="Node2D" parent="." unique_id=1395229772]
+
+[node name="DreamWarden" parent="Monsters" unique_id=312367948 node_paths=PackedStringArray("ultra_3d_world") instance=ExtResource("6_agsc7")]
+position = Vector2(442, 177)
+ultra_3d_world = NodePath("../../3DWorld/SubViewport")
+idle_lines = Array[ExtResource("12_icoan")]([SubResource("Resource_icoan"), SubResource("Resource_t1kk3"), SubResource("Resource_kd6yx"), SubResource("Resource_n6gaa"), SubResource("Resource_6ofp8")])
+
+[node name="SubViewportContainer4" type="SubViewportContainer" parent="." unique_id=299775321]
+visible = false
+offset_right = 640.0
+offset_bottom = 480.0
+stretch = true
+stretch_shrink = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer4" unique_id=1637663423]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 240)
+render_target_update_mode = 0
+
+[node name="FireParticle" parent="SubViewportContainer4/SubViewport" unique_id=642748967 instance=ExtResource("5_t1kk3")]
+visible = false
+position = Vector2(165.5, 176.5)
+speed_scale = 0.1
+color = Color(0.078431375, 0.08235294, 1, 0.05490196)
+
+[node name="FireParticle2" parent="SubViewportContainer4/SubViewport" unique_id=1025432948 instance=ExtResource("5_t1kk3")]
+position = Vector2(165.5, 176.5)
+color = Color(0.39215687, 0.003921569, 0.4, 0.078431375)
+
+[editable path="Clock"]
